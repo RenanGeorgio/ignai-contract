@@ -17,12 +17,12 @@ export const initialMessages: ChatGPTMessage[] = [
   },
 ]
 
-const InputMessage = ({ input, setInput, sendMessage }: any) => (
-
+export const InputMessage = ({ input, setInput, sendMessage }: any) => (
   <div className=" flex clear-both">
     <input
       type="text"
       aria-label="chat input"
+      placeholder="Digite sua mensagem..."
       required
       className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm"
       value={input}
@@ -44,10 +44,10 @@ const InputMessage = ({ input, setInput, sendMessage }: any) => (
         setInput('')
       }}
     >
-      Converse
+      Enviar
     </Button>
   </div>
-)
+);
 
 function Chat() {
   const [messages, setMessages] = useState<ChatGPTMessage[] | any>(initialMessages);
@@ -128,11 +128,10 @@ function Chat() {
 //  const handleClose(){
 
 //  }
-const [expanded, setExpanded] = React.useState<string | false>('panel1');
-const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
-    };
+  const [expanded, setExpanded] = React.useState<string | false>('panel1');
+  const handleChange = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
   return (
     <div style={{ borderRadius: '5px',zIndex:999999, marginBottom:'2rem',maxWidth:300 }}>
@@ -183,7 +182,6 @@ const handleChange =
                       input={input}
                       setInput={setInput}
                       sendMessage={sendMessage}
-                      // style={{ marginTop: '75px' }}
                     />
                   </div>
 

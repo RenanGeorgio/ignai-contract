@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import PDFViewer from '../components/pdf';
-import ChatComponent from '../components/chat';
+import ChatComponent from '../views/chat';
 
 interface HomeProps {
   expanded: boolean;
