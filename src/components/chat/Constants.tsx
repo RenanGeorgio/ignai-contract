@@ -9,3 +9,11 @@ export const initialMessages: ChatGPTMessage[] = [
     content: 'Otimização de Supply Chain',
   },
 ]
+
+export const emojis = {
+  share: '🔗',
+  edit: '✏️',
+  download: '⬇️',
+  reload: '🔄',
+  trash: '🗑️',
+};

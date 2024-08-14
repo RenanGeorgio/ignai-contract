@@ -1,25 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { Box, Input, VStack, HStack, Text } from "@chakra-ui/react";
+import { Box, VStack, HStack, Text } from "@chakra-ui/react";
 import { ChatGPTMessage, ChatLine, LoadingChatLine } from "@components/chat/ChatLine";
-import { initialMessages, InputMessage } from "../chat";
+import { COOKIE_NAME, initialMessages } from "@components/chat/Constants";
+import { InputMessage } from "@components/chat/Input";
 
-const emojis = {
-  share: '🔗',
-  edit: '✏️',
-  download: '⬇️',
-  reload: '🔄',
-  trash: '🗑️',
-};
-
-interface Message {
-  content: string;
-  sender: 'user' | 'other';
-}
-
-const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
-
-const ChatComponent: React.FC = () => {
+const ChatView: React.FC = () => {
   const [messages, setMessages] = useState<ChatGPTMessage[] | any>(initialMessages);
   const [input, setInput] = useState<any>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -47,7 +33,8 @@ const ChatComponent: React.FC = () => {
         messages: last10messages,
         user: cookie[COOKIE_NAME],
       }),
-    })
+    });
+    
     console.log(response);
     console.log('Edge function returned.');
 
@@ -156,4 +143,4 @@ const ChatComponent: React.FC = () => {
   );
 }
 
-export default ChatComponent;
+export default ChatView;

@@ -1,6 +1,8 @@
-import { Box } from '@chakra-ui/react';
-import PDFViewer from '../components/pdf';
-import ChatComponent from '../views/chat';
+import React from "react";
+import { Box } from "@chakra-ui/react";
+
+import PDFViewer from "@components/pdf";
+import ChatContainer from "@components/chat/container";
 
 interface HomeProps {
   expanded: boolean;
@@ -24,7 +26,7 @@ const Home: React.FC<HomeProps> = ({ expanded }) => {
         borderRadius="md"
         boxShadow="md"
       >
-        <ChatComponent />
+        <ChatContainer />
       </Box>
     </Box>
   );

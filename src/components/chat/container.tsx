@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Box, Popper, IconButton } from "@chakra-ui/react";
 import { ChatIcon } from "@chakra-ui/icons";
-import Chat from "@views/chat";
+import { ChatView } from "@views";
 
-import styles from "./container.css";
+import styles from "./Container.css";
 
-const ChatWrapper = () => {
+const ChatContainer = () => {
   const [open, setOpen] = useState<boolean>(false);
   const elRef = useRef<any>(null);
 
@@ -32,7 +32,7 @@ const ChatWrapper = () => {
       <Popper open={open} placement="top-end" anchorEl={elRef.current}>
         <div className={styles.wrapper}>
           <div className={styles.container}>
-            <Chat />
+            <ChatView />
           </div>
         </div>
       </Popper>
@@ -41,4 +41,4 @@ const ChatWrapper = () => {
   );
 }
 
-export default ChatWrapper
+export default ChatContainer
