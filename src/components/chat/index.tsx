@@ -1,5 +1,5 @@
-import { Box, Input, Button, VStack, HStack, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import React, { useState } from "react";
+import { Box, Input, Button, VStack, HStack, Text } from "@chakra-ui/react";
 
 const emojis = {
   share: '🔗',
@@ -88,6 +88,6 @@ const ChatComponent: React.FC = () => {
       </Box>
     </Box>
   );
-};
+}
 
 export default ChatComponent;

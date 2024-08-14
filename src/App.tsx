@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "./components/sidebar";
 import { SidebarProvider } from "./contexts/SidebarContext";
-import "./styles/app.css";
 import Home from "./pages/home";
+
+import "./styles/app.css";
 
 function App() {
   const [expanded, setExpanded] = useState(false);
