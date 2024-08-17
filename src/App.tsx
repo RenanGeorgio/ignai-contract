@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { SidebarProvider } from "@contexts/sidebar/provider";
+import { SidebarProvider } from "@providers";
 import Home from "@pages/home";
 import Sidebar from "@components/Sidebar";
 
