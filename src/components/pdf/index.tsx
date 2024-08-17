@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Box, Button, Input, Text, VStack, HStack } from '@chakra-ui/react';
+import { useState } from "react";
+import { Box, Button, Input, Text, VStack, HStack } from "@chakra-ui/react";
 
 const FileViewer: React.FC = () => {
   const [fileUrl, setFileUrl] = useState<string | null>(null);

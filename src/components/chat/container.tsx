@@ -3,7 +3,7 @@ import { Box, Popper, IconButton } from "@chakra-ui/react";
 import { ChatIcon } from "@chakra-ui/icons";
 import { ChatView } from "@views";
 
-import styles from "./Container.css";
+import styles from "./Container.module.css";
 
 const ChatContainer = () => {
   const [open, setOpen] = useState<boolean>(false);

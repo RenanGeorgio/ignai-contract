@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Button } from "./Button";
 
 export const InputMessage = ({ input, setInput, sendMessage }: any) => (

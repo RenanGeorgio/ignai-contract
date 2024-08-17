@@ -27,6 +27,7 @@
     "jsx": "react-jsx",
     "paths": {
       "@components/*": ["components/*", "components/*/index", "components/index"],
+      "@pages/*": ["pages/*", "pages/*/index", "pages/index"],
       "@libs/*": ["libs/*"],
       "@styles/*": ["styles/*"],
       "@contexts/*": ["contexts/*"],

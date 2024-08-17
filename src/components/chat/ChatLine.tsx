@@ -4,8 +4,6 @@ import Balancer from "react-wrap-balancer";
 
 import convertNewLines from "@helpers/convert-new-lines";
 
-const BalancerWrapper = (props: any) => <Balancer {...props} />
-
 type ChatGPTAgent = 'user' | 'system' | 'assistant'
 
 export interface ChatGPTMessage {
@@ -13,14 +11,16 @@ export interface ChatGPTMessage {
   content: string
 }
 
+const BalancerWrapper = (props: any) => <Balancer {...props} />
+
 export const LoadingChatLine = () => ( // carrega animação placeholder
   <div className="flex min-w-full animate-pulse px-4 py-5 sm:px-6">
     <div className="flex flex-grow space-x-3">
       <div className="min-w-0 flex-1">
         <p className="font-large text-xxl text-gray-900">
-          <a href="#" className="hover:underline">
+          <BalancerWrapper>
             Supply Pharma
-          </a>
+          </BalancerWrapper>
         </p>
         <div className="space-y-4 pt-4">
           <div className="grid grid-cols-3 gap-4">
@@ -46,7 +46,7 @@ export function ChatLine({ role = 'assistant', content }: ChatGPTMessage) {
   return (
     <div
       className={
-        role != 'assistant' ? 'float-right clear-both' : 'float-left clear-both'
+        role !== 'assistant' ? 'float-right clear-both' : 'float-left clear-both'
       }
     >
       <div className="float-right mb-5 rounded-lg bg-white px-4 py-5 shadow-lg ring-1 ring-zinc-100 sm:px-6">
@@ -55,7 +55,7 @@ export function ChatLine({ role = 'assistant', content }: ChatGPTMessage) {
             <p
               className={clsx(
                 'text ',
-                role == 'assistant' ? 'font-semibold font- ' : 'text-gray-400'
+                role === 'assistant' ? 'font-semibold font- ' : 'text-gray-400'
               )}
             >
               {formatteMessage}

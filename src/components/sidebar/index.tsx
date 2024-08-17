@@ -1,3 +1,6 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 import {
   BookIcon,
   CalendarIcon,
@@ -16,10 +19,9 @@ import {
   TextWrapIcon,
   IgnaiLogo
 } from "../image/icons";
-
-import "../../styles/sidebar.css";
-import { Link } from "react-router-dom";
 import SidebarBadge from "../badge/SidebarBadge";
+
+import "@styles/sidebar.css";
 
 interface SidebarProps {
   expanded: boolean;
@@ -198,6 +200,6 @@ const Sidebar: React.FC<SidebarProps> = ({ expanded, setExpanded }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Sidebar;
