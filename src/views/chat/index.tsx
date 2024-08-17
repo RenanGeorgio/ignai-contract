@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { Box, VStack, HStack, Text } from "@chakra-ui/react";
 import { ChatGPTMessage, ChatLine, LoadingChatLine } from "@components/chat/ChatLine";
-import { COOKIE_NAME, initialMessages } from "@components/chat/Constants";
+import { COOKIE_NAME, emojis, initialMessages } from "@components/chat/Constants";
 import { InputMessage } from "@components/chat/Input";
+import { streamPath } from "config";
 
 const ChatView: React.FC = () => {
   const [messages, setMessages] = useState<ChatGPTMessage[] | any>(initialMessages);
@@ -18,13 +19,14 @@ const ChatView: React.FC = () => {
       ...messages,
       { role: 'user', content: message } as ChatGPTMessage,
     ]
-    setMessages(newMessages)
+
+    setMessages(newMessages);
   
     const last10messages = newMessages.slice(-10); // memoria para 10 mensagens
     console.log("PARTE 5");
     console.log(last10messages);
 
-    const response = await fetch('/api/chat', {
+    const response = await fetch(`${streamPath}/api/chat`, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +39,6 @@ const ChatView: React.FC = () => {
     
     console.log(response);
     console.log('Edge function returned.');
-
 
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -56,25 +57,25 @@ const ChatView: React.FC = () => {
     let lastMessage = '';
 
     while (!done) {
-      const { value, done: doneReading } = await reader.read()
-      done = doneReading
-      const chunkValue = decoder.decode(value)
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
 
-      lastMessage = lastMessage + chunkValue
+      lastMessage = lastMessage + chunkValue;
 
       setMessages([
         ...newMessages,
         { role: 'assistant', content: lastMessage } as ChatGPTMessage,
-      ])
+      ]);
 
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   useEffect(() => {
     if (!cookie[COOKIE_NAME]) {
-      const randomId = Math.random().toString(36).substring(7)
-      setCookie(COOKIE_NAME, randomId)
+      const randomId = Math.random().toString(36).substring(7);
+      setCookie(COOKIE_NAME, randomId);
     }
   }, [cookie, setCookie]);
 
