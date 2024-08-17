@@ -33,11 +33,8 @@
       "@contexts/*": ["contexts/*", "contexts/*/index"],
       "@providers": ["contexts/index"],
       "@services": ["services/index"],
-      "@assets/*": ["assets/*"],
-      "@controllers": ["controllers/index"],
       "@helpers/*": ["helpers/*"],
-      "@views": ["views/index"],
-      "@utils/*": ["utils/*"]
+      "@views": ["views/index"]
     },
     "incremental": true
   },
