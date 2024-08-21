@@ -1,17 +1,137 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import { useCookies } from "react-cookie";
 import { Box, VStack, HStack, Text } from "@chakra-ui/react";
-import { ChatGPTMessage, ChatLine, LoadingChatLine } from "@components/chat/ChatLine";
+import { ChatGPTAgent, ChatGPTMessage, LoadingChatLine } from "@components/chat/ChatLine";
 import { COOKIE_NAME, emojis, initialMessages } from "@components/chat/Constants";
 import { InputMessage } from "@components/chat/Input";
 import { streamPath } from "config";
+import ConversationBubble from "@components/conversation/ConversationBubble";
+import { useDarkTheme } from "@hooks";
+import { RetryIcon } from "@icons";
+import ArrowDown from "@assets/arrow-down.svg";
+
+export type FEEDBACK = 'LIKE' | 'DISLIKE';
+
+export interface Query {
+  prompt: string;
+  response?: string;
+  feedback?: FEEDBACK;
+  error?: string;
+  sources?: { title: string; text: string; source: string }[];
+  conversationId?: string | null;
+  title?: string | null;
+}
 
 const ChatView: React.FC = () => {
-  const [messages, setMessages] = useState<ChatGPTMessage[] | any>(initialMessages);
-  const [input, setInput] = useState<any>('');
+  const messages = useSelector(selectQueries);
+  const status = useSelector(selectStatus);
+
+  const endMessageRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const fetchStream = useRef<any>(null);
+
+  const [cookie, setCookie] = useCookies([COOKIE_NAME]);
+  const [isDarkTheme] = useDarkTheme();
+  
+  const [hasScrolledToLast, setHasScrolledToLast] = useState(true);
+  const [eventInterrupt, setEventInterrupt] = useState(false);
+  const [lastQueryReturnedErr, setLastQueryReturnedErr] = useState(false);
+  const [messages, setMessages] = useState<ChatGPTMessage[] | any>(initialMessages); // TODO 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [cookie, setCookie] = useCookies([COOKIE_NAME])
+  const handleUserInterruption = () => {
+    if (!eventInterrupt && status === 'loading') {
+      setEventInterrupt(true);
+    }
+  };
+
+  useEffect(() => {
+    !eventInterrupt && scrollIntoView();
+  }, [messages.length, messages[messages.length - 1]]);
+
+  useEffect(() => {
+    const element = document.getElementById('inputbox') as HTMLTextAreaElement;
+    if (element) {
+      element.focus();
+    }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (status !== 'idle') {
+        fetchStream.current && fetchStream.current.abort(); // abortar stream anterior
+      }
+    };
+  }, [status]);
+
+  useEffect(() => {
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        setHasScrolledToLast(entry.isIntersecting);
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      root: null,
+      threshold: [1, 0.8],
+    });
+    
+    if (endMessageRef.current) {
+      observer.observe(endMessageRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [endMessageRef.current]);
+
+  useEffect(() => {
+    if (messages.length) {
+      messages[messages.length - 1].error && setLastQueryReturnedErr(true);
+
+      // considerar uma consulta que inicialmente retornou um erro pode incluir posteriormente uma propriedade de resposta na nova tentativa
+      messages[messages.length - 1].response && setLastQueryReturnedErr(false);
+    }
+  }, [messages[messages.length - 1]]);
+
+  const scrollIntoView = () => {
+    endMessageRef?.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  };
+
+  const handleFeedback = (query: Query, feedback: FEEDBACK, index: number) => {
+    const prevFeedback = query.feedback;
+    dispatch(updateQuery({ index, query: { feedback } }));
+    handleSendFeedback(query.prompt, query.response!, feedback).catch(() =>
+      dispatch(updateQuery({ index, query: { feedback: prevFeedback } })),
+    );
+  };
+
+  const handleQuestionSubmission = () => {
+    if (inputRef.current?.value && status !== 'loading') {
+      if (lastQueryReturnedErr) { // atualizar a última consulta com falha com novo prompt
+        dispatch(
+          updateQuery({
+            index: messages.length - 1,
+            query: {
+              prompt: inputRef.current.value,
+            },
+          }),
+        );
+        handleQuestion({
+          question: messages[messages.length - 1].prompt,
+          isRetry: true,
+        });
+      } else {
+        handleQuestion({ question: inputRef.current.value });
+      }
+
+      inputRef.current.value = '';
+      handleInput();
+    }
+  }
 
   const sendMessage = async (message: string) => { // envia mensagem para API /api/chat endpoint
     setLoading(true);
@@ -72,6 +192,77 @@ const ChatView: React.FC = () => {
     }
   }
 
+  const prepResponseView = (query: Query, role: ChatGPTAgent, index: number) => {
+    let responseView: any;
+
+    if (query?.response) {
+      responseView = (
+        <ConversationBubble
+          ref={endMessageRef}
+          className={`${index === messages.length - 1 ? 'mb-32' : 'mb-7'}`}
+          key={`${index}ANSWER`}
+          currentIndex={index}
+          message={query.response}
+          type={'ANSWER'}
+          role={role}
+          sources={query.sources}
+          feedback={query.feedback}
+          handleFeedback={(feedback: FEEDBACK) =>
+            handleFeedback(query, feedback, index)
+          }
+        ></ConversationBubble>
+      );
+    } else if (query.error) {
+      const retryBtn = (
+        <button
+          className="flex items-center justify-center gap-3 self-center rounded-full border border-silver py-3 px-5  text-lg text-gray-500 transition-colors delay-100 hover:border-gray-500 disabled:cursor-not-allowed dark:text-bright-gray"
+          disabled={status === 'loading'}
+          onClick={() => {
+            handleQuestion({
+              question: messages[messages.length - 1].prompt,
+              isRetry: true,
+            });
+          }}
+        >
+          <RetryIcon
+            fill={isDarkTheme ? 'rgb(236 236 241)' : 'rgb(107 114 120)'}
+            stroke={isDarkTheme ? 'rgb(236 236 241)' : 'rgb(107 114 120)'}
+          />
+          Retry
+        </button>
+      );
+      responseView = (
+        <ConversationBubble
+          ref={endMessageRef}
+          className={`${index === messages.length - 1 ? 'mb-32' : 'mb-7'} `}
+          key={`${index}ERROR`}
+          currentIndex={index}
+          message={query.error}
+          type="ERROR"
+          role={role}
+          retryBtn={retryBtn}
+        ></ConversationBubble>
+      );
+    }
+
+    return responseView;
+  }
+
+  const handleInput = () => {
+    if (inputRef.current) {
+      if (window.innerWidth < 350) {
+        inputRef.current.style.height = 'auto';
+      } else {
+        inputRef.current.style.height = '64px';
+      }
+
+      inputRef.current.style.height = `${Math.min(
+        inputRef.current.scrollHeight,
+        96,
+      )}px`;
+    }
+  }
+
   useEffect(() => {
     if (!cookie[COOKIE_NAME]) {
       const randomId = Math.random().toString(36).substring(7);
@@ -79,8 +270,16 @@ const ChatView: React.FC = () => {
     }
   }, [cookie, setCookie]);
 
+  useEffect(() => {
+    handleInput();
+    window.addEventListener('resize', handleInput);
+    return () => {
+      window.removeEventListener('resize', handleInput);
+    };
+  }, []);
+
   return (
-    <Box display="flex" flexDirection="column" height="100%">
+    <div className="flex h-[90vh] flex-col gap-7 pb-2 sm:h-[85vh]">
       <Box 
         as="header" 
         p={4} 
@@ -109,38 +308,77 @@ const ChatView: React.FC = () => {
         borderLeft="1px solid gray"
         borderColor="gray.300"
         >
-        <div style={{overflowY:'scroll',height:'240px'}}>
-          {messages?.map(({ content, role }: any, index: any) => (
-            <HStack
-              key={index}
-              w="full"
-              justifyContent={role === 'user' ? 'flex-end' : 'flex-start'}
-            >
-              <Box
-                bg={role === 'user' ? 'blue.100' : 'gray.200'}
-                p={3}
-                borderRadius="md"
-                maxWidth="70%"
+          <div
+            onWheel={handleUserInterruption}
+            onTouchMove={handleUserInterruption}
+            className="flex h-[90%] w-full flex-1 justify-center overflow-y-auto p-4 md:h-[83vh]"
+          >
+            {messages.length > 0 && !hasScrolledToLast && (
+              <button
+                onClick={scrollIntoView}
+                aria-label="scroll to bottom"
+                className="fixed bottom-40 right-14 z-10 flex h-7 w-7  items-center justify-center rounded-full border-[0.5px] border-gray-alpha bg-gray-100 bg-opacity-50 dark:bg-purple-taupe md:h-9 md:w-9 md:bg-opacity-100 "
               >
-                <ChatLine key={index} role={role} content={content} />
-              </Box>
-            </HStack>
-          ))}
-          {loading && <LoadingChatLine />}
-        </div>
+                <img
+                  src={ArrowDown}
+                  alt="arrow down"
+                  className="h-4 w-4 opacity-50 md:h-5 md:w-5"
+                />
+              </button>
+            )}
+
+            <div style={{overflowY:'scroll',height:'240px'}}>
+              {messages.length > 0 && (
+                <div className="mt-16 w-full md:w-8/12">
+                  {messages?.map(({ content, role }: ChatGPTMessage, index: any) => {
+                    return (
+                      <Fragment key={index}>
+                        <HStack
+                          key={index}
+                          w="full"
+                          justifyContent={role === 'user' ? 'flex-end' : 'flex-start'}
+                        >
+                          <Box
+                            bg={role === 'user' ? 'blue.100' : 'gray.200'}
+                            p={3}
+                            borderRadius="md"
+                            maxWidth="70%"
+                          >
+                            <ConversationBubble
+                              className={'mb-1 last:mb-28 md:mb-7'}
+                              key={`${index}QUESTION`}
+                              currentIndex={index}
+                              message={content?.prompt}
+                              type="QUESTION"
+                              role={'user'}
+                              sources={content?.sources}
+                            ></ConversationBubble>
+                            {prepResponseView(content, role, index)}
+                          </Box>
+                        </HStack>
+                      </Fragment>
+                    );
+                  })}
+                </div>
+              )}
+              {loading && <LoadingChatLine />}
+            </div>
+          </div>
       </VStack>
       <Box as="footer" p={4} borderTop="1px solid" borderLeft="1px solid" borderColor="gray.300">
         <HStack>
-          <div style={{ marginTop:'5px', paddingBottom:'25px' }} >
+          <div className="bottom-safe fixed flex w-11/12 flex-col items-end self-center rounded-2xl bg-opacity-0 pb-1 sm:w-1/2">
             <InputMessage
-              input={input}
-              setInput={setInput}
-              sendMessage={sendMessage}
+              inputRef={inputRef}
+              handleInput={handleInput}
+              handleQuestionSubmission={handleQuestionSubmission}
+              isLoading={status}
+              darkTheme={isDarkTheme}
             />
           </div>
         </HStack>
       </Box>
-    </Box>
+    </div>
   );
 }
 

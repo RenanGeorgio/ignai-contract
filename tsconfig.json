@@ -34,7 +34,10 @@
       "@providers": ["contexts/index"],
       "@services": ["services/index"],
       "@helpers/*": ["helpers/*"],
-      "@views": ["views/index"]
+      "@views": ["views/index"],
+      "@hooks": ["hooks/index"],
+      "@icons": ["components/icons"],
+      "@assets/*": ["assets/*"]
     },
     "incremental": true
   },

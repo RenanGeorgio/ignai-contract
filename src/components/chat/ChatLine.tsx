@@ -4,11 +4,11 @@ import Balancer from "react-wrap-balancer";
 
 import convertNewLines from "@helpers/convert-new-lines";
 
-type ChatGPTAgent = 'user' | 'system' | 'assistant'
+export type ChatGPTAgent = 'user' | 'system' | 'assistant'
 
 export interface ChatGPTMessage {
   role: ChatGPTAgent
-  content: string
+  content: Query | string
 }
 
 const BalancerWrapper = (props: any) => <Balancer {...props} />
