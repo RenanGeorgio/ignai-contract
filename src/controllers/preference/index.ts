@@ -1,5 +1,4 @@
-import conversationService from '../api/services/conversationService';
-import userService from '../api/services/userService';
+import { conversationService, userService } from "@services";
 import { Doc } from "@types";
 
 //Fetches all JSON objects from the source. We only use the objects with the "model" property in SelectDocsModal.tsx. Hopefully can clean up the source file later.

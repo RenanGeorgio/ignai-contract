@@ -1,4 +1,4 @@
-import conversationService from '../api/services/conversationService';
+import { conversationService } from "@services";
 import { Answer, FEEDBACK, Doc } from "@types";
 
 function getDocPath(selectedDocs: Doc | null): string {
