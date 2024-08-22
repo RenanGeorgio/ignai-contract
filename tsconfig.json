@@ -33,11 +33,13 @@
       "@contexts/*": ["contexts/*", "contexts/*/index"],
       "@providers": ["contexts/index"],
       "@services": ["services/index"],
+      "@controllers": ["controllers/index"],
       "@helpers/*": ["helpers/*"],
       "@views": ["views/index"],
       "@hooks": ["hooks/index"],
       "@icons": ["components/icons"],
-      "@assets/*": ["assets/*"]
+      "@assets/*": ["assets/*"],
+      "@types": ["types"]
     },
     "incremental": true
   },

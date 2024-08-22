@@ -1,10 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { conversationSlice } from './conversation/conversationSlice';
-import { sharedConversationSlice } from './conversation/sharedConversationSlice';
-import {
-  prefListenerMiddleware,
-  prefSlice,
-} from './preferences/preferenceSlice';
+import { sharedConversationSlice } from "./shared";
+import { prefListenerMiddleware, prefSlice } from "./preference";
+import { conversationSlice } from "./conversation";
 
 const key = localStorage.getItem('DocsGPTApiKey');
 const prompt = localStorage.getItem('DocsGPTPrompt');

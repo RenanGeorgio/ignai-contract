@@ -1,14 +1,8 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-import { getConversations } from '../preferences/preferenceApi';
-import { setConversations } from '../preferences/preferenceSlice';
-import store from '../store';
-import {
-  handleFetchAnswer,
-  handleFetchAnswerSteaming,
-  handleSearch,
-} from './conversationHandlers';
-import { Answer, ConversationState, Query, Status } from './conversationModels';
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import store from "../store";
+import { setConversations } from "../preference";
+import { handleFetchAnswer, handleFetchAnswerSteaming, handleSearch, getConversations } from "@controllers";
+import { Answer, ConversationState, Query, Status } from "@types";
 
 const initialState: ConversationState = {
   queries: [],
@@ -243,4 +237,5 @@ export const {
   updateStreamingSource,
   setConversation,
 } = conversationSlice.actions;
+
 export default conversationSlice.reducer;
