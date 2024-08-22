@@ -1,18 +1,7 @@
 import { PayloadAction, createListenerMiddleware, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { setLocalApiKey, setLocalRecentDocs } from "@controllers";
-import { Doc, ActiveState } from "@types";
-
-interface Preference {
-  apiKey: string;
-  prompt: { name: string; id: string; type: string };
-  chunks: string;
-  token_limit: number;
-  selectedDocs: Doc | null;
-  sourceDocs: Doc[] | null;
-  conversations: { name: string; id: string }[] | null;
-  modalState: ActiveState;
-}
+import { Doc, ActiveState, Preference } from "@types";
 
 const initialState: Preference = {
   apiKey: 'xxx',
@@ -39,28 +28,28 @@ export const prefSlice = createSlice({
   name: 'preference',
   initialState,
   reducers: {
-    setApiKey: (state, action) => {
+    setApiKey: (state: any, action: any) => {
       state.apiKey = action.payload;
     },
-    setSelectedDocs: (state, action) => {
+    setSelectedDocs: (state: any, action: any) => {
       state.selectedDocs = action.payload;
     },
-    setSourceDocs: (state, action) => {
+    setSourceDocs: (state: any, action: any) => {
       state.sourceDocs = action.payload;
     },
-    setConversations: (state, action) => {
+    setConversations: (state: any, action: any) => {
       state.conversations = action.payload;
     },
-    setPrompt: (state, action) => {
+    setPrompt: (state: any, action: any) => {
       state.prompt = action.payload;
     },
-    setChunks: (state, action) => {
+    setChunks: (state: any, action: any) => {
       state.chunks = action.payload;
     },
-    setTokenLimit: (state, action) => {
+    setTokenLimit: (state: any, action: any) => {
       state.token_limit = action.payload;
     },
-    setModalStateDeleteConv: (state, action: PayloadAction<ActiveState>) => {
+    setModalStateDeleteConv: (state: any, action: PayloadAction<ActiveState>) => {
       state.modalState = action.payload;
     },
   },
@@ -81,14 +70,14 @@ export default prefSlice.reducer;
 export const prefListenerMiddleware = createListenerMiddleware();
 prefListenerMiddleware.startListening({
   matcher: isAnyOf(setApiKey),
-  effect: (action, listenerApi) => {
+  effect: (action: any, listenerApi: any) => {
     setLocalApiKey((listenerApi.getState() as RootState).preference.apiKey);
   },
 });
 
 prefListenerMiddleware.startListening({
   matcher: isAnyOf(setSelectedDocs),
-  effect: (action, listenerApi) => {
+  effect: (action: any, listenerApi: any) => {
     setLocalRecentDocs(
       (listenerApi.getState() as RootState).preference.selectedDocs ?? null,
     );
@@ -97,7 +86,7 @@ prefListenerMiddleware.startListening({
 
 prefListenerMiddleware.startListening({
   matcher: isAnyOf(setPrompt),
-  effect: (action, listenerApi) => {
+  effect: (action: any, listenerApi: any) => {
     localStorage.setItem(
       'DocsGPTPrompt',
       JSON.stringify((listenerApi.getState() as RootState).preference.prompt),
@@ -107,7 +96,7 @@ prefListenerMiddleware.startListening({
 
 prefListenerMiddleware.startListening({
   matcher: isAnyOf(setChunks),
-  effect: (action, listenerApi) => {
+  effect: (action: any, listenerApi: any) => {
     localStorage.setItem(
       'DocsGPTChunks',
       JSON.stringify((listenerApi.getState() as RootState).preference.chunks),
@@ -117,7 +106,7 @@ prefListenerMiddleware.startListening({
 
 prefListenerMiddleware.startListening({
   matcher: isAnyOf(setTokenLimit),
-  effect: (action, listenerApi) => {
+  effect: (action: any, listenerApi: any) => {
     localStorage.setItem(
       'DocsGPTTokenLimit',
       JSON.stringify(
@@ -128,21 +117,13 @@ prefListenerMiddleware.startListening({
 });
 
 export const selectApiKey = (state: RootState) => state.preference.apiKey;
-export const selectApiKeyStatus = (state: RootState) =>
-  !!state.preference.apiKey;
-export const selectSelectedDocsStatus = (state: RootState) =>
-  !!state.preference.selectedDocs;
-export const selectSourceDocs = (state: RootState) =>
-  state.preference.sourceDocs;
-export const selectModalStateDeleteConv = (state: RootState) =>
-  state.preference.modalState;
-export const selectSelectedDocs = (state: RootState) =>
-  state.preference.selectedDocs;
-export const selectConversations = (state: RootState) =>
-  state.preference.conversations;
-export const selectConversationId = (state: RootState) =>
-  state.conversation.conversationId;
+export const selectApiKeyStatus = (state: RootState) => !!state.preference.apiKey;
+export const selectSelectedDocsStatus = (state: RootState) => !!state.preference.selectedDocs;
+export const selectSourceDocs = (state: RootState) => state.preference.sourceDocs;
+export const selectModalStateDeleteConv = (state: RootState) => state.preference.modalState;
+export const selectSelectedDocs = (state: RootState) => state.preference.selectedDocs;
+export const selectConversations = (state: RootState) => state.preference.conversations;
+export const selectConversationId = (state: RootState) => state.conversation.conversationId;
 export const selectPrompt = (state: RootState) => state.preference.prompt;
 export const selectChunks = (state: RootState) => state.preference.chunks;
-export const selectTokenLimit = (state: RootState) =>
-  state.preference.token_limit;
+export const selectTokenLimit = (state: RootState) => state.preference.token_limit;

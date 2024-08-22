@@ -12,7 +12,7 @@ import { RetryIcon } from "@icons";
 import ArrowDown from "@assets/arrow-down.svg";
 import { ChatGPTAgent, ChatGPTMessage, FEEDBACK, Query } from "@types";
 import { AppDispatch } from "store/store";
-import { addQuery, selectQueries, selectStatus, updateQuery } from "store/conversation";
+import { addQuery, fetchAnswer, selectQueries, selectStatus, updateQuery } from "store/conversation";
 import { handleSendFeedback } from "@controllers";
 
 const ChatView: React.FC = () => {

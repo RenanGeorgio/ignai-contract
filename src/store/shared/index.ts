@@ -2,18 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import store from "../store";
 import { handleFetchSharedAnswer, handleFetchSharedAnswerStreaming } from "@controllers";
-import { Query, Status, Answer } from "@types";
+import { Query, Status, Answer, SharedConversationsType, ChatGPTMessage } from "@types";
 
 const API_STREAMING = import.meta.env.VITE_API_STREAMING === 'true';
-
-interface SharedConversationsType {
-  queries: Query[];
-  apiKey?: string;
-  identifier: string;
-  status: Status;
-  date?: string;
-  title?: string;
-}
 
 const initialState: SharedConversationsType = {
   queries: [],
@@ -33,16 +24,13 @@ export const fetchSharedAnswer = createAsyncThunk<Answer, { question: string }>(
           signal,
           state.sharedConversation.apiKey,
           state.sharedConversation.queries,
-
           (event) => {
             const data = JSON.parse(event.data);
-            // check if the 'end' event has been received
+        
             if (data.type === 'end') {
-              // set status to 'idle'
               dispatch(sharedConversationSlice.actions.setStatus('idle'));
               dispatch(saveToLocalStorage());
             } else if (data.type === 'error') {
-              // set status to 'failed'
               dispatch(sharedConversationSlice.actions.setStatus('failed'));
               dispatch(
                 sharedConversationSlice.actions.raiseError({
@@ -67,16 +55,20 @@ export const fetchSharedAnswer = createAsyncThunk<Answer, { question: string }>(
           signal,
           state.sharedConversation.apiKey,
         );
+
         if (answer) {
           let sourcesPrepped = [];
+
           sourcesPrepped = answer.sources.map((source: { title: string }) => {
             if (source && source.title) {
               const titleParts = source.title.split('/');
+
               return {
                 ...source,
                 title: titleParts[titleParts.length - 1],
               };
             }
+
             return source;
           });
 
@@ -105,70 +97,71 @@ export const sharedConversationSlice = createSlice({
   name: 'sharedConversation',
   initialState,
   reducers: {
-    setStatus(state, action: PayloadAction<Status>) {
+    setStatus(state: any, action: PayloadAction<Status>) {
       state.status = action.payload;
     },
-    setIdentifier(state, action: PayloadAction<string>) {
+    setIdentifier(state: any, action: PayloadAction<string>) {
       state.identifier = action.payload;
     },
     setFetchedData(
-      state,
+      state: any,
       action: PayloadAction<{
-        queries: Query[];
+        queries: ChatGPTMessage[];
         title: string;
         date: string;
         identifier: string;
       }>,
     ) {
       const { queries, title, identifier, date } = action.payload;
+
       const previousQueriesStr = localStorage.getItem(identifier);
-      const localySavedQueries: Query[] = previousQueriesStr
-        ? JSON.parse(previousQueriesStr)
-        : [];
+      const localySavedQueries: ChatGPTMessage[] = previousQueriesStr ? JSON.parse(previousQueriesStr) : [];
+
       state.queries = [...queries, ...localySavedQueries];
       state.title = title;
       state.date = date;
       state.identifier = identifier;
     },
-    setClientApiKey(state, action: PayloadAction<string>) {
+    setClientApiKey(state: any, action: PayloadAction<string>) {
       state.apiKey = action.payload;
     },
-    addQuery(state, action: PayloadAction<Query>) {
+    addQuery(state: any, action: PayloadAction<ChatGPTMessage>) {
       state.queries.push(action.payload);
     },
     updateStreamingQuery(
-      state,
+      state: any,
       action: PayloadAction<{ index: number; query: Partial<Query> }>,
     ) {
       const { index, query } = action.payload;
+
       if (query.response != undefined) {
-        state.queries[index].response =
-          (state.queries[index].response || '') + query.response;
+        state.queries[index].content.response = (state.queries[index].content.response || '') + query.response;
       } else {
-        state.queries[index] = {
-          ...state.queries[index],
+        state.queries[index].content = {
+          ...state.queries[index].content,
           ...query,
         };
       }
     },
     updateQuery(
-      state,
+      state: any,
       action: PayloadAction<{ index: number; query: Partial<Query> }>,
     ) {
       const { index, query } = action.payload;
-      state.queries[index] = {
-        ...state.queries[index],
+
+      state.queries[index].content = {
+        ...state.queries[index].content,
         ...query,
       };
     },
     raiseError(
-      state,
+      state: any,
       action: PayloadAction<{ index: number; message: string }>,
     ) {
       const { index, message } = action.payload;
-      state.queries[index].error = message;
+      state.queries[index].content.error = message;
     },
-    saveToLocalStorage(state) {
+    saveToLocalStorage(state: any) {
       const previousQueriesStr = localStorage.getItem(state.identifier);
       previousQueriesStr
         ? localStorage.setItem(
@@ -184,19 +177,19 @@ export const sharedConversationSlice = createSlice({
           );
     },
   },
-  extraReducers(builder) {
+  extraReducers(builder: any) {
     builder
-      .addCase(fetchSharedAnswer.pending, (state) => {
+      .addCase(fetchSharedAnswer.pending, (state: RootState) => {
         state.status = 'loading';
       })
-      .addCase(fetchSharedAnswer.rejected, (state, action) => {
+      .addCase(fetchSharedAnswer.rejected, (state: RootState, action: any) => {
         if (action.meta.aborted) {
           state.status = 'idle';
           return state;
         }
+
         state.status = 'failed';
-        state.queries[state.queries.length - 1].error =
-          'Something went wrong. Please check your internet connection.';
+        state.queries[state.queries.length - 1].error = 'Something went wrong. Please check your internet connection.';
       });
   },
 });
@@ -213,10 +206,8 @@ export const {
 } = sharedConversationSlice.actions;
 
 export const selectStatus = (state: RootState) => state.conversation.status;
-export const selectClientAPIKey = (state: RootState) =>
-  state.sharedConversation.apiKey;
-export const selectQueries = (state: RootState) =>
-  state.sharedConversation.queries;
+export const selectClientAPIKey = (state: RootState) => state.sharedConversation.apiKey;
+export const selectQueries = (state: RootState) => state.sharedConversation.queries;
 export const selectTitle = (state: RootState) => state.sharedConversation.title;
 export const selectDate = (state: RootState) => state.sharedConversation.date;
 

@@ -1,4 +1,4 @@
-import type { ChatGPTMessage } from "./ChatLine";
+import { ChatGPTMessage } from "@types";
 
 export const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
 
@@ -6,7 +6,7 @@ export const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
 export const initialMessages: ChatGPTMessage[] = [
   {
     role: 'assistant',
-    content: 'Otimização de Supply Chain',
+    content: null,
   },
 ]
 

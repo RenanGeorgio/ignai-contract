@@ -42,7 +42,7 @@ const store = configureStore({
     conversation: conversationSlice.reducer,
     sharedConversation: sharedConversationSlice.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: (getDefaultMiddleware: any) =>
     getDefaultMiddleware().concat(prefListenerMiddleware.middleware),
 });
 

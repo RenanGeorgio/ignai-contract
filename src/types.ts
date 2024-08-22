@@ -38,6 +38,26 @@ export interface Query {
   title?: string | null;
 }
 
+export interface SharedConversationsType {
+  queries: ChatGPTMessage[];
+  apiKey?: string;
+  identifier: string;
+  status: Status;
+  date?: string;
+  title?: string;
+}
+
+export interface Preference {
+  apiKey: string;
+  prompt: { name: string; id: string; type: string };
+  chunks: string;
+  token_limit: number;
+  selectedDocs: Doc | null;
+  sourceDocs: Doc[] | null;
+  conversations: { name: string; id: string }[] | null;
+  modalState: ActiveState;
+}
+
 export type ActiveState = 'ACTIVE' | 'INACTIVE';
 
 export type User = {

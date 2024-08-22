@@ -1,27 +1,26 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import remarkGfm from "remark-gfm";
 
-import Alert from "../assets/alert.svg";
-import DocsGPT3 from "../assets/cute_docsgpt3.svg";
-import Dislike from "../assets/dislike.svg?react";
-import Document from "../assets/document.svg";
-import Like from "../assets/like.svg?react";
-import Link from "../assets/link.svg";
-import Sources from "../assets/sources.svg";
-import Avatar from "../components/Avatar";
+import Alert from "@assets/images/alert.svg";
+import DocsGPT3 from "@assets/images/cute_docsgpt3.svg";
+import Dislike from "@assets/images/dislike.svg?react";
+import Document from "@assets/images/document.svg";
+import Like from "@assets/images/like.svg?react";
+import Link from "@assets/images/link.svg";
+import Sources from "@assets/images/sources.svg";
+
+import Avatar from "@components/Avatar";
 import CopyButton from "@components/CopyButton";
-import Sidebar from "../components/Sidebar";
-import {
-  selectChunks,
-  selectSelectedDocs,
-} from '../preferences/preferenceSlice';
-import classes from './ConversationBubble.module.css';
-import { FEEDBACK, MESSAGE_TYPE } from './conversationModels';
-import { ChatGPTAgent, ChatLine } from "@components/chat/ChatLine";
+import Sidebar from "@components/Sidebar";
+import { FEEDBACK, MESSAGE_TYPE, ChatGPTAgent } from "@types";
+import { ChatLine } from "@components/chat/ChatLine";
+
+import classes from "./ConversationBubble.module.css";
+import { selectChunks, selectSelectedDocs } from "store/preference";
 
 const DisableSourceFE = import.meta.env.VITE_DISABLE_SOURCE_FE || false;
 
