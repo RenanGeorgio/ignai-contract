@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { Box, VStack, HStack, Text } from "@chakra-ui/react";
-import { ChatGPTAgent, ChatGPTMessage, LoadingChatLine } from "@components/chat/ChatLine";
+import { LoadingChatLine } from "@components/chat/ChatLine";
 import { COOKIE_NAME, emojis, initialMessages } from "@components/chat/Constants";
 import { InputMessage } from "@components/chat/Input";
 import { streamPath } from "config";
@@ -9,22 +10,16 @@ import ConversationBubble from "@components/conversation/ConversationBubble";
 import { useDarkTheme } from "@hooks";
 import { RetryIcon } from "@icons";
 import ArrowDown from "@assets/arrow-down.svg";
-
-export type FEEDBACK = 'LIKE' | 'DISLIKE';
-
-export interface Query {
-  prompt: string;
-  response?: string;
-  feedback?: FEEDBACK;
-  error?: string;
-  sources?: { title: string; text: string; source: string }[];
-  conversationId?: string | null;
-  title?: string | null;
-}
+import { ChatGPTAgent, ChatGPTMessage, FEEDBACK, Query } from "@types";
+import { AppDispatch } from "store/store";
+import { addQuery, selectQueries, selectStatus, updateQuery } from "store/conversation";
+import { handleSendFeedback } from "@controllers";
 
 const ChatView: React.FC = () => {
-  const messages = useSelector(selectQueries);
+  const queries: ChatGPTMessage[] = useSelector(selectQueries);
   const status = useSelector(selectStatus);
+
+  const dispatch = useDispatch<AppDispatch>();
 
   const endMessageRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -47,7 +42,7 @@ const ChatView: React.FC = () => {
 
   useEffect(() => {
     !eventInterrupt && scrollIntoView();
-  }, [messages.length, messages[messages.length - 1]]);
+  }, [queries.length, queries[queries.length - 1]]);
 
   useEffect(() => {
     const element = document.getElementById('inputbox') as HTMLTextAreaElement;
@@ -86,19 +81,38 @@ const ChatView: React.FC = () => {
   }, [endMessageRef.current]);
 
   useEffect(() => {
-    if (messages.length) {
-      messages[messages.length - 1].error && setLastQueryReturnedErr(true);
+    if (queries.length) {
+      queries[queries.length - 1].content.error && setLastQueryReturnedErr(true);
 
       // considerar uma consulta que inicialmente retornou um erro pode incluir posteriormente uma propriedade de resposta na nova tentativa
-      messages[messages.length - 1].response && setLastQueryReturnedErr(false);
+      queries[queries.length - 1].content.response && setLastQueryReturnedErr(false);
     }
-  }, [messages[messages.length - 1]]);
+  }, [queries[queries.length - 1]]);
 
   const scrollIntoView = () => {
     endMessageRef?.current?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
     });
+  };
+
+  const handleQuestion = ({ question, isRetry = false }: {
+    question: string;
+    isRetry?: boolean;
+  }) => {
+    question = question.trim();
+
+    if (question === '') {
+      return;
+    }
+
+    setLoading(true);
+    setEventInterrupt(false);
+
+    !isRetry && dispatch(addQuery({ prompt: question })); // Dispatch apenas novas queries
+    fetchStream.current = dispatch(fetchAnswer({ question }));
+
+    setLoading(false);
   };
 
   const handleFeedback = (query: Query, feedback: FEEDBACK, index: number) => {
@@ -114,14 +128,14 @@ const ChatView: React.FC = () => {
       if (lastQueryReturnedErr) { // atualizar a última consulta com falha com novo prompt
         dispatch(
           updateQuery({
-            index: messages.length - 1,
+            index: queries.length - 1,
             query: {
               prompt: inputRef.current.value,
             },
           }),
         );
         handleQuestion({
-          question: messages[messages.length - 1].prompt,
+          question: queries[queries.length - 1].content.prompt,
           isRetry: true,
         });
       } else {
@@ -133,10 +147,10 @@ const ChatView: React.FC = () => {
     }
   }
 
-  const sendMessage = async (message: string) => { // envia mensagem para API /api/chat endpoint
+  const sendMessage = async (message: Query) => { // envia mensagem para API /api/chat endpoint
     setLoading(true);
     const newMessages: any = [
-      ...messages,
+      ...queries,
       { role: 'user', content: message } as ChatGPTMessage,
     ]
 
@@ -174,7 +188,7 @@ const ChatView: React.FC = () => {
     const decoder = new TextDecoder();
     let done = false;
 
-    let lastMessage = '';
+    let lastMessage: any;
 
     while (!done) {
       const { value, done: doneReading } = await reader.read();
@@ -199,7 +213,7 @@ const ChatView: React.FC = () => {
       responseView = (
         <ConversationBubble
           ref={endMessageRef}
-          className={`${index === messages.length - 1 ? 'mb-32' : 'mb-7'}`}
+          className={`${index === queries.length - 1 ? 'mb-32' : 'mb-7'}`}
           key={`${index}ANSWER`}
           currentIndex={index}
           message={query.response}
@@ -219,7 +233,7 @@ const ChatView: React.FC = () => {
           disabled={status === 'loading'}
           onClick={() => {
             handleQuestion({
-              question: messages[messages.length - 1].prompt,
+              question: queries[queries.length - 1].content.prompt,
               isRetry: true,
             });
           }}
@@ -234,7 +248,7 @@ const ChatView: React.FC = () => {
       responseView = (
         <ConversationBubble
           ref={endMessageRef}
-          className={`${index === messages.length - 1 ? 'mb-32' : 'mb-7'} `}
+          className={`${index === queries.length - 1 ? 'mb-32' : 'mb-7'} `}
           key={`${index}ERROR`}
           currentIndex={index}
           message={query.error}
@@ -313,7 +327,7 @@ const ChatView: React.FC = () => {
             onTouchMove={handleUserInterruption}
             className="flex h-[90%] w-full flex-1 justify-center overflow-y-auto p-4 md:h-[83vh]"
           >
-            {messages.length > 0 && !hasScrolledToLast && (
+            {queries.length > 0 && !hasScrolledToLast && (
               <button
                 onClick={scrollIntoView}
                 aria-label="scroll to bottom"
@@ -328,9 +342,9 @@ const ChatView: React.FC = () => {
             )}
 
             <div style={{overflowY:'scroll',height:'240px'}}>
-              {messages.length > 0 && (
+              {queries.length > 0 && (
                 <div className="mt-16 w-full md:w-8/12">
-                  {messages?.map(({ content, role }: ChatGPTMessage, index: any) => {
+                  {queries?.map(({ content, role }: ChatGPTMessage, index: any) => {
                     return (
                       <Fragment key={index}>
                         <HStack

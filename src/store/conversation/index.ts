@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import store from "../store";
 import { setConversations } from "../preference";
 import { handleFetchAnswer, handleFetchAnswerSteaming, handleSearch, getConversations } from "@controllers";
-import { Answer, ConversationState, Query, Status } from "@types";
+import { Answer, ConversationState, ChatGPTMessage, Query, Status } from "@types";
 
 const initialState: ConversationState = {
   queries: [],
@@ -16,6 +16,7 @@ export const fetchAnswer = createAsyncThunk<Answer, { question: string }>(
   'fetchAnswer',
   async ({ question }, { dispatch, getState, signal }) => {
     const state = getState() as RootState;
+
     if (state.preference) {
       if (API_STREAMING) {
         await handleFetchAnswerSteaming(
@@ -27,14 +28,11 @@ export const fetchAnswer = createAsyncThunk<Answer, { question: string }>(
           state.preference.prompt.id,
           state.preference.chunks,
           state.preference.token_limit,
-
           (event) => {
             const data = JSON.parse(event.data);
 
-            // check if the 'end' event has been received
-            if (data.type === 'end') {
-              // set status to 'idle'
-              dispatch(conversationSlice.actions.setStatus('idle'));
+            if (data.type === 'end') { // verifique se o evento 'end' foi recebido
+              dispatch(conversationSlice.actions.setStatus('idle')); // definir o status como 'idle'
               getConversations()
                 .then((fetchedConversations) => {
                   dispatch(setConversations(fetchedConversations));
@@ -43,16 +41,14 @@ export const fetchAnswer = createAsyncThunk<Answer, { question: string }>(
                   console.error('Failed to fetch conversations: ', error);
                 });
 
-              handleSearch(
-                //search for sources post streaming
+              handleSearch( // procure pelas fontes após o streaming
                 question,
                 state.preference.selectedDocs!,
                 state.conversation.conversationId,
                 state.conversation.queries,
                 state.preference.chunks,
                 state.preference.token_limit,
-              ).then((sources) => {
-                //dispatch streaming sources
+              ).then((sources) => { // enviar fontes de streaming
                 dispatch(
                   updateStreamingSource({
                     index: state.conversation.queries.length - 1,
@@ -66,8 +62,7 @@ export const fetchAnswer = createAsyncThunk<Answer, { question: string }>(
                   query: { conversationId: data.id },
                 }),
               );
-            } else if (data.type === 'error') {
-              // set status to 'failed'
+            } else if (data.type === 'error') { // definir status como 'failed'
               dispatch(conversationSlice.actions.setStatus('failed'));
               dispatch(
                 conversationSlice.actions.raiseError({
@@ -97,6 +92,7 @@ export const fetchAnswer = createAsyncThunk<Answer, { question: string }>(
           state.preference.chunks,
           state.preference.token_limit,
         );
+
         if (answer) {
           let sourcesPrepped = [];
           sourcesPrepped = answer.sources.map((source: { title: string }) => {
@@ -132,6 +128,7 @@ export const fetchAnswer = createAsyncThunk<Answer, { question: string }>(
         }
       }
     }
+
     return {
       conversationId: null,
       title: null,
@@ -141,84 +138,85 @@ export const fetchAnswer = createAsyncThunk<Answer, { question: string }>(
       sources: [],
     };
   },
-);
+); 
 
 export const conversationSlice = createSlice({
   name: 'conversation',
   initialState,
   reducers: {
-    addQuery(state, action: PayloadAction<Query>) {
+    addQuery(state: any, action: PayloadAction<ChatGPTMessage>) {
       state.queries.push(action.payload);
     },
-    setConversation(state, action: PayloadAction<Query[]>) {
+    setConversation(state: any, action: PayloadAction<ChatGPTMessage[]>) {
       state.queries = action.payload;
     },
     updateStreamingQuery(
-      state,
+      state: any,
       action: PayloadAction<{ index: number; query: Partial<Query> }>,
     ) {
       const { index, query } = action.payload;
+      
       if (query.response != undefined) {
-        state.queries[index].response =
-          (state.queries[index].response || '') + query.response;
+        state.queries[index].content.response = (state.queries[index].content.response || '') + query.response;
       } else {
-        state.queries[index] = {
-          ...state.queries[index],
+        state.queries[index].content = {
+          ...state.queries[index].content,
           ...query,
         };
       }
     },
     updateConversationId(
-      state,
+      state: any,
       action: PayloadAction<{ query: Partial<Query> }>,
     ) {
       state.conversationId = action.payload.query.conversationId ?? null;
     },
     updateStreamingSource(
-      state,
+      state: any,
       action: PayloadAction<{ index: number; query: Partial<Query> }>,
     ) {
       const { index, query } = action.payload;
-      if (!state.queries[index].sources) {
-        state.queries[index].sources = query?.sources;
+
+      if (!state.queries[index].content.sources) {
+        state.queries[index].content.sources = query?.sources;
       } else {
-        state.queries[index].sources!.push(query.sources![0]);
+        state.queries[index].content.sources!.push(query.sources![0]);
       }
     },
     updateQuery(
-      state,
+      state: any,
       action: PayloadAction<{ index: number; query: Partial<Query> }>,
     ) {
       const { index, query } = action.payload;
-      state.queries[index] = {
-        ...state.queries[index],
+
+      state.queries[index].content = {
+        ...state.queries[index].content,
         ...query,
       };
     },
-    setStatus(state, action: PayloadAction<Status>) {
+    setStatus(state: any, action: PayloadAction<Status>) {
       state.status = action.payload;
     },
     raiseError(
-      state,
+      state: any,
       action: PayloadAction<{ index: number; message: string }>,
     ) {
       const { index, message } = action.payload;
-      state.queries[index].error = message;
+      state.queries[index].content.error = message;
     },
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchAnswer.pending, (state) => {
+      .addCase(fetchAnswer.pending, (state: RootState) => {
         state.status = 'loading';
       })
-      .addCase(fetchAnswer.rejected, (state, action) => {
+      .addCase(fetchAnswer.rejected, (state: RootState, action) => {
         if (action.meta.aborted) {
           state.status = 'idle';
           return state;
         }
         state.status = 'failed';
-        state.queries[state.queries.length - 1].error =
-          'Something went wrong. Please check your internet connection.';
+        state.queries[state.queries.length - 1].content.error = 'Something went wrong. Please check your internet connection.';
       });
   },
 });

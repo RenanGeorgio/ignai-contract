@@ -1,6 +1,12 @@
+export type ChatGPTAgent = 'user' | 'system' | 'assistant'
 export type MESSAGE_TYPE = 'QUESTION' | 'ANSWER' | 'ERROR';
 export type Status = 'idle' | 'loading' | 'failed';
 export type FEEDBACK = 'LIKE' | 'DISLIKE';
+
+export interface ChatGPTMessage {
+  role: ChatGPTAgent
+  content: Query
+}
 
 export interface Message {
   text: string;
@@ -8,9 +14,9 @@ export interface Message {
 }
 
 export interface ConversationState {
-  queries: Query[];
+  queries: ChatGPTMessage[];
   status: Status;
-  conversationId: string | null;
+  conversationId: string | number | null;
 }
 
 export interface Answer {
