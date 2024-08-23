@@ -1,1 +1,1 @@
-export const streamPath = process.env.REACT_STREAM
+export const streamPath = import.meta.env.REACT_STREAM
