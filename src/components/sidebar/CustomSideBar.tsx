@@ -18,7 +18,7 @@ import {
   SmartHomeIcon,
   TextWrapIcon,
   IgnaiLogo
-} from "@components/Icons";
+} from "@icons";
 import SidebarBadge from "../badge/SidebarBadge";
 
 import "@styles/sidebar.css";
@@ -29,7 +29,6 @@ interface SidebarProps {
 }
 
 const CustomSideBar: React.FC<SidebarProps> = ({ expanded, setExpanded }) => {
-
   const toggleSidebar = () => {
     setExpanded(!expanded);
   };

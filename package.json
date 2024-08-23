@@ -7,9 +7,6 @@
   "repository": "https://github.com/supplyfy/ignai-contract.git",
   "author": "Renan Georgio Carvalho Cuzzuol",
   "homepage": "https://doc.ignai.com.br/",
-  "engines": {
-    "node": ">=12"
-  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

@@ -12,7 +12,7 @@ import { COOKIE_NAME, emojis, initialMessages } from "@components/chat/Constants
 import { InputMessage } from "@components/chat/Input";
 import { streamPath } from "@config";
 import ConversationBubble from "@components/conversation/ConversationBubble";
-import { RetryIcon } from "@components/Icons";
+import { RetryIcon } from "@icons";
 import ArrowDown from "@assets/images/arrow-down.svg";
 import { ChatGPTAgent, ChatGPTMessage, FEEDBACK, Query } from "@types";
 
