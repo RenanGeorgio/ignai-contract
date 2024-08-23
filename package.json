@@ -3,6 +3,7 @@
   "description": "Contract analisys with A.I",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "repository": "https://github.com/supplyfy/ignai-contract.git",
   "author": "Renan Georgio Carvalho Cuzzuol",
   "homepage": "https://doc.ignai.com.br/",
@@ -10,11 +11,21 @@
     "node": ">=12"
   },
   "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint ./src --ext .jsx,.js,.ts,.tsx",
+    "lint-fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --fix",
+    "format": "prettier ./src --write",
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint ."
+    "eject": "react-scripts eject"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run lint-fix",
+      "npm run format"
+    ]
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
