@@ -8,7 +8,7 @@ import remarkGfm from "remark-gfm";
 import { selectChunks, selectSelectedDocs } from "@store/preference";
 import Avatar from "@components/Avatar";
 import CopyButton from "@components/CopyButton";
-import Sidebar from "@components/sidebar";
+import { ConversationsSidebar } from "@components/sidebar";
 import { ChatLine } from "@components/chat/ChatLine";
 import Alert from "@assets/images/alert.svg";
 import DocsGPT3 from "@assets/images/cute_docsgpt3.svg";
@@ -398,7 +398,7 @@ const ConversationBubble = forwardRef<
           )}
         </div>
         {sources && (
-          <Sidebar
+          <ConversationsSidebar
             isOpen={isSidebarOpen}
             toggleState={(state: boolean) => {
               setIsSidebarOpen(state);
