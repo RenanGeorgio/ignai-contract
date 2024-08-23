@@ -12,11 +12,10 @@ import { ConversationsSidebar } from "@components/sidebar";
 import { ChatLine } from "@components/chat/ChatLine";
 import Alert from "@assets/images/alert.svg";
 import DocsGPT3 from "@assets/images/cute_docsgpt3.svg";
-import Dislike from "@assets/images/dislike.svg";
 import Document from "@assets/images/document.svg";
-import Like from "@assets/images/like.svg";
 import Link from "@assets/images/link.svg";
 import Sources from "@assets/images/sources.svg";
+import { Like, Dislike } from "@components/Images";
 import { FEEDBACK, MESSAGE_TYPE, ChatGPTAgent } from "@types";
 
 import classes from "./ConversationBubble.module.css";

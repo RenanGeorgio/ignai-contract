@@ -109,6 +109,6 @@ const FileViewer: React.FC = () => {
       </Box>
     </Box>
   );
-};
+}
 
 export default FileViewer;

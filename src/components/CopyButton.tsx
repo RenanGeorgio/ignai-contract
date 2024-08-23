@@ -1,7 +1,6 @@
 import { useState } from "react";
 import copy from "copy-to-clipboard";
-import Copy from "@assets/images/copy.svg";
-import CheckMark from "@assets/images/checkmark.svg";
+import { Copy, CheckMark } from "@components/Images";
 
 export default function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);

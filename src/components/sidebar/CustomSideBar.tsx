@@ -18,7 +18,7 @@ import {
   SmartHomeIcon,
   TextWrapIcon,
   IgnaiLogo
-} from "../icons";
+} from "@components/Icons";
 import SidebarBadge from "../badge/SidebarBadge";
 
 import "@styles/sidebar.css";

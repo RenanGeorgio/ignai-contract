@@ -2,14 +2,11 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "target": "es2020",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "useDefineForClassFields": true,
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -19,6 +16,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "types": ["vite-plugin-svgr/client"],
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
@@ -38,7 +36,7 @@
       "@helpers/*": ["helpers/*"],
       "@views": ["views/index"],
       "@hooks": ["hooks/index"],
-      "@icons": ["components/icons"],
+      "@icons": ["components/Icons"],
       "@assets/*": ["assets/*"],
       "@types": ["types"],
       "@config": ["config/index"]
