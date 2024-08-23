@@ -4,8 +4,8 @@ import { useCookies } from "react-cookie";
 import { Box, VStack, HStack, Text } from "@chakra-ui/react";
 
 import { handleSendFeedback } from "@controllers";
-import { AppDispatch } from "store/store";
-import { addQuery, fetchAnswer, selectQueries, selectStatus, updateQuery } from "store/conversation";
+import { AppDispatch } from "@store/store";
+import { addQuery, fetchAnswer, selectQueries, selectStatus, updateQuery } from "@store/conversation";
 import { useDarkTheme } from "@hooks";
 import { LoadingChatLine } from "@components/chat/ChatLine";
 import { COOKIE_NAME, emojis, initialMessages } from "@components/chat/Constants";
@@ -110,9 +110,15 @@ const ChatView: React.FC = () => {
     setLoading(true);
     setEventInterrupt(false);
 
-    !isRetry && dispatch(addQuery({ prompt: question })); // Dispatch apenas novas queries
-    fetchStream.current = dispatch(fetchAnswer({ question }));
+    !isRetry && dispatch(
+      addQuery(
+        { 
+          content: { prompt: question },
+          role: 'user'
+        }
+      )); // Dispatch apenas novas queries
 
+    fetchStream.current = dispatch(fetchAnswer({ question }));
     setLoading(false);
   };
 

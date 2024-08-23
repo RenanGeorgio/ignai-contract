@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { ChatView } from "@views";
 
-import styles from "./Container.css";
+import styles from "./ChatContainer.module.css";
 
 const ChatContainer = () => {
   return (

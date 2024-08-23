@@ -6,6 +6,7 @@ export const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
 export const initialMessages: ChatGPTMessage[] = [
   {
     role: 'assistant',
+    // @ts-ignore
     content: null,
   },
 ]

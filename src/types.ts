@@ -16,7 +16,7 @@ export interface Message {
 export interface ConversationState {
   queries: ChatGPTMessage[];
   status: Status;
-  conversationId: string | number | null;
+  conversationId: string | null;
 }
 
 export interface Answer {

@@ -34,7 +34,7 @@
       "@providers": ["contexts/index"],
       "@services": ["services/index"],
       "@controllers": ["controllers/index"],
-      "@store": ["store/*"],
+      "@store/*": ["store/*"],
       "@helpers/*": ["helpers/*"],
       "@views": ["views/index"],
       "@hooks": ["hooks/index"],

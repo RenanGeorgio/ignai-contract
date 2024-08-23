@@ -207,10 +207,10 @@ export const conversationSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchAnswer.pending, (state: RootState) => {
+      .addCase(fetchAnswer.pending, (state: any) => {
         state.status = 'loading';
       })
-      .addCase(fetchAnswer.rejected, (state: RootState, action) => {
+      .addCase(fetchAnswer.rejected, (state: any, action: any) => {
         if (action.meta.aborted) {
           state.status = 'idle';
           return state;

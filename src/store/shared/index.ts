@@ -179,10 +179,10 @@ export const sharedConversationSlice = createSlice({
   },
   extraReducers(builder: any) {
     builder
-      .addCase(fetchSharedAnswer.pending, (state: RootState) => {
+      .addCase(fetchSharedAnswer.pending, (state: any) => {
         state.status = 'loading';
       })
-      .addCase(fetchSharedAnswer.rejected, (state: RootState, action: any) => {
+      .addCase(fetchSharedAnswer.rejected, (state: any, action: any) => {
         if (action.meta.aborted) {
           state.status = 'idle';
           return state;
