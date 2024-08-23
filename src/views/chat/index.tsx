@@ -2,18 +2,19 @@ import React, { useState, useEffect, useRef, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { Box, VStack, HStack, Text } from "@chakra-ui/react";
+
+import { handleSendFeedback } from "@controllers";
+import { AppDispatch } from "store/store";
+import { addQuery, fetchAnswer, selectQueries, selectStatus, updateQuery } from "store/conversation";
+import { useDarkTheme } from "@hooks";
 import { LoadingChatLine } from "@components/chat/ChatLine";
 import { COOKIE_NAME, emojis, initialMessages } from "@components/chat/Constants";
 import { InputMessage } from "@components/chat/Input";
-import { streamPath } from "config";
+import { streamPath } from "@config";
 import ConversationBubble from "@components/conversation/ConversationBubble";
-import { useDarkTheme } from "@hooks";
 import { RetryIcon } from "@icons";
-import ArrowDown from "@assets/arrow-down.svg";
+import ArrowDown from "@assets/images/arrow-down.svg";
 import { ChatGPTAgent, ChatGPTMessage, FEEDBACK, Query } from "@types";
-import { AppDispatch } from "store/store";
-import { addQuery, fetchAnswer, selectQueries, selectStatus, updateQuery } from "store/conversation";
-import { handleSendFeedback } from "@controllers";
 
 const ChatView: React.FC = () => {
   const queries: ChatGPTMessage[] = useSelector(selectQueries);

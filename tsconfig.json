@@ -34,12 +34,14 @@
       "@providers": ["contexts/index"],
       "@services": ["services/index"],
       "@controllers": ["controllers/index"],
+      "@store": ["store/*"],
       "@helpers/*": ["helpers/*"],
       "@views": ["views/index"],
       "@hooks": ["hooks/index"],
       "@icons": ["components/icons"],
       "@assets/*": ["assets/*"],
-      "@types": ["types"]
+      "@types": ["types"],
+      "@config": ["config/index"]
     },
     "incremental": true
   },

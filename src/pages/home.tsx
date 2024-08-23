@@ -30,6 +30,6 @@ const Home: React.FC<HomeProps> = ({ expanded }) => {
       </Box>
     </Box>
   );
-};
+}
 
 export default Home;
