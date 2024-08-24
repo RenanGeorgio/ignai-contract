@@ -24,7 +24,6 @@
     ],
     "jsx": "react-jsx",
     "paths": {
-      "@components/*": ["components/*", "components/*/index", "components/index"],
       "@pages/*": ["pages/*", "pages/*/index", "pages/index"],
       "@libs/*": ["libs/*"],
       "@styles/*": ["styles/*"],
@@ -39,7 +38,8 @@
       "@icons": ["components/Icons"],
       "@assets/*": ["assets/*"],
       "@types": ["types"],
-      "@config": ["config/index"]
+      "@config": ["config/index"],
+      "@components/*": ["components/*", "components/*/index", "components/index"]
     },
     "incremental": true
   },
