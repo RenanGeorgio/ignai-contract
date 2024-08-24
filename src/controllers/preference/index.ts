@@ -1,5 +1,5 @@
 import { conversationService, userService } from "@services";
-import { Doc } from "@types";
+import { ConversationType, Doc } from "@types";
 
 //Fetches all JSON objects from the source. We only use the objects with the "model" property in SelectDocsModal.tsx. Hopefully can clean up the source file later.
 export async function getDocs(): Promise<Doc[] | null> {
@@ -21,16 +21,16 @@ export async function getDocs(): Promise<Doc[] | null> {
 }
 
 export async function getConversations(): Promise<
-  { name: string; id: string }[] | null
+  ConversationType[] | null
 > {
   try {
     const response = await conversationService.getConversations();
     const data = await response.json();
 
-    const conversations: { name: string; id: string }[] = [];
+    const conversations: ConversationType[] = [];
 
     data.forEach((conversation: object) => {
-      conversations.push(conversation as { name: string; id: string });
+      conversations.push(conversation as ConversationType);
     });
 
     return conversations;

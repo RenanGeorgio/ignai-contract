@@ -1,9 +1,5 @@
 import { forwardRef, useState } from "react";
-import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import remarkGfm from "remark-gfm";
 
 import { selectChunks, selectSelectedDocs } from "@store/preference";
 import Avatar from "@components/Avatar";
@@ -18,7 +14,7 @@ import Sources from "@assets/images/sources.svg";
 import { Like, Dislike } from "@components/Images";
 import { FEEDBACK, MESSAGE_TYPE, ChatGPTAgent } from "@types";
 
-import classes from "./ConversationBubble.module.css";
+import "./ConversationBubble.module.css";
 
 const DisableSourceFE = import.meta.env.VITE_DISABLE_SOURCE_FE || false;
 
@@ -32,7 +28,7 @@ const ConversationBubble = forwardRef<
     currentIndex?: number | string;
     message: string;
     type: MESSAGE_TYPE;
-    role: ChatGPTAgent | null;
+    role: ChatGPTAgent;
     className?: string;
     feedback?: FEEDBACK;
     handleFeedback?: (feedback: FEEDBACK) => void;
@@ -60,9 +56,7 @@ const ConversationBubble = forwardRef<
       <div ref={ref} className={`flex flex-row-reverse self-end ${className}`}>
         <Avatar className="mt-2 text-2xl" avatar="🧑‍💻"></Avatar>
         <div className="ml-10 mr-2 flex items-center rounded-[28px] bg-purple-30 py-[14px] px-[19px] text-white">
-          <ReactMarkdown className="whitespace-pre-wrap break-normal leading-normal">
-            <ChatLine key={currentIndex} role={'user'} content={message} />
-          </ReactMarkdown>
+          <ChatLine key={currentIndex} role={'user'} content={message} type={type} />
         </div>
       </div>
     );
@@ -80,8 +74,7 @@ const ConversationBubble = forwardRef<
           selectedDocs ? (
           <div className="mb-4 flex flex-col flex-wrap items-start self-start lg:flex-nowrap">
             <div className="my-2 flex flex-row items-center justify-center gap-3">
-              <Avatar
-                className="h-[26px] w-[30px] text-xl"
+              <Avatar className="h-[26px] w-[30px] text-xl"
                 avatar={
                   <img
                     src={Sources}
@@ -112,8 +105,7 @@ const ConversationBubble = forwardRef<
           sources && (
             <div className="mb-4 flex flex-col flex-wrap items-start self-start lg:flex-nowrap">
               <div className="my-2 flex flex-row items-center justify-center gap-3">
-                <Avatar
-                  className="h-[26px] w-[30px] text-xl"
+                <Avatar className="h-[26px] w-[30px] text-xl"
                   avatar={
                     <img
                       src={Sources}
@@ -201,8 +193,7 @@ const ConversationBubble = forwardRef<
         )}
         <div className="flex flex-col flex-wrap items-start self-start lg:flex-nowrap">
           <div className="my-2 flex flex-row items-center justify-center gap-3">
-            <Avatar
-              className="h-[34px] w-[34px] text-2xl"
+            <Avatar className="h-[34px] w-[34px] text-2xl"
               avatar={
                 <img
                   src={DocsGPT3}
@@ -228,89 +219,7 @@ const ConversationBubble = forwardRef<
                 </div>
               </>
             )}
-            <ReactMarkdown
-              className="whitespace-pre-wrap break-normal leading-normal"
-              remarkPlugins={[remarkGfm]}
-              components={{
-                code({ node, inline, className, children, ...props }) {
-                  const match = /language-(\w+)/.exec(className || '');
-
-                  return !inline && match ? (
-                    <div className="group relative">
-                      <SyntaxHighlighter
-                        PreTag="div"
-                        language={match[1]}
-                        {...props}
-                        style={vscDarkPlus}
-                      >
-                        {String(children).replace(/\n$/, '')}
-                      </SyntaxHighlighter>
-                      <div
-                        className={`absolute right-3 top-3 lg:invisible 
-                        ${type !== 'ERROR' ? 'group-hover:lg:visible' : ''} `}
-                      >
-                        <CopyButton
-                          text={String(children).replace(/\n$/, '')}
-                        />
-                      </div>
-                    </div>
-                  ) : (
-                    <code className={className ? className : ''} {...props}>
-                      {children}
-                    </code>
-                  );
-                },
-                ul({ children }) {
-                  return (
-                    <ul
-                      className={`list-inside list-disc whitespace-normal pl-4 ${classes.list}`}
-                    >
-                      {children}
-                    </ul>
-                  );
-                },
-                ol({ children }) {
-                  return (
-                    <ol
-                      className={`list-inside list-decimal whitespace-normal pl-4 ${classes.list}`}
-                    >
-                      {children}
-                    </ol>
-                  );
-                },
-                table({ children }) {
-                  return (
-                    <div className="relative overflow-x-auto rounded-lg border">
-                      <table className="w-full text-left text-sm text-gray-700">
-                        {children}
-                      </table>
-                    </div>
-                  );
-                },
-                thead({ children }) {
-                  return (
-                    <thead className="text-xs uppercase text-gray-900 [&>.table-row]:bg-gray-50">
-                      {children}
-                    </thead>
-                  );
-                },
-                tr({ children }) {
-                  return (
-                    <tr className="table-row border-b odd:bg-white even:bg-gray-50">
-                      {children}
-                    </tr>
-                  );
-                },
-                td({ children }) {
-                  return <td className="px-6 py-3">{children}</td>;
-                },
-                th({ children }) {
-                  return <th className="px-6 py-3">{children}</th>;
-                },
-              }}
-            >
-              <ChatLine key={currentIndex} role={role} content={message} />
-            </ReactMarkdown>
+            <ChatLine key={currentIndex} role={role} content={message} type={type} />
           </div>
         </div>
         <div className="my-2 ml-2 flex justify-start">
@@ -341,8 +250,7 @@ const ConversationBubble = forwardRef<
                         : 'bg-[#ffffff] dark:bg-transparent'
                     }`}
                   >
-                    <Like
-                      className={`cursor-pointer 
+                    <Like className={`cursor-pointer 
                   ${
                     isLikeClicked || feedback === 'LIKE'
                       ? 'fill-white-3000 stroke-purple-30 dark:fill-transparent'

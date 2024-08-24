@@ -54,8 +54,13 @@ export interface Preference {
   token_limit: number;
   selectedDocs: Doc | null;
   sourceDocs: Doc[] | null;
-  conversations: { name: string; id: string }[] | null;
+  conversations: ConversationType[] | null;
   modalState: ActiveState;
+}
+
+export type ConversationType = {
+  name: string; 
+  id: string;
 }
 
 export type ActiveState = 'ACTIVE' | 'INACTIVE';

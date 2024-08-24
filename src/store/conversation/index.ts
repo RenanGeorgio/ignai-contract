@@ -34,7 +34,7 @@ export const fetchAnswer = createAsyncThunk<Answer, { question: string }>(
             if (data.type === 'end') { // verifique se o evento 'end' foi recebido
               dispatch(conversationSlice.actions.setStatus('idle')); // definir o status como 'idle'
               getConversations()
-                .then((fetchedConversations) => {
+                .then((fetchedConversations: any) => {
                   dispatch(setConversations(fetchedConversations));
                 })
                 .catch((error) => {
@@ -119,7 +119,7 @@ export const fetchAnswer = createAsyncThunk<Answer, { question: string }>(
           );
           dispatch(conversationSlice.actions.setStatus('idle'));
           getConversations()
-            .then((fetchedConversations) => {
+            .then((fetchedConversations: any) => {
               dispatch(setConversations(fetchedConversations));
             })
             .catch((error) => {
