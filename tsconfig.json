@@ -35,7 +35,6 @@
       "@helpers/*": ["helpers/*"],
       "@views": ["views/index"],
       "@hooks": ["hooks/index"],
-      "@icons": ["components/Icons"],
       "@assets/*": ["assets/*"],
       "@types": ["types"],
       "@config": ["config/index"],
