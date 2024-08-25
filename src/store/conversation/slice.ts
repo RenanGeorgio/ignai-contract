@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { conversationReducer } from "./reducers";
+import { fetchAnswer } from "@features/conversations";
 import type { RootState } from "../store";
 import { ConversationState } from "@types";
 

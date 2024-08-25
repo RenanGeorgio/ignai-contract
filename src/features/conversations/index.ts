@@ -2,7 +2,7 @@ import { getConversations, handleFetchAnswer, handleFetchAnswerSteaming, handleS
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { conversationSlice } from "@store/conversation/slice";
 import { updateConversationId, updateQuery, updateStreamingQuery, updateStreamingSource } from "@store/conversation/actions";
-import { setConversations } from "@store/preference";
+import { setConversations } from "@store/preference/actions";
 import { RootState } from "@store/store";
 import { Answer } from "@types";
 

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { handleFetchSharedAnswer, handleFetchSharedAnswerStreaming } from "@controllers";
-import { saveToLocalStorage, sharedConversationSlice, updateQuery, updateStreamingQuery } from "@store/shared/slice";
+import { sharedConversationSlice } from "@store/shared/slice";
+import { saveToLocalStorage, updateQuery, updateStreamingQuery } from "@store/shared/actions";
 import { RootState } from "@store/store";
 import { Answer } from "@types";
 

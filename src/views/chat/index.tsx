@@ -4,7 +4,9 @@ import { Box, VStack, HStack, Text } from "@chakra-ui/react";
 
 import { handleSendFeedback } from "@controllers";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
-import { addQuery, fetchAnswer, selectQueries, selectStatus, updateQuery } from "@store/conversation/slice";
+import { selectQueries, selectStatus } from "@store/conversation/slice";
+import { addQuery, updateQuery } from "@store/conversation/actions";
+import { fetchAnswer } from "@features/conversations";
 import { useDarkTheme } from "@hooks";
 import { LoadingChatLine } from "@components/chat/ChatLine";
 import { COOKIE_NAME, emojis, initialMessages } from "@components/chat/Constants";

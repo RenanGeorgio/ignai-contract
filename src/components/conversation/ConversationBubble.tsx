@@ -1,6 +1,6 @@
 import { forwardRef, useState } from "react";
 
-import { selectChunks, selectSelectedDocs } from "@store/preference";
+import { selectChunks, selectSelectedDocs } from "@store/preference/slice";
 import { useAppSelector } from "@store/hooks";
 import Avatar from "@components/Avatar";
 import CopyButton from "@components/CopyButton";
