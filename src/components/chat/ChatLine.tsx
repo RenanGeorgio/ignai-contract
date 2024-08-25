@@ -6,10 +6,10 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import remarkGfm from "remark-gfm";
 
 import convertNewLines from "@helpers/convert-new-lines";
-
-import classes from "./ChatLine.module.css";
 import CopyButton from "@components/CopyButton";
 import { MESSAGE_TYPE, ChatGPTAgent } from "@types";
+
+import classes from "./ChatLine.module.css";
 
 interface Props {
   role: ChatGPTAgent

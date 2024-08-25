@@ -38,17 +38,17 @@ export const sharedConversationSlice = createSlice({
   },
   extraReducers(builder: any) {
     builder
-      .addCase(fetchSharedAnswer.pending, (state: any) => {
+      .addCase(fetchSharedAnswer.pending, (state: SharedConversationsType) => {
         state.status = 'loading';
       })
-      .addCase(fetchSharedAnswer.rejected, (state: any, action: any) => {
+      .addCase(fetchSharedAnswer.rejected, (state: SharedConversationsType, action: any) => {
         if (action.meta.aborted) {
           state.status = 'idle';
           return state;
         }
 
         state.status = 'failed';
-        state.queries[state.queries.length - 1].error = 'Something went wrong. Please check your internet connection.';
+        state.queries[state.queries.length - 1].content.error = 'Something went wrong. Please check your internet connection.';
       });
   },
 });
