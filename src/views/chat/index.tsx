@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 import { Box, VStack, HStack, Text } from "@chakra-ui/react";
 
 import { handleSendFeedback } from "@controllers";
-import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { useAppDispatch, useAppSelector, useAppThunkDispatch } from "@store/hooks";
 import { selectQueries, selectStatus } from "@store/conversation/slice";
 import { addQuery, updateQuery } from "@store/conversation/actions";
 import { fetchAnswer } from "@features/conversations";
@@ -20,6 +20,9 @@ import { ChatGPTAgent, ChatGPTMessage, FEEDBACK, Query } from "@types";
 const ChatView: React.FC = () => {
   const queries: ChatGPTMessage[] = useAppSelector(selectQueries);
   const status = useAppSelector(selectStatus);
+
+  const dispatch = useAppDispatch();
+  const thunkDispatch = useAppThunkDispatch();
 
   const endMessageRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -109,7 +112,7 @@ const ChatView: React.FC = () => {
     setLoading(true);
     setEventInterrupt(false);
 
-    !isRetry && useAppDispatch(
+    !isRetry && dispatch(
       addQuery(
         { 
           content: { prompt: question },
@@ -117,22 +120,22 @@ const ChatView: React.FC = () => {
         }
       )); // Dispatch apenas novas queries
 
-    fetchStream.current = useAppDispatch(fetchAnswer({ question }));
+    fetchStream.current = thunkDispatch(fetchAnswer({ question }));
     setLoading(false);
   };
 
   const handleFeedback = (query: Query, feedback: FEEDBACK, index: number) => {
     const prevFeedback = query.feedback;
-    useAppDispatch(updateQuery({ index, query: { feedback } }));
+    dispatch(updateQuery({ index, query: { feedback } }));
     handleSendFeedback(query.prompt, query.response!, feedback).catch(() =>
-      useAppDispatch(updateQuery({ index, query: { feedback: prevFeedback } })),
+      dispatch(updateQuery({ index, query: { feedback: prevFeedback } })),
     );
   };
 
   const handleQuestionSubmission = () => {
     if (inputRef.current?.value && status !== 'loading') {
       if (lastQueryReturnedErr) { // atualizar a última consulta com falha com novo prompt
-        useAppDispatch(
+        dispatch(
           updateQuery({
             index: queries.length - 1,
             query: {

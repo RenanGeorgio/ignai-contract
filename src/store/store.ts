@@ -3,12 +3,15 @@ import { sharedConversationReducer } from "./shared/slice";
 import { prefSliceReducer } from "./preference/slice";
 import { conversationReducer } from "./conversation/slice";
 import { prefListenerMiddleware } from "./preference/middleware";
+import { Preference } from "@types";
 
 const key = localStorage.getItem('DocsGPTApiKey');
 const prompt = localStorage.getItem('DocsGPTPrompt');
 const chunks = localStorage.getItem('DocsGPTChunks');
 const token_limit = localStorage.getItem('DocsGPTTokenLimit');
 const doc = localStorage.getItem('DocsGPTRecentDocs');
+
+const isDev = true //process.env.NODE_END == 'development';
 
 export const store = configureStore({
   preloadedState: {
@@ -36,15 +39,15 @@ export const store = configureStore({
         },
       ],
       modalState: 'INACTIVE',
-    },
+    } satisfies Preference as Preference,
   },
   reducer: {
     preference: prefSliceReducer,
     conversation: conversationReducer,
     sharedConversation: sharedConversationReducer,
   },
-  middleware: (getDefaultMiddleware: any) =>
-    getDefaultMiddleware().concat(prefListenerMiddleware.middleware),
+  middleware: (getDefaultMiddleware: any) => getDefaultMiddleware().concat(prefListenerMiddleware.middleware),
+  devTools: isDev,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

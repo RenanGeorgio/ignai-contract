@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+/*import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import { errorsReducer as errors } from './errors';
 import { sessionReducer as session } from './session';
@@ -39,4 +39,4 @@ export { clientActions } from './client';
 export default configureStore({
   reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(throttleMiddleware),
-});
+});*/

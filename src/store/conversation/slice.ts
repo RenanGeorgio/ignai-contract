@@ -36,10 +36,10 @@ export const conversationSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchAnswer.pending, (state: any) => {
+      .addCase(fetchAnswer.pending, (state: ConversationState) => {
         state.status = 'loading';
       })
-      .addCase(fetchAnswer.rejected, (state: any, action: any) => {
+      .addCase(fetchAnswer.rejected, (state: ConversationState, action: any) => {
         if (action.meta.aborted) {
           state.status = 'idle';
           return state;

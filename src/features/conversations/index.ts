@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { conversationSlice } from "@store/conversation/slice";
 import { updateConversationId, updateQuery, updateStreamingQuery, updateStreamingSource } from "@store/conversation/actions";
 import { setConversations } from "@store/preference/actions";
-import { RootState } from "@store/store";
+import type { RootState } from "@store/store";
 import { Answer } from "@types";
 
 const API_STREAMING = import.meta.env.VITE_API_STREAMING === 'true';
