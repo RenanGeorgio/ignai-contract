@@ -1,6 +1,18 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../store";
-import { Doc, ActiveState, Preference } from "@types";
+import { createSlice } from "@reduxjs/toolkit";
+import { preferenceReducer } from "./reducers";
+import type { RootState } from "../store";
+import { Doc, Preference } from "@types";
+
+const {
+  setApiKey,
+  setSelectedDocs, 
+  setSourceDocs,
+  setConversations,
+  setPrompt,
+  setChunks,
+  setTokenLimit,
+  setModalStateDeleteConv
+} = preferenceReducer;
 
 const initialState: Preference = {
   apiKey: 'xxx',
@@ -27,30 +39,14 @@ export const prefSlice = createSlice({
   name: 'preference',
   initialState,
   reducers: {
-    setApiKey: (state: any, action: any) => {
-      state.apiKey = action.payload;
-    },
-    setSelectedDocs: (state: any, action: any) => {
-      state.selectedDocs = action.payload;
-    },
-    setSourceDocs: (state: any, action: any) => {
-      state.sourceDocs = action.payload;
-    },
-    setConversations: (state: any, action: any) => {
-      state.conversations = action.payload;
-    },
-    setPrompt: (state: any, action: any) => {
-      state.prompt = action.payload;
-    },
-    setChunks: (state: any, action: any) => {
-      state.chunks = action.payload;
-    },
-    setTokenLimit: (state: any, action: any) => {
-      state.token_limit = action.payload;
-    },
-    setModalStateDeleteConv: (state: any, action: PayloadAction<ActiveState>) => {
-      state.modalState = action.payload;
-    },
+    setApiKey,
+    setSelectedDocs,
+    setSourceDocs,
+    setConversations,
+    setPrompt,
+    setChunks,
+    setTokenLimit,
+    setModalStateDeleteConv,
   },
 });
 

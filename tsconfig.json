@@ -38,6 +38,7 @@
       "@assets/*": ["assets/*"],
       "@types": ["types"],
       "@config": ["config/index"],
+      "@features/*": ["features/*"],
       "@components/*": ["components/*", "components/*/index", "components/index"]
     },
     "incremental": true

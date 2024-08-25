@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { conversationReducer } from "./reducers";
 import type { RootState } from "../store";
 import { ConversationState } from "@types";
-import { conversationReducer } from "./reducers";
 
 const {
   addQuery,

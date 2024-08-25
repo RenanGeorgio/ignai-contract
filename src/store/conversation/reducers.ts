@@ -29,7 +29,7 @@ const updateConversationId: CaseReducer<State, PayloadAction<{ query: Partial<Qu
   state.conversationId = action.payload.query.conversationId ?? null;
 }
 
-const updateStreamingSource: CaseReducer<State, PayloadAction<{ index: number; query: Partial<Query> }> = (state, action) => {
+const updateStreamingSource: CaseReducer<State, PayloadAction<{ index: number; query: Partial<Query> }>> = (state, action) => {
   const { index, query } = action.payload;
 
   if (!state.queries[index].content.sources) {
