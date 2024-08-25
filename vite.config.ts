@@ -27,5 +27,8 @@ export default defineConfig({
   resolve: {
     alias: get_paths_from_tsconfig(),
   },
+  build: {
+    target: 'esnext'
+  },
   plugins: [react(), svgr()],
 });
