@@ -1,14 +1,10 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import store from "../store";
-import { setConversations } from "../preference";
-import { handleFetchAnswer, handleFetchAnswerSteaming, handleSearch, getConversations } from "@controllers";
-import { Answer, ConversationState, ChatGPTMessage, Query, Status } from "@types";
-
-const initialState: ConversationState = {
-  queries: [],
-  status: 'idle',
-  conversationId: null,
-};
+import { getConversations, handleFetchAnswer, handleFetchAnswerSteaming, handleSearch } from "@controllers";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { conversationSlice } from "@store/conversation/slice";
+import { updateConversationId, updateQuery, updateStreamingQuery, updateStreamingSource } from "@store/conversation/actions";
+import { setConversations } from "@store/preference";
+import { RootState } from "@store/store";
+import { Answer } from "@types";
 
 const API_STREAMING = import.meta.env.VITE_API_STREAMING === 'true';
 
@@ -139,101 +135,3 @@ export const fetchAnswer = createAsyncThunk<Answer, { question: string }>(
     };
   },
 ); 
-
-export const conversationSlice = createSlice({
-  name: 'conversation',
-  initialState,
-  reducers: {
-    addQuery(state: any, action: PayloadAction<ChatGPTMessage>) {
-      state.queries.push(action.payload);
-    },
-    setConversation(state: any, action: PayloadAction<ChatGPTMessage[]>) {
-      state.queries = action.payload;
-    },
-    updateStreamingQuery(
-      state: any,
-      action: PayloadAction<{ index: number; query: Partial<Query> }>,
-    ) {
-      const { index, query } = action.payload;
-      
-      if (query.response != undefined) {
-        state.queries[index].content.response = (state.queries[index].content.response || '') + query.response;
-      } else {
-        state.queries[index].content = {
-          ...state.queries[index].content,
-          ...query,
-        };
-      }
-    },
-    updateConversationId(
-      state: any,
-      action: PayloadAction<{ query: Partial<Query> }>,
-    ) {
-      state.conversationId = action.payload.query.conversationId ?? null;
-    },
-    updateStreamingSource(
-      state: any,
-      action: PayloadAction<{ index: number; query: Partial<Query> }>,
-    ) {
-      const { index, query } = action.payload;
-
-      if (!state.queries[index].content.sources) {
-        state.queries[index].content.sources = query?.sources;
-      } else {
-        state.queries[index].content.sources!.push(query.sources![0]);
-      }
-    },
-    updateQuery(
-      state: any,
-      action: PayloadAction<{ index: number; query: Partial<Query> }>,
-    ) {
-      const { index, query } = action.payload;
-
-      state.queries[index].content = {
-        ...state.queries[index].content,
-        ...query,
-      };
-    },
-    setStatus(state: any, action: PayloadAction<Status>) {
-      state.status = action.payload;
-    },
-    raiseError(
-      state: any,
-      action: PayloadAction<{ index: number; message: string }>,
-    ) {
-      const { index, message } = action.payload;
-      state.queries[index].content.error = message;
-    },
-  },
-  extraReducers(builder) {
-    builder
-      .addCase(fetchAnswer.pending, (state: any) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchAnswer.rejected, (state: any, action: any) => {
-        if (action.meta.aborted) {
-          state.status = 'idle';
-          return state;
-        }
-        state.status = 'failed';
-        state.queries[state.queries.length - 1].content.error = 'Something went wrong. Please check your internet connection.';
-      });
-  },
-});
-
-type RootState = ReturnType<typeof store.getState>;
-
-export const selectQueries = (state: RootState) => state.conversation.queries;
-
-export const selectStatus = (state: RootState) => state.conversation.status;
-
-export const {
-  addQuery,
-  updateQuery,
-  updateStreamingQuery,
-  updateConversationId,
-  updateStreamingSource,
-  setConversation,
-} = conversationSlice.actions;
-
-export default conversationSlice.reducer;

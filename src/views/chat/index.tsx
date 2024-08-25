@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { Box, VStack, HStack, Text } from "@chakra-ui/react";
 
 import { handleSendFeedback } from "@controllers";
-import { AppDispatch } from "@store/store";
-import { addQuery, fetchAnswer, selectQueries, selectStatus, updateQuery } from "@store/conversation";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { addQuery, fetchAnswer, selectQueries, selectStatus, updateQuery } from "@store/conversation/slice";
 import { useDarkTheme } from "@hooks";
 import { LoadingChatLine } from "@components/chat/ChatLine";
 import { COOKIE_NAME, emojis, initialMessages } from "@components/chat/Constants";
@@ -17,10 +16,8 @@ import ArrowDown from "@assets/images/arrow-down.svg";
 import { ChatGPTAgent, ChatGPTMessage, FEEDBACK, Query } from "@types";
 
 const ChatView: React.FC = () => {
-  const queries: ChatGPTMessage[] = useSelector(selectQueries);
-  const status = useSelector(selectStatus);
-
-  const dispatch = useDispatch<AppDispatch>();
+  const queries: ChatGPTMessage[] = useAppSelector(selectQueries);
+  const status = useAppSelector(selectStatus);
 
   const endMessageRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -110,7 +107,7 @@ const ChatView: React.FC = () => {
     setLoading(true);
     setEventInterrupt(false);
 
-    !isRetry && dispatch(
+    !isRetry && useAppDispatch(
       addQuery(
         { 
           content: { prompt: question },
@@ -118,22 +115,22 @@ const ChatView: React.FC = () => {
         }
       )); // Dispatch apenas novas queries
 
-    fetchStream.current = dispatch(fetchAnswer({ question }));
+    fetchStream.current = useAppDispatch(fetchAnswer({ question }));
     setLoading(false);
   };
 
   const handleFeedback = (query: Query, feedback: FEEDBACK, index: number) => {
     const prevFeedback = query.feedback;
-    dispatch(updateQuery({ index, query: { feedback } }));
+    useAppDispatch(updateQuery({ index, query: { feedback } }));
     handleSendFeedback(query.prompt, query.response!, feedback).catch(() =>
-      dispatch(updateQuery({ index, query: { feedback: prevFeedback } })),
+      useAppDispatch(updateQuery({ index, query: { feedback: prevFeedback } })),
     );
   };
 
   const handleQuestionSubmission = () => {
     if (inputRef.current?.value && status !== 'loading') {
       if (lastQueryReturnedErr) { // atualizar a última consulta com falha com novo prompt
-        dispatch(
+        useAppDispatch(
           updateQuery({
             index: queries.length - 1,
             query: {

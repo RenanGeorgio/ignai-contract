@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { sharedConversationSlice } from "./shared";
 import { prefListenerMiddleware, prefSlice } from "./preference";
-import { conversationSlice } from "./conversation";
+import { conversationReducer } from "./conversation/slice";
 
 const key = localStorage.getItem('DocsGPTApiKey');
 const prompt = localStorage.getItem('DocsGPTPrompt');
@@ -9,7 +9,7 @@ const chunks = localStorage.getItem('DocsGPTChunks');
 const token_limit = localStorage.getItem('DocsGPTTokenLimit');
 const doc = localStorage.getItem('DocsGPTRecentDocs');
 
-const store = configureStore({
+export const store = configureStore({
   preloadedState: {
     preference: {
       apiKey: key ?? '',
@@ -39,7 +39,7 @@ const store = configureStore({
   },
   reducer: {
     preference: prefSlice.reducer,
-    conversation: conversationSlice.reducer,
+    conversation: conversationReducer,
     sharedConversation: sharedConversationSlice.reducer,
   },
   middleware: (getDefaultMiddleware: any) =>
@@ -49,7 +49,4 @@ const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-// TODO : use https://redux-toolkit.js.org/tutorials/typescript#define-typed-hooks everywere instead of direct useDispatch
-
 // TODO : streamline async state management
-export default store;

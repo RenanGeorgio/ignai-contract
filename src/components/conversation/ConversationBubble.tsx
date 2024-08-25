@@ -1,17 +1,17 @@
 import { forwardRef, useState } from "react";
-import { useSelector } from "react-redux";
 
 import { selectChunks, selectSelectedDocs } from "@store/preference";
+import { useAppSelector } from "@store/hooks";
 import Avatar from "@components/Avatar";
 import CopyButton from "@components/CopyButton";
 import { ConversationsSidebar } from "@components/sidebar";
 import { ChatLine } from "@components/chat/ChatLine";
+import { Like, Dislike } from "@components/Images";
 import Alert from "@assets/images/alert.svg";
 import DocsGPT3 from "@assets/images/cute_docsgpt3.svg";
 import Document from "@assets/images/document.svg";
 import Link from "@assets/images/link.svg";
 import Sources from "@assets/images/sources.svg";
-import { Like, Dislike } from "@components/Images";
 import { FEEDBACK, MESSAGE_TYPE, ChatGPTAgent } from "@types";
 
 import "./ConversationBubble.module.css";
@@ -41,8 +41,8 @@ const ConversationBubble = forwardRef<
 ) {
   let bubble: any;
 
-  const chunks = useSelector(selectChunks);
-  const selectedDocs = useSelector(selectSelectedDocs);
+  const chunks = useAppSelector(selectChunks);
+  const selectedDocs = useAppSelector(selectSelectedDocs);
 
   const [isLikeHovered, setIsLikeHovered] = useState(false);
   const [isDislikeHovered, setIsDislikeHovered] = useState(false);
