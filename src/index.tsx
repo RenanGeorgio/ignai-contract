@@ -6,7 +6,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import "@styles/global.css";
+//import "@styles/global.css";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
