@@ -1,97 +1,14 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import store from "../store";
-import { handleFetchSharedAnswer, handleFetchSharedAnswerStreaming } from "@controllers";
-import { Query, Status, Answer, SharedConversationsType, ChatGPTMessage } from "@types";
-
-const API_STREAMING = import.meta.env.VITE_API_STREAMING === 'true';
+import { RootState } from "../store";
+import { Query, Status, SharedConversationsType, ChatGPTMessage } from "@types";
+import { fetchSharedAnswer } from "features/sharedConversation";
 
 const initialState: SharedConversationsType = {
   queries: [],
   identifier: '',
   status: 'idle',
 };
-
-export const fetchSharedAnswer = createAsyncThunk<Answer, { question: string }>(
-  'shared/fetchAnswer',
-  async ({ question }, { dispatch, getState, signal }) => {
-    const state = getState() as RootState;
-
-    if (state.preference && state.sharedConversation.apiKey) {
-      if (API_STREAMING) {
-        await handleFetchSharedAnswerStreaming(
-          question,
-          signal,
-          state.sharedConversation.apiKey,
-          state.sharedConversation.queries,
-          (event) => {
-            const data = JSON.parse(event.data);
-        
-            if (data.type === 'end') {
-              dispatch(sharedConversationSlice.actions.setStatus('idle'));
-              dispatch(saveToLocalStorage());
-            } else if (data.type === 'error') {
-              dispatch(sharedConversationSlice.actions.setStatus('failed'));
-              dispatch(
-                sharedConversationSlice.actions.raiseError({
-                  index: state.conversation.queries.length - 1,
-                  message: data.error,
-                }),
-              );
-            } else {
-              const result = data.answer;
-              dispatch(
-                updateStreamingQuery({
-                  index: state.sharedConversation.queries.length - 1,
-                  query: { response: result },
-                }),
-              );
-            }
-          },
-        );
-      } else {
-        const answer = await handleFetchSharedAnswer(
-          question,
-          signal,
-          state.sharedConversation.apiKey,
-        );
-
-        if (answer) {
-          let sourcesPrepped = [];
-
-          sourcesPrepped = answer.sources.map((source: { title: string }) => {
-            if (source && source.title) {
-              const titleParts = source.title.split('/');
-
-              return {
-                ...source,
-                title: titleParts[titleParts.length - 1],
-              };
-            }
-
-            return source;
-          });
-
-          dispatch(
-            updateQuery({
-              index: state.sharedConversation.queries.length - 1,
-              query: { response: answer.answer, sources: sourcesPrepped },
-            }),
-          );
-          dispatch(sharedConversationSlice.actions.setStatus('idle'));
-        }
-      }
-    }
-    return {
-      conversationId: null,
-      title: null,
-      answer: '',
-      query: question,
-      result: '',
-      sources: [],
-    };
-  },
-);
 
 export const sharedConversationSlice = createSlice({
   name: 'sharedConversation',
@@ -194,24 +111,13 @@ export const sharedConversationSlice = createSlice({
   },
 });
 
-export const {
-  setStatus,
-  setIdentifier,
-  setFetchedData,
-  setClientApiKey,
-  updateQuery,
-  updateStreamingQuery,
-  addQuery,
-  saveToLocalStorage,
-} = sharedConversationSlice.actions;
-
 export const selectStatus = (state: RootState) => state.conversation.status;
 export const selectClientAPIKey = (state: RootState) => state.sharedConversation.apiKey;
 export const selectQueries = (state: RootState) => state.sharedConversation.queries;
 export const selectTitle = (state: RootState) => state.sharedConversation.title;
 export const selectDate = (state: RootState) => state.sharedConversation.date;
 
-type RootState = ReturnType<typeof store.getState>;
+const { reducer, actions } = sharedConversationSlice;
 
-sharedConversationSlice;
-export default sharedConversationSlice.reducer;
+export { actions as sharedConversationActions };
+export { reducer as sharedConversationReducer };

@@ -55,14 +55,5 @@ export const selectStatus = (state: RootState) => state.conversation.status;
 
 const { reducer, actions } = conversationSlice;
 
-/*export const {
-  addQuery,
-  updateQuery,
-  updateStreamingQuery,
-  updateConversationId,
-  updateStreamingSource,
-  setConversation,
-} = conversationSlice.actions;*/
-
 export { actions as conversationActions };
 export { reducer as conversationReducer };

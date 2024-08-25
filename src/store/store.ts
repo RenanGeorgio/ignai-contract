@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { sharedConversationSlice } from "./shared";
-import { prefListenerMiddleware, prefSlice } from "./preference";
+import { sharedConversationReducer } from "./shared/slice";
+import { prefSliceReducer } from "./preference/slice";
 import { conversationReducer } from "./conversation/slice";
+import { prefListenerMiddleware } from "./preference/middleware";
 
 const key = localStorage.getItem('DocsGPTApiKey');
 const prompt = localStorage.getItem('DocsGPTPrompt');
@@ -38,9 +39,9 @@ export const store = configureStore({
     },
   },
   reducer: {
-    preference: prefSlice.reducer,
+    preference: prefSliceReducer,
     conversation: conversationReducer,
-    sharedConversation: sharedConversationSlice.reducer,
+    sharedConversation: sharedConversationReducer,
   },
   middleware: (getDefaultMiddleware: any) =>
     getDefaultMiddleware().concat(prefListenerMiddleware.middleware),

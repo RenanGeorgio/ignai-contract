@@ -1,6 +1,5 @@
-import { PayloadAction, createListenerMiddleware, createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { setLocalApiKey, setLocalRecentDocs } from "@controllers";
 import { Doc, ActiveState, Preference } from "@types";
 
 const initialState: Preference = {
@@ -55,67 +54,6 @@ export const prefSlice = createSlice({
   },
 });
 
-export const {
-  setApiKey,
-  setSelectedDocs,
-  setSourceDocs,
-  setConversations,
-  setPrompt,
-  setChunks,
-  setTokenLimit,
-  setModalStateDeleteConv,
-} = prefSlice.actions;
-export default prefSlice.reducer;
-
-export const prefListenerMiddleware = createListenerMiddleware();
-prefListenerMiddleware.startListening({
-  matcher: isAnyOf(setApiKey),
-  effect: (action: any, listenerApi: any) => {
-    setLocalApiKey((listenerApi.getState() as RootState).preference.apiKey);
-  },
-});
-
-prefListenerMiddleware.startListening({
-  matcher: isAnyOf(setSelectedDocs),
-  effect: (action: any, listenerApi: any) => {
-    setLocalRecentDocs(
-      (listenerApi.getState() as RootState).preference.selectedDocs ?? null,
-    );
-  },
-});
-
-prefListenerMiddleware.startListening({
-  matcher: isAnyOf(setPrompt),
-  effect: (action: any, listenerApi: any) => {
-    localStorage.setItem(
-      'DocsGPTPrompt',
-      JSON.stringify((listenerApi.getState() as RootState).preference.prompt),
-    );
-  },
-});
-
-prefListenerMiddleware.startListening({
-  matcher: isAnyOf(setChunks),
-  effect: (action: any, listenerApi: any) => {
-    localStorage.setItem(
-      'DocsGPTChunks',
-      JSON.stringify((listenerApi.getState() as RootState).preference.chunks),
-    );
-  },
-});
-
-prefListenerMiddleware.startListening({
-  matcher: isAnyOf(setTokenLimit),
-  effect: (action: any, listenerApi: any) => {
-    localStorage.setItem(
-      'DocsGPTTokenLimit',
-      JSON.stringify(
-        (listenerApi.getState() as RootState).preference.token_limit,
-      ),
-    );
-  },
-});
-
 export const selectApiKey = (state: RootState) => state.preference.apiKey;
 export const selectApiKeyStatus = (state: RootState) => !!state.preference.apiKey;
 export const selectSelectedDocsStatus = (state: RootState) => !!state.preference.selectedDocs;
@@ -127,3 +65,8 @@ export const selectConversationId = (state: RootState) => state.conversation.con
 export const selectPrompt = (state: RootState) => state.preference.prompt;
 export const selectChunks = (state: RootState) => state.preference.chunks;
 export const selectTokenLimit = (state: RootState) => state.preference.token_limit;
+
+const { reducer, actions } = prefSlice;
+
+export { actions as prefSliceActions };
+export { reducer as prefSliceReducer };
