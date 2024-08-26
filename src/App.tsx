@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Sidebar from "./components/sidebar";
-import { SidebarProvider } from "./contexts/SidebarContext";
-import "./styles/app.css";
-import Home from "./pages/home";
+import { SidebarProvider } from "@providers";
+import Home from "@pages/home";
+import { CustomSideBar } from "@components/sidebar";
+
+import "@styles/app.css";
 
 function App() {
   const [expanded, setExpanded] = useState(false);
@@ -11,7 +12,7 @@ function App() {
   return (
     <SidebarProvider>
       <div className="app-container">
-        <Sidebar expanded={expanded} setExpanded={setExpanded} />
+        <CustomSideBar expanded={expanded} setExpanded={setExpanded} />
         <Routes>
           <Route path="/" element={<Home expanded={expanded} />} />
         </Routes>
