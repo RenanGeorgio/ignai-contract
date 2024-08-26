@@ -69,7 +69,7 @@ export default defineConfig({
       "@libs": path.resolve(__dirname, "./src/libs"),
       "@styles": path.resolve(__dirname, "./src/styles"),
       "@contexts": path.resolve(__dirname, "./src/contexts"),
-      "@providers": path.resolve(__dirname, "./src/contexts/providers/index"),
+      "@providers": path.resolve(__dirname, "./src/contexts/index"),
       "@services": path.resolve(__dirname, "./src/services"),
       "@controllers": path.resolve(__dirname, "./src/controllers"),
       "@store": path.resolve(__dirname, "./src/store"),
