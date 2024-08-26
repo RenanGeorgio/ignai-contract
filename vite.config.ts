@@ -23,6 +23,22 @@ function get_paths_from_tsconfig() {
   return aliases
 }
 
+function mergeObjectsWithLists(obj1, obj2) {
+  // Iterate over keys in obj2
+  for (const key in obj2) {
+      if (obj2.hasOwnProperty(key)) {
+          if (obj1.hasOwnProperty(key)) {
+              // If the key exists in both, merge the arrays
+              obj1[key] = Array.from(new Set([...obj1[key], ...obj2[key]]));
+          } else {
+              // If the key is missing in obj1, add it
+              obj1[key] = obj2[key];
+          }
+      }
+  }
+  return obj1;
+}
+
 const currentPaths = get_paths_from_tsconfig();
 
 const appPaths = {
@@ -44,7 +60,7 @@ const appPaths = {
   "@components": path.resolve(__dirname, "./src/components"),
 }
 
-const usedPaths = { ...currentPaths, ...appPaths };
+const usedPaths =  mergeObjectsWithLists(appPaths, currentPaths);
 
 export default defineConfig({
   resolve: {
