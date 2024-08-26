@@ -83,8 +83,8 @@ export default defineConfig({
       "@components": path.resolve(__dirname, "./src/components"),
     },
   },
-  build: {
-    target: 'esnext'
-  },
+  //build: {
+  //  target: 'esnext'
+  //},
   plugins: [react(), svgr()],
 });
