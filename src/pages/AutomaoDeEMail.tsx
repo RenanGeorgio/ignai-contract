@@ -1,15 +1,17 @@
 import { FunctionComponent } from "react";
-import Menu from "../components/automation/Menu";
-import Card from "../components/automation/Card";
-import FrameComponent from "../components/automation/FrameComponent";
-import styles from "./AutomaoDeEMail.module.css";
+import Menu from "@components/automation/Menu";
+import Card from "@components/automation/Card";
+import FrameComponent from "@components/automation/FrameComponent";
+import styles from "@styles/AutomaoDeEMail.module.css";
 
 export type AutomaoDeEMailType = {
   className?: string;
+  expanded: boolean;
 };
 
 const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({
   className = "",
+  expanded,
 }) => {
   return (
     <div className={[styles.automaoDeEMail, className].join(" ")}>

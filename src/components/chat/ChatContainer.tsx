@@ -1,14 +1,14 @@
 import { Box } from "@chakra-ui/react";
 import { ChatView } from "@views";
 
-import styles from "./ChatContainer.module.css";
+import styles from "@styles/ChatContainer.module.css";
 
 const ChatContainer = () => {
   return (
     <Box sx={{ top:'55px',position:'relative'}} >
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <ChatView />
+          { /* <ChatView /> */}
         </div>
       </div>
     </Box>

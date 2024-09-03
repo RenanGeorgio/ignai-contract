@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import Avatar from "./Avatar";
-import styles from "../../styles/automation/Navbar.module.css";
+import styles from "@styles/automation/Navbar.module.css";
 
 export type NavbarType = {
   className?: string;

@@ -1,5 +1,5 @@
 import { FunctionComponent, useMemo, type CSSProperties } from "react";
-import styles from "../../styles/automation/FormCheckbox.module.css";
+import styles from "@styles/automation/FormCheckbox.module.css";
 
 export type FormCheckboxType = {
   className?: string;

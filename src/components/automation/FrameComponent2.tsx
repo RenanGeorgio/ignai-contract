@@ -1,5 +1,5 @@
 import { FunctionComponent, useMemo, type CSSProperties } from "react";
-import styles from "../../styles/automation/FrameComponent2.module.css";
+import styles from "@styles/automation/FrameComponent2.module.css";
 
 export type FrameComponent2Type = {
   className?: string;

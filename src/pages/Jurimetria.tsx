@@ -1,14 +1,15 @@
 import { FunctionComponent } from "react";
-import Navbar from "../components/automation/Navbar";
-import FormCheckbox from "../components/automation/FormCheckbox";
-import FormSelect from "../components/automation/FormSelect";
-import styles from "./Jurimetria.module.css";
+import Navbar from "@components/automation/Navbar";
+import FormCheckbox from "@components/automation/FormCheckbox";
+import FormSelect from "@components/automation/FormSelect";
+import styles from "@styles/Jurimetria.module.css";
 
 export type JurimetriaType = {
   className?: string;
+  expanded: boolean;
 };
 
-const Jurimetria: FunctionComponent<JurimetriaType> = ({ className = "" }) => {
+const Jurimetria: FunctionComponent<JurimetriaType> = ({ className = "", expanded }) => {
   return (
     <div className={[styles.jurimetria, className].join(" ")}>
       <div className={styles.application}>

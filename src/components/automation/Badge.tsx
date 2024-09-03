@@ -1,5 +1,5 @@
 import { FunctionComponent, useMemo, type CSSProperties } from "react";
-import styles from "../../styles/automation/Badge.module.css";
+import styles from "@styles/automation/Badge.module.css";
 
 export type BadgeType = {
   className?: string;

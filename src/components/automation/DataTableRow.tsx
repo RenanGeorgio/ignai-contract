@@ -1,6 +1,6 @@
 import { FunctionComponent, useMemo, type CSSProperties } from "react";
 import Badge from "./Badge";
-import styles from "../../styles/automation/DataTableRow.module.css";
+import styles from "@styles/automation/DataTableRow.module.css";
 
 export type DataTableRowType = {
   className?: string;

@@ -1,17 +1,18 @@
 import { FunctionComponent } from "react";
-import FrameComponent2 from "../components/automation/FrameComponent2";
-import Navbar from "../components/automation/Navbar";
-import Button from "../components/automation/Button";
-import DataTableRow from "../components/automation/DataTableRow";
-import Avatar from "../components/automation/Avatar";
-import Pagination from "../components/automation/Pagination";
-import styles from "./Versions.module.css";
+import FrameComponent2 from "@components/automation/FrameComponent2";
+import Navbar from "@components/automation/Navbar";
+import Button from "@components/automation/Button";
+import DataTableRow from "@components/automation/DataTableRow";
+import Avatar from "@components/automation/Avatar";
+import Pagination from "@components/automation/Pagination";
+import styles from "@styles/Versions.module.css";
 
 export type VersionsType = {
   className?: string;
+  expanded: boolean;
 };
 
-const Versions: FunctionComponent<VersionsType> = ({ className = "" }) => {
+const Versions: FunctionComponent<VersionsType> = ({ className = "", expanded }) => {
   return (
     <div className={[styles.versions, className].join(" ")}>
       <FrameComponent2 />

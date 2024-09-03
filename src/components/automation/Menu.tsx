@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import styles from "../../styles/automation/Menu.module.css";
+import styles from "@styles/automation/Menu.module.css";
 
 export type MenuType = {
   className?: string;

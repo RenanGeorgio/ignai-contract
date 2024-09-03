@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import styles from "../../styles/automation/Pagination.module.css";
+import styles from "@styles/automation/Pagination.module.css";
 
 export type PaginationType = {
   className?: string;

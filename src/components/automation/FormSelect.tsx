@@ -1,5 +1,5 @@
 import { FunctionComponent, useMemo, type CSSProperties } from "react";
-import styles from "../../styles/automation/FormSelect.module.css";
+import styles from "@styles/automation/FormSelect.module.css";
 
 export type FormSelectType = {
   className?: string;
