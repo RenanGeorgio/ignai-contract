@@ -1,0 +1,29 @@
+.historyLabel {
+  position: relative;
+  letter-spacing: 0.43px;
+  line-height: 18px;
+  font-weight: 500;
+}
+.button,
+.button1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs) var(--padding-lgi);
+}
+.button {
+  margin: 0 !important;
+  position: absolute;
+  top: 60px;
+  left: 11px;
+  box-shadow: var(--light-gray-gray-sm);
+  border-radius: var(--br-7xs);
+  background-color: var(--color-whitesmoke-100);
+  justify-content: flex-end;
+  padding: 0 0 0 var(--padding-10xs);
+  text-align: left;
+  font-size: var(--light-button-2-button-default-size);
+  color: var(--color-darkgray-300);
+  font-family: var(--light-button-2-button-default);
+}

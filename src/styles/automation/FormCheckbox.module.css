@@ -1,0 +1,39 @@
+.checkIcon {
+  height: 14px;
+  width: 14px;
+  position: relative;
+}
+.formCheckboxButton {
+  box-shadow: var(--light-gray-gray-sm);
+  border-radius: var(--br-9xs);
+  background-color: var(--light-solid-color-primary-primary-500-base);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-11xs);
+}
+.text {
+  width: 31px;
+  position: relative;
+  line-height: 22px;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
+    ),
+    #4b465c;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: none;
+}
+.formCheckbox {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-7xs);
+  text-align: left;
+  font-size: var(--light-form-input-8-placeholder-default-size);
+  font-family: var(--light-form-input-8-placeholder-default);
+}

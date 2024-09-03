@@ -1,0 +1,155 @@
+.background,
+.pi {
+  position: absolute;
+}
+.background {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0.53%;
+  bottom: 0;
+  left: -0.53%;
+  background-color: var(--color-mediumslateblue-200);
+}
+.pi {
+  top: 23.16%;
+  left: 28.42%;
+  line-height: 21px;
+  font-weight: 500;
+  display: none;
+}
+.labelInitials {
+  height: 38px;
+  width: 38px;
+  position: relative;
+  border-radius: var(--br-81xl);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.margejacobsongmailcom2799,
+.queirozGalvo {
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.queirozGalvo {
+  line-height: 22px;
+  font-weight: 600;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
+    ),
+    #4b465c;
+  display: inline-block;
+  min-width: 107px;
+}
+.margejacobsongmailcom2799 {
+  align-self: stretch;
+  font-size: var(--light-table-header-1-table-header-size);
+  line-height: 20px;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    #4b465c;
+  white-space: pre-wrap;
+  margin-top: -2px;
+}
+.dataTableCell,
+.text {
+  display: flex;
+  justify-content: flex-start;
+}
+.text {
+  width: 429px;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 132%;
+  flex-shrink: 0;
+  text-align: left;
+}
+.dataTableCell {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--padding-2xs) 0 var(--padding-2xs) var(--padding-5xl);
+  box-sizing: border-box;
+  gap: var(--gap-3xs);
+  min-width: 227px;
+  max-width: 100%;
+}
+.emptyData {
+  position: absolute;
+  margin: 0 !important;
+  top: 20px;
+  left: 32px;
+  line-height: 22px;
+  font-weight: 500;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
+    ),
+    #4b465c;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  min-width: 97px;
+}
+.dataTableCell1,
+.dataTableCell2 {
+  height: 62px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  position: relative;
+}
+.dataTableCell1 {
+  width: 162px;
+  padding: var(--padding-xl);
+  text-align: left;
+}
+.dataTableCell2 {
+  width: 140px;
+  padding: var(--padding-lgi) var(--padding-xl);
+}
+.dotsVerticalIcon,
+.editIcon,
+.trashIcon {
+  height: 22px;
+  width: 22px;
+  position: relative;
+  min-height: 22px;
+}
+.dataTableCell3,
+.dataTableRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.dataTableCell3 {
+  padding: var(--padding-xl) var(--padding-3xl) var(--padding-xl)
+    var(--padding-xl);
+  gap: var(--gap-base);
+}
+.dataTableRow {
+  align-self: stretch;
+  background-color: var(--color-whitesmoke-200);
+  border-right: 1px solid var(--light-solid-color-extra-divider);
+  border-bottom: 1px solid var(--light-solid-color-extra-divider);
+  border-left: 1px solid var(--light-solid-color-extra-divider);
+  box-sizing: border-box;
+  max-width: 100%;
+  row-gap: 20px;
+  text-align: center;
+  font-size: var(--light-button-2-button-default-size);
+  color: var(--light-solid-color-primary-primary-500-base);
+  font-family: var(--light-button-2-button-default);
+}
+@media screen and (max-width: 750px) {
+  .dataTableRow {
+    flex-wrap: wrap;
+  }
+}

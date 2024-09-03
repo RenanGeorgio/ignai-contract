@@ -1,0 +1,19 @@
+.status {
+  position: absolute;
+  height: 31.58%;
+  width: 31.58%;
+  top: 75.53%;
+  right: -4.74%;
+  bottom: -7.11%;
+  left: 73.16%;
+  border-radius: 50%;
+  background-color: var(--light-solid-color-success-success-500-base);
+  border: 0 solid var(--light-solid-color-extra-card-background);
+  box-sizing: border-box;
+  z-index: 3;
+}
+.avatar {
+  height: 38px;
+  width: 38px;
+  position: relative;
+}
