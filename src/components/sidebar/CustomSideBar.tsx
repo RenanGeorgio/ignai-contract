@@ -81,7 +81,7 @@ const CustomSideBar: React.FC<SidebarProps> = ({ expanded, setExpanded }) => {
             </div>
           </Link>
 
-          <Link className="link" to="/">
+          <Link className="link" to="/agendamento">
             <div className="menu-item">
               <LayoutNavIcon />
               <span className={expanded ? "show-text" : "hide-text"}>
@@ -95,7 +95,7 @@ const CustomSideBar: React.FC<SidebarProps> = ({ expanded, setExpanded }) => {
       <div className="section1">
         <div className="sectionContainer">
           <p className={expanded ? "show-text" : "hide-text"}>Ajuda</p>
-          <Link className="link" to="/configuracoes">
+          <Link className="link" to="/buscador">
             <div className="menu-item">
               <SettingIcon />
               <span className={expanded ? "show-text" : "hide-text"}>
@@ -104,7 +104,7 @@ const CustomSideBar: React.FC<SidebarProps> = ({ expanded, setExpanded }) => {
             </div>
           </Link>
 
-          <Link className="link" to="/">
+          <Link className="link" to="/final">
             <div className="menu-item">
               <FileTextIcon />
               <span className={expanded ? "show-text" : "hide-text"}>

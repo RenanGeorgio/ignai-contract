@@ -8,6 +8,9 @@ import "@styles/app.css";
 import AutomaoDeEMail from "@pages/AutomaoDeEMail";
 import Jurimetria from "@pages/Jurimetria";
 import Versions from "@pages/Versions";
+import Agendamento from "@pages/Agendamento";
+import Buscador from "@pages/Buscador";
+import Final from "@pages/Final";
 
 function App() {
   const [expanded, setExpanded] = useState(false);
@@ -20,6 +23,9 @@ function App() {
         <Route path="/automação" element={<AutomaoDeEMail expanded={expanded} />} />
         <Route path="/jurimetria" element={<Jurimetria expanded={expanded} />} />
         <Route path="/versões" element={<Versions expanded={expanded} />} />
+        <Route path="/agendamento" element={<Agendamento expanded={expanded} />} />
+        <Route path="/buscador" element={<Buscador expanded={expanded} />} />
+        <Route path="/final" element={<Final expanded={expanded} />} />
       </Routes>
     </div>
   );
