@@ -1,0 +1,123 @@
+.frameIcon {
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  min-height: 24px;
+}
+.frameIcon,
+.vuesaxlinearpresentionChartIcon {
+  height: 24px;
+  width: 24px;
+  position: relative;
+}
+.frameContainer {
+  height: 48px;
+  width: 48px;
+  border-radius: var(--br-81xl);
+  background-color: var(--color-tomato-200);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-xs);
+  box-sizing: border-box;
+  gap: var(--gap-3xs);
+}
+.contratos {
+  text-decoration: none;
+  position: relative;
+  line-height: 24px;
+  font-weight: 500;
+  color: inherit;
+  display: inline-block;
+  min-width: 77px;
+}
+.frameGroup {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-41xl) 0 0;
+  gap: var(--gap-xl);
+}
+.div {
+  position: relative;
+  line-height: 32px;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 96px;
+}
+.frameIcon1 {
+  height: 16px;
+  width: 16px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  min-height: 16px;
+}
+.div1 {
+  position: relative;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 39px;
+}
+.label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-10xs);
+}
+.ltimoMs {
+  position: relative;
+  font-size: var(--body-text-inter-regular-14-size);
+  line-height: 22px;
+  color: var(--color-gray-300);
+  display: inline-block;
+  min-width: 73px;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-8xs);
+  font-size: var(--font-size-xs);
+  color: var(--color-mediumseagreen-100);
+}
+.cardInner,
+.frameParent,
+.parent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.parent {
+  justify-content: flex-start;
+  padding: 0 var(--padding-50xl) 0 0;
+  gap: var(--gap-xs);
+  font-size: var(--heading-text-inter-semi-bold-24-size);
+  color: var(--color-black);
+}
+.cardInner,
+.frameParent {
+  flex: 1;
+  justify-content: space-between;
+}
+.cardInner {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  font-size: var(--body-text-inter-medium-16-size);
+  color: var(--main-colors-secondary);
+  font-family: var(--body-text-inter-regular-14);
+}
+@media screen and (max-width: 450px) {
+  .div {
+    font-size: var(--font-size-lgi);
+    line-height: 26px;
+  }
+}

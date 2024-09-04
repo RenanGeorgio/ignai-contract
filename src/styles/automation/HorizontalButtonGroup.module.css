@@ -1,0 +1,92 @@
+.buttonLabels {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 0.43px;
+  line-height: 18px;
+  font-weight: 500;
+  color: inherit;
+  display: inline-block;
+  min-width: 31px;
+}
+.button {
+  width: 71px;
+  background-color: var(--light-opacity-color-primary-primary-24);
+  border-right: 1px solid var(--light-opacity-color-primary-primary-24);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs) var(--padding-lgi);
+}
+.text {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 0.43px;
+  line-height: 18px;
+  font-weight: 500;
+  color: inherit;
+  display: inline-block;
+  min-width: 60px;
+}
+.button1 {
+  flex: 1;
+  background-color: var(--light-opacity-color-primary-primary-16);
+  border-right: 1px solid var(--light-opacity-color-primary-primary-24);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs) var(--padding-lgi);
+}
+.text1 {
+  position: relative;
+  letter-spacing: 0.43px;
+  line-height: 18px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 24px;
+}
+.button2 {
+  width: 64px;
+  background-color: var(--light-opacity-color-primary-primary-16);
+  border-right: 1px solid var(--light-opacity-color-primary-primary-24);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs) var(--padding-lgi);
+}
+.text2 {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 0.43px;
+  line-height: 18px;
+  font-weight: 500;
+  color: inherit;
+  display: inline-block;
+  min-width: 37px;
+}
+.button3 {
+  background-color: var(--light-opacity-color-primary-primary-16);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs) var(--padding-lgi);
+}
+.horizontalButtonGroup {
+  width: 311px;
+  border-radius: var(--br-7xs);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: center;
+  font-size: var(--light-button-2-button-default-size);
+  color: var(--light-solid-color-primary-primary-500-base);
+  font-family: var(--light-basic-typography-h5-heading);
+}

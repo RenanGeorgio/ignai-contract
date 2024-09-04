@@ -1,0 +1,55 @@
+.background1 {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
+    ),
+    #7367f0;
+}
+.overlay {
+  position: absolute;
+  height: 80.53%;
+  width: 80.53%;
+  top: 9.74%;
+  right: 9.74%;
+  bottom: 9.74%;
+  left: 9.74%;
+  border-radius: var(--br-81xl);
+  z-index: 1;
+}
+.avatar,
+.avatarIcon,
+.background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  left: 0;
+}
+.background {
+  top: 0;
+  bottom: 0;
+}
+.avatar,
+.avatarIcon {
+  overflow: hidden;
+}
+.avatarIcon {
+  top: 0;
+  bottom: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+.avatar {
+  top: -1.32%;
+  bottom: 1.32%;
+  border-radius: var(--br-81xl);
+}

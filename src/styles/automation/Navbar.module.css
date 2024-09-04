@@ -1,0 +1,114 @@
+.searchIcon {
+  height: 26px;
+  width: 26px;
+  position: relative;
+  min-height: 26px;
+}
+.buscarCtrlf {
+  align-self: stretch;
+  position: relative;
+  line-height: 22px;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    #4b465c;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+.search,
+.searchLabel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-11xs) 0 0;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.search {
+  flex-direction: row;
+  padding: var(--padding-7xs) 0;
+  gap: var(--gap-3xs);
+}
+.background,
+.bellIcon {
+  position: absolute;
+  left: 0;
+}
+.bellIcon {
+  height: 70.27%;
+  width: 94.2%;
+  top: 14.86%;
+  right: 5.8%;
+  bottom: 14.86%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.background {
+  top: 0;
+  border-radius: 50%;
+  background-color: var(--light-solid-color-danger-danger-500-base);
+  width: 100%;
+  height: 100%;
+}
+.dot,
+.unreadCount {
+  position: absolute;
+  z-index: 1;
+}
+.unreadCount {
+  text-decoration: none;
+  top: 1.7px;
+  left: 5.7px;
+  line-height: 14px;
+  font-weight: 500;
+  color: inherit;
+  display: inline-block;
+  width: 9px;
+  height: 14px;
+  min-width: 9px;
+}
+.dot {
+  top: 1.8px;
+  left: 14.3px;
+  width: 18px;
+  height: 18px;
+}
+.notification {
+  height: 37px;
+  width: 27.6px;
+  position: relative;
+}
+.action,
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  text-align: center;
+  font-size: var(--light-basic-typography-paragraph-small-size);
+}
+.navbar {
+  position: absolute;
+  top: 34px;
+  left: 591px;
+  box-shadow: var(--light-gray-gray-sm);
+  border-radius: var(--br-7xs);
+  background-color: var(--light-solid-color-extra-card-background);
+  width: 1000px;
+  overflow: hidden;
+  padding: var(--padding-xs) var(--padding-5xl);
+  box-sizing: border-box;
+  gap: var(--gap-3xs);
+  max-width: 100%;
+  z-index: 1;
+  text-align: left;
+  font-size: var(--light-form-input-8-placeholder-default-size);
+  color: var(--light-solid-color-extra-card-background);
+  font-family: var(--light-form-input-8-placeholder-default);
+}
