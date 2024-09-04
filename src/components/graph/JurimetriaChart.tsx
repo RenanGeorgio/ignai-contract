@@ -1,62 +1,40 @@
-import React from 'react';
-import {
-  Chart as ChartJS,
-  BarElement,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  Legend,
-  Tooltip,
-  Chart as ChartJSChart,
-} from 'chart.js';
-import { Chart } from 'react-chartjs-2';
-import type { ChartData, ChartOptions } from 'chart.js';
+import { FunctionComponent } from "react";
+import { Chart, BarElement, CategoryScale, LinearScale, Title } from 'chart.js';
+import { Bar } from "react-chartjs-2";
 
-ChartJS.register(
-  BarElement,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  Legend,
-  Tooltip
-);
+Chart.register(BarElement, CategoryScale, LinearScale, Title);
 
-const data: ChartData<'bar' | 'line'> = {
-  labels: ['January', 'February', 'March', 'April'],
-  datasets: [
-    {
-      type: 'bar',
-      label: 'Bar Dataset',
-      data: [10, 20, 30, 40],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+const JurimetriaChart: FunctionComponent = () => {
+  const chartData = {
+    labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set"],
+    datasets: [
+      {
+        label: "Pendentes",
+        data: [10, 20, 30, 40, 50, 60, 70, 80, 90],
+        backgroundColor: "#FF6384",
+      },
+      {
+        label: "Analisados",
+        data: [20, 30, 40, 50, 60, 70, 80, 90, 100],
+        backgroundColor: "#36A2EB",
+      },
+    ],
+  };
+
+  const chartOptions = {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
     },
-    {
-      type: 'line',
-      label: 'Line Dataset',
-      data: [50, 50, 50, 50],
-      fill: false,
-      borderColor: 'rgb(54, 162, 235)',
-    },
-  ],
-};
+  };
 
-const options: ChartOptions<'bar' | 'line'> = {
-  scales: {
-    y: {
-      beginAtZero: true,
-    },
-  },
-};
-
-const JurimetriaChart = () => {
   return (
-    <div>
-      <div>
-        <h2>Jurimetria de busca</h2>
-        <p>Total número de processos no período 23.8k</p>
-      </div>
-      <Chart type="bar" data={data} options={options} />
+    <div style={{ boxShadow:"0px 4px 6px rgba(0, 0, 0, 0.1)", margin:"10px"}}>
+      <h1 style={{ margin: "20px", fontWeight: "bold", fontSize: "25px"}}>Jurimetria de busca</h1>
+      <p>Total número de processos no período 23.8k</p>
+      <Bar data={chartData} options={chartOptions} />
     </div>
   );
 };

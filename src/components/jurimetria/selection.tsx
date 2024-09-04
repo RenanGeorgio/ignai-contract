@@ -1,9 +1,9 @@
 import React from "react";
-import { Table, Tbody, Tr, Td, TableContainer, Checkbox } from "@chakra-ui/react";
+import { Table, Tbody, Tr, Td, TableContainer, Checkbox, Box } from "@chakra-ui/react";
 
 const Selection = () => {
   return (
-    <div>
+    <Box boxShadow="0px 4px 6px rgba(0, 0, 0, 0.1)" p={4} borderRadius="md">
       <div>
         <div>
           <div>Seleção de órgãos</div>
@@ -108,8 +108,8 @@ const Selection = () => {
           </Table>
         </TableContainer>
       </div>
-    </div>
+    </Box>
   );
-}
+};
 
 export default Selection;
