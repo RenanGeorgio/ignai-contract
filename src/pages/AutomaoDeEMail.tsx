@@ -1,8 +1,10 @@
 import { FunctionComponent, useState } from "react";
+import { Box } from "@chakra-ui/react";
+
 import AnalysisTable from "@components/table/AnalysisTable";
 import StatisticsChart from "@components/graph/StatisticsChart";
+
 import styles from "@styles/AutomaoDeEMail.module.css";
-import { Box } from "@chakra-ui/react";
 
 export type AutomaoDeEMailType = {
   className?: string;
@@ -10,7 +12,6 @@ export type AutomaoDeEMailType = {
 };
 
 const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ className = "", expanded }) => {
-
   return (
     <div className={[styles.automaoDeEMail, className].join(" ")}>
       <Box
@@ -102,6 +103,6 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ className = "",
       </Box>
     </div>
   );
-};
+}
 
 export default AutomaoDeEMail;
