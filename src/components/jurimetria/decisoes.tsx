@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Flex,
@@ -12,8 +12,8 @@ import {
   Td,
   Divider,
   Icon,
-} from '@chakra-ui/react';
-import { ChevronUpIcon } from '@chakra-ui/icons';
+} from "@chakra-ui/react";
+import { ChevronUpIcon } from "@chakra-ui/icons";
 
 const barData = [
   { label: 'Contrário', percentage: 39.7, color: 'red' },
@@ -37,7 +37,6 @@ const DecisoesFinais = () => {
           Decisões Finais
         </Text>
       </Box>
-
       <Box>
         <Flex direction="column" align="center">
           <Flex direction="row" align="center" justify="space-between" width="100%" marginBottom="50px">
@@ -70,9 +69,7 @@ const DecisoesFinais = () => {
           </Box>
         </Flex>
       </Box>
-
       <Divider />
-
       <Box>
         <Table variant="simple">
           <Thead>
@@ -101,6 +98,6 @@ const DecisoesFinais = () => {
       </Box>
     </VStack>
   );
-};
+}
 
 export default DecisoesFinais;
