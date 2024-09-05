@@ -1,122 +1,79 @@
-import { FunctionComponent, useMemo, type CSSProperties } from "react";
-import Badge from "./Badge";
-import styles from "@styles/automation/DataTableRow.module.css";
+import { FunctionComponent } from "react";
+import { Table, Thead, Tbody, Tr, Th, Td, IconButton, Badge, Box } from "@chakra-ui/react";
+import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
 export type DataTableRowType = {
-  className?: string;
-  queirozGalvo?: string;
-  emptyData?: string;
-  success?: string;
-  propColor?: string;
-  propMinWidth3?: string;
-
-  /** Style props */
-  propBackgroundColor?: CSSProperties["backgroundColor"];
-  propRowGap?: CSSProperties["rowGap"];
-  propOverflowX?: CSSProperties["overflowX"];
-  propMinWidth?: CSSProperties["minWidth"];
-  propBackgroundColor1?: CSSProperties["backgroundColor"];
-  propMinWidth1?: CSSProperties["minWidth"];
-  propMinWidth2?: CSSProperties["minWidth"];
-  propWidth?: CSSProperties["width"];
+  data: {
+    queirozGalvo: string;
+    email: string;
+    telefone: string;
+    numero: string;
+    status: string;
+  }[];
 };
 
-const DataTableRow: FunctionComponent<DataTableRowType> = ({
-  className = "",
-  propBackgroundColor,
-  propRowGap,
-  propOverflowX,
-  propMinWidth,
-  propBackgroundColor1,
-  queirozGalvo,
-  propMinWidth1,
-  emptyData,
-  propMinWidth2,
-  propWidth,
-  success,
-  propColor,
-  propMinWidth3,
-}) => {
-  const dataTableRowStyle: CSSProperties = useMemo(() => {
-    return {
-      backgroundColor: propBackgroundColor,
-      rowGap: propRowGap,
-      overflowX: propOverflowX,
-    };
-  }, [propBackgroundColor, propRowGap, propOverflowX]);
-
-  const dataTableCellStyle: CSSProperties = useMemo(() => {
-    return {
-      minWidth: propMinWidth,
-    };
-  }, [propMinWidth]);
-
-  const backgroundStyle: CSSProperties = useMemo(() => {
-    return {
-      backgroundColor: propBackgroundColor1,
-    };
-  }, [propBackgroundColor1]);
-
-  const queirozGalvoStyle: CSSProperties = useMemo(() => {
-    return {
-      minWidth: propMinWidth1,
-    };
-  }, [propMinWidth1]);
-
-  const emptyDataStyle: CSSProperties = useMemo(() => {
-    return {
-      minWidth: propMinWidth2,
-      width: propWidth,
-    };
-  }, [propMinWidth2, propWidth]);
-
+const DataTableRow: FunctionComponent<DataTableRowType> = ({ data }) => {
   return (
-    <div
-      className={[styles.dataTableRow, className].join(" ")}
-      style={dataTableRowStyle}
-    >
-      <div className={styles.dataTableCell} style={dataTableCellStyle}>
-        <div className={styles.labelInitials}>
-          <div className={styles.background} style={backgroundStyle} />
-          <div className={styles.pi}>JK</div>
-        </div>
-        <div className={styles.text}>
-          <div className={styles.queirozGalvo} style={queirozGalvoStyle}>
-            {queirozGalvo}
-          </div>
-          <div className={styles.margejacobsongmailcom2799}>
-            Marge.Jacobson@gmail.com 27 99882-7820
-          </div>
-        </div>
-      </div>
-      <div className={styles.dataTableCell1}>
-        <div className={styles.emptyData} style={emptyDataStyle}>
-          {emptyData}
-        </div>
-      </div>
-      <div className={styles.dataTableCell2}>
-        <Badge
-          success={success}
-          propColor={propColor}
-          propMinWidth={propMinWidth3}
-        />
-      </div>
-      <div className={styles.dataTableCell3}>
-        <img className={styles.editIcon} alt="" src="/edit.svg" />
-        <img
-          className={styles.trashIcon}
-          loading="lazy"
-          alt=""
-          src="/trash.svg"
-        />
-        <img
-          className={styles.dotsVerticalIcon}
-          alt=""
-          src="/dotsvertical.svg"
-        />
-      </div>
-    </div>
+    <Table variant="simple" size="md" border="1px solid" borderColor="gray.300">
+      <Thead>
+        <Tr>
+          <Th borderColor="gray.300">Cliente - Conta</Th>
+          <Th borderColor="gray.300">Número</Th>
+          <Th borderColor="gray.300">Status</Th>
+          <Th borderColor="gray.300">Ação</Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        {data.map((row, index) => (
+          <Tr key={index} borderBottom="1px solid" borderColor="gray.300">
+            <Td borderColor="gray.300">
+              <Box display="flex" alignItems="center">
+                <span role="img" aria-label="Pessoa" style={{ fontSize: "1.5rem", marginRight: "8px" }}>
+                  👤
+                </span>
+                <Box>
+                  <strong>{row.queirozGalvo}</strong>
+                  <br />
+                  <span style={{ color: "gray", display: "block", marginLeft: "2px" }}>
+                    {row.email} | {row.telefone}
+                  </span>
+                </Box>
+              </Box>
+            </Td>
+            <Td borderColor="gray.300">{row.numero}</Td>
+            <Td borderColor="gray.300">
+              <Badge
+                variant="solid"
+                colorScheme="green"
+                bg="green.100"
+                color="green.700"
+                px={2}
+                py={1}
+                borderRadius="md"
+              >
+                {row.status}
+              </Badge>
+            </Td>
+            <Td borderColor="gray.300">
+              <IconButton
+                aria-label="Editar"
+                icon={<EditIcon />}
+                size="sm"
+                mr={2}
+                variant="ghost"
+              />
+              <IconButton
+                aria-label="Excluir"
+                icon={<DeleteIcon />}
+                size="sm"
+                variant="ghost"
+              />
+            </Td>
+          </Tr>
+        ))}
+      </Tbody>
+    </Table>
   );
-};
+}
 
 export default DataTableRow;
