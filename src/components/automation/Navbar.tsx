@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
-import Avatar from "./Avatar";
-import styles from "@styles/automation/Navbar.module.css";
+import { Box, Flex, Text, Input, IconButton, Badge } from "@chakra-ui/react";
+import { BellIcon } from "@chakra-ui/icons";
 
 export type NavbarType = {
   className?: string;
@@ -8,33 +8,60 @@ export type NavbarType = {
 
 const Navbar: FunctionComponent<NavbarType> = ({ className = "" }) => {
   return (
-    <header className={[styles.navbar, className].join(" ")}>
-      <div className={styles.search}>
-        <img
-          className={styles.searchIcon}
-          loading="lazy"
-          alt=""
-          src="/search.svg"
-        />
-        <div className={styles.searchLabel}>
-          <div className={styles.buscarCtrlf}>Buscar (Ctrl+F)</div>
-        </div>
-      </div>
-      <div className={styles.action}>
-        <div className={styles.notification}>
-          <img
-            className={styles.bellIcon}
-            loading="lazy"
-            alt=""
-            src="/bell.svg"
+    <header className={className}>
+      <Flex
+        p={4}
+        align="center"
+        justify="space-between"
+        color="black"
+        borderBottom="1px"
+        borderColor="gray.700"
+      >
+        <Box flex="1" mr={4}>
+          <Input
+            placeholder="Buscar"
+            variant="outline"
+            bg="white"
+            color="gray.800"
+            borderRadius="md"
+            size="md"
           />
-          <div className={styles.dot}>
-            <div className={styles.background} />
-            <a className={styles.unreadCount}>4</a>
-          </div>
-        </div>
-        <Avatar />
-      </div>
+        </Box>
+        <Flex align="center">
+          <Box position="relative" ml={4}>
+            <IconButton
+              aria-label="Notifications"
+              icon={<BellIcon />}
+              variant="outline"
+              colorScheme="teal"
+            />
+            <Badge
+              position="absolute"
+              top="-1px"
+              right="-1px"
+              colorScheme="red"
+              borderRadius="full"
+            >
+              4
+            </Badge>
+          </Box>
+          <Box
+            width="40px"
+            height="40px"
+            borderRadius="full"
+            bg="white"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            ml={4}
+            color="gray.800"
+            fontSize="lg"
+            fontWeight="bold"
+          >
+            A
+          </Box>
+        </Flex>
+      </Flex>
     </header>
   );
 };
