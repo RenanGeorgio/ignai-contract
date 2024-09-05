@@ -74,6 +74,6 @@ const DataTableRow: FunctionComponent<DataTableRowType> = ({ data }) => {
       </Tbody>
     </Table>
   );
-};
+}
 
 export default DataTableRow;
