@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Chart, BarElement, CategoryScale, LinearScale, Title } from 'chart.js';
+import { Chart, BarElement, CategoryScale, LinearScale, Title } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
 Chart.register(BarElement, CategoryScale, LinearScale, Title);
@@ -37,6 +37,6 @@ const JurimetriaChart: FunctionComponent = () => {
       <Bar data={chartData} options={chartOptions} />
     </div>
   );
-};
+}
 
 export default JurimetriaChart;
