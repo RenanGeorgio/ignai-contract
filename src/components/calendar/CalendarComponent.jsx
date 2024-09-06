@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import { Box } from "@chakra-ui/react";
-import Calendar from '@osam2/react-calendar';
-import moment from 'moment-timezone';
-import 'moment/locale/pt-br';
+import Calendar from "@osam2/react-calendar";
+import moment from "moment-timezone";
+import "moment/locale/pt-br";
 
 const CalendarComponent = (props) => {
   const style = {
@@ -35,6 +35,6 @@ const CalendarComponent = (props) => {
       />
     </Box>
   );
-};
+}
 
 export default CalendarComponent;
