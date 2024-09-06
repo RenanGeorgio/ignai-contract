@@ -1,9 +1,10 @@
 import { FunctionComponent } from "react";
+import { Box } from "@chakra-ui/react";
+
 import Navbar from "@components/automation/Navbar";
 import JurimetriaChart from "@components/graph/JurimetriaChart";
 import Selection from "@components/jurimetria/selection";
 import DecisoesFinais from "@components/jurimetria/decisoes";
-import { Box } from "@chakra-ui/react";
 
 import styles from "@styles/Jurimetria.module.css";
 
