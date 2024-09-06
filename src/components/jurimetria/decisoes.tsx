@@ -24,9 +24,9 @@ const barData = [
 
 const tableData = [
   { name: 'Categoria 1', number1: '17,513', percentage: '39.7%' },
-  { name: 'Categoria 2', number1: '15,000', percentage: '34.2%' },
-  { name: 'Categoria 3', number1: '12,000', percentage: '27.8%' },
-  { name: 'Categoria 4', number1: '9,000', percentage: '20.3%' },
+  { name: 'Categoria 2', number1: '15,000', percentage: '28.3%' },
+  { name: 'Categoria 3', number1: '12,000', percentage: '17.4%' },
+  { name: 'Categoria 4', number1: '9,000', percentage: '14.6%' },
 ];
 
 const DecisoesFinais = () => {
