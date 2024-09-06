@@ -31,7 +31,7 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: Aut
           <div className={styles.header}>
             <input type="text" placeholder="Buscar..." className={styles.searchInput} />
             <div className={styles.userInfo}>
-              <div className={styles.date}>01/09/2024</div>
+              <div className={styles.date}>Setembro 6, 2024</div>
               <span role="img" aria-label="notificação" className={styles.notificationEmoji}>
                 🔔
               </span>
@@ -48,9 +48,9 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: Aut
               </span>
               <div className={styles.statText}>
                 <div className={styles.statTitle}>Clientes</div>
-                <div className={styles.statCount}>123</div>
+                <div className={styles.statCount}>540</div>
                 <div className={styles.statPercentage}>
-                  +12% <span className={styles.lastMonth}>último mês</span>
+                  +0.45% <span className={styles.lastMonth}>último mês</span>
                 </div>
               </div>
             </div>
@@ -60,9 +60,9 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: Aut
               </span>
               <div className={styles.statText}>
                 <div className={styles.statTitle}>Contratos</div>
-                <div className={styles.statCount}>456</div>
+                <div className={styles.statCount}>180</div>
                 <div className={styles.statPercentage}>
-                  -8% <span className={styles.lastMonth}>último mês</span>
+                  1.8% <span className={styles.lastMonth}>último mês</span>
                 </div>
               </div>
             </div>
@@ -72,9 +72,9 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: Aut
               </span>
               <div className={styles.statText}>
                 <div className={styles.statTitle}>Modificações</div>
-                <div className={styles.statCount}>789</div>
+                <div className={styles.statCount}>25,68%</div>
                 <div className={styles.statPercentage}>
-                  +5% <span className={styles.lastMonth}>último mês</span>
+                  +0.69% <span className={styles.lastMonth}>último mês</span>
                 </div>
               </div>
             </div>
@@ -84,7 +84,7 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: Aut
               </span>
               <div className={styles.statText}>
                 <div className={styles.statTitle}>Total Analisado</div>
-                <div className={styles.statCount}>1011</div>
+                <div className={styles.statCount}>640,253</div>
                 <div className={styles.statPercentage}>
                   +15% <span className={styles.lastMonth}>último mês</span>
                 </div>
