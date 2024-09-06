@@ -60,7 +60,6 @@ const Buscador: FunctionComponent<BuscadorType> = ({ className = "", expanded })
         <section className={styles.buscadorInner}>
           <div className={styles.navbarParent}>
             <h1 className={styles.titleBuscador}>Buscador</h1>
-            <Navbar />
             <div className={styles.containerTableBusc}>
               <BuscadorTable data={data} />
             </div>
