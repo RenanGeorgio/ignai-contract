@@ -28,7 +28,7 @@ const Agendamento: FunctionComponent<AgendamentoType> = ({
   events,
   showInfo,
   listEvents
-}) => {
+}: AgendamentoType) => {
   return (
     <div className={[styles.agendamento, className].join(" ")}>
       <Box
