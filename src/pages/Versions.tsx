@@ -1,9 +1,11 @@
 import { FunctionComponent } from "react";
+import { Box } from "@chakra-ui/react";
+
 import Navbar from "@components/automation/Navbar";
 import DataTableRow from "@components/automation/DataTableRow";
-import styles from "@styles/Versions.module.css";
 import Minuta from "@components/automation/Minuta";
-import { Box } from "@chakra-ui/react";
+
+import styles from "@styles/Versions.module.css";
 
 export type VersionsType = {
   className?: string;

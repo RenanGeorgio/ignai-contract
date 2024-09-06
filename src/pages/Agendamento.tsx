@@ -1,9 +1,10 @@
 import { FunctionComponent } from "react";
-import styles from "@styles/Agendamento.module.css";
 import { Box } from "@chakra-ui/react";
 import FormularioAgendamento from "@components/form/FormAgendamento";
 import Navbar from "@components/automation/Navbar";
 import CalendarComponent from "@components/calendar/CalendarComponent";
+
+import styles from "@styles/Agendamento.module.css";
 
 type Event = {
   id: string;

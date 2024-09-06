@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import FrameComponent2 from "@components/automation/FrameComponent2";
 import PDFViewer from "@components/pdf";
+
 import styles from "@styles/automation/Final.module.css";
 
 export type FinalType = {
