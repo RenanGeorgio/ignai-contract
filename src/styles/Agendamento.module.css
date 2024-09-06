@@ -1,0 +1,115 @@
+.agendamentoContainer {
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: 10%;
+  margin-top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.containerCalendario {
+  position: relative;
+  top: 2%;
+  left: 48%;
+  width: 70%;
+  height: 100%;
+  box-shadow: 24;
+  padding: 1ch 1ch 3ch 3ch;
+  color: #333;
+  border-radius: 2;
+  margin-top: 20;
+  margin-bottom: 20;
+  border: 1px #000;
+}
+
+.mainAgendamento {
+  width: 65%;
+  align-items: flex-start;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.agendamentoNavContainer{
+  width: 60%;
+  margin-left: 4%;
+  margin-bottom: -40px;
+}
+
+.mainContentAgendamento,
+.navbarAgendamento {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.mainContentAgendamento,
+.navbarParent {
+  align-self: stretch;
+}
+
+.mainContentAgendamento {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: -55%;
+}
+
+.navbarAgendamento {
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 20px;
+  margin-right: 5%;
+}
+
+.agendamento,
+.agendamentoInner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.agendamentoInner {
+  flex: 1;
+  flex-direction: column;
+  box-sizing: border-box;
+  text-align: left;
+}
+.agendamento {
+  width: 100%;
+  height: 100vh;
+  margin-top: 25px;
+  overflow: hidden;
+  flex-direction: column;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+@media screen and (max-width: 1200px) {
+  .mainAgendamento {
+    flex: 1;
+  }
+  .mainContentAgendamento {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1050px) {
+  .agendamentoInner {
+    max-width: 100%;
+  }
+  .agendamento {
+    gap: 49px;
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 750px) {
+  .mainAgendamento {
+    gap: 36px;
+    min-width: 100%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .mainAgendamento {
+    gap: 18px;
+  }
+}
