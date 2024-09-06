@@ -5,42 +5,89 @@ const FormularioBuscaDetalhada: FunctionComponent = () => {
   return (
     <Box p={5} border="1px solid" borderColor="gray.300" borderRadius="md">
       <Flex mb={4}>
-        <Select placeholder="Unidade Administrativa" width="30%">
-          <option>Todas</option>
-        </Select>
-        <Input placeholder="Número do Contrato" ml={2} width="30%" />
-        <Input placeholder="Número do Processo" ml={2} width="30%" />
+        <Box width="30%">
+          <Text mb={2}>Unidade Administrativa</Text>
+          <Select>
+            <option>Todas</option>
+          </Select>
+        </Box>
+        <Box width="30%" ml={2}>
+          <Text mb={2}>Número do Contrato</Text>
+          <Input />
+        </Box>
+        <Box width="30%" ml={2}>
+          <Text mb={2}>Número do Processo</Text>
+          <Input />
+        </Box>
       </Flex>
 
       <Flex mb={4}>
-        <Select placeholder="Enquadramento do Processo" width="30%">
-          <option>Todas</option>
-        </Select>
-        <Select placeholder="Situação" ml={2} width="30%">
-          <option>Todas</option>
-        </Select>
-        <Input placeholder="Objeto da Contratação" ml={2} width="30%" />
+        <Box width="30%">
+          <Text mb={2}>Enquadramento</Text>
+          <Select>
+            <option>Todas</option>
+          </Select>
+        </Box>
+        <Box width="30%" ml={2}>
+          <Text mb={2}>Situação</Text>
+          <Select>
+            <option>Todas</option>
+          </Select>
+        </Box>
+        <Box width="30%" ml={2}>
+          <Text mb={2}>Objeto da Contratação</Text>
+          <Input />
+        </Box>
       </Flex>
 
       <Flex mb={4}>
-        <Input placeholder="Fornecedor" width="30%" />
-        <Input placeholder="CNPJ/CPF" ml={2} width="30%" />
-        <Input placeholder="Objeto de Contratação" ml={2} width="30%" />
+        <Box width="30%">
+          <Text mb={2}>Fornecedor</Text>
+          <Input />
+        </Box>
+        <Box width="30%" ml={2}>
+          <Text mb={2}>CNPJ/CPF</Text>
+          <Input />
+        </Box>
+        <Box width="30%" ml={2}>
+          <Text mb={2}>Objeto de Contratação</Text>
+          <Input />
+        </Box>
       </Flex>
 
-      <Text mb={2}>Início da Vigência</Text>
-      <Flex mb={4}>
-        <Input placeholder="De" width="30%" />
-        <Input placeholder="Até" ml={2} width="30%" />
-        <Text ml={4} mb={2}>Fim da Vigência</Text>
-        <Input placeholder="De" ml={2} width="30%" />
-        <Input placeholder="Até" ml={2} width="30%" />
+      <Flex mb={4} align="center" justify="space-between">
+        <Box width="23%">
+          <Text mb={2}>Início da Vigência</Text>
+          <Text mb={2}>De:</Text>
+          <Input />
+        </Box>
+        <Box width="23%">
+          <Text mb={2}>&nbsp;</Text>
+          <Text mb={2}>Para:</Text>
+          <Input />
+        </Box>
+        <Box width="23%">
+          <Text mb={2}>Fim da Vigência</Text>
+          <Text mb={2}>De:</Text>
+          <Input />
+        </Box>
+        <Box width="23%">
+          <Text mb={2}>&nbsp;</Text>
+          <Text mb={2}>Para:</Text>
+          <Input />
+        </Box>
       </Flex>
 
       <Text mb={2}>Valor do Contrato</Text>
       <Flex mb={4}>
-        <Input placeholder="De" width="30%" />
-        <Input placeholder="Até" ml={2} width="30%" />
+        <Box width="30%">
+          <Text mb={2}>De:</Text>
+          <Input />
+        </Box>
+        <Box width="30%" ml={2}>
+          <Text mb={2}>Para:</Text>
+          <Input />
+        </Box>
       </Flex>
 
       <Text mb={2}>Busca Detalhada</Text>
