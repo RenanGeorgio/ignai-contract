@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import FrameComponent2 from "@components/automation/FrameComponent2";
+import PDFViewer from "@components/pdf";
 import styles from "@styles/automation/Final.module.css";
 
 export type FinalType = {
@@ -14,8 +15,7 @@ const Final: FunctionComponent<FinalType> = ({ expanded }: FinalType) => {
       <FrameComponent2 />
       <div className={styles.finalInner}>
         <div className={styles.image14Parent}>
-          {/* img */}
-          {/* img */}
+          <PDFViewer />
         </div>
       </div>
       <div className={styles.finalChild}>
