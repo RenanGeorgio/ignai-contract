@@ -8,6 +8,7 @@ const Minuta: FunctionComponent = () => {
       <Box display="flex" justifyContent="space-between" mb="20px">
         <Box
           width="48%"
+          height="100%"
           className={styles.card}
           boxShadow="lg" 
           p="20px" 
@@ -77,6 +78,7 @@ const Minuta: FunctionComponent = () => {
           boxShadow="lg" 
           p="20px" 
           height="auto"
+          minHeight="280px"
         >
           <Text className={styles.cardTitleContainer} color="blue" marginBottom="10px">
             Histórico Análise Sem Modificações
