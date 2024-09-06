@@ -1,17 +1,16 @@
 import { FunctionComponent } from "react";
-import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
-import { Title } from "chart.js";
+import { Table, Thead, Tbody, Tr, Th, Td, Box, Flex, Text } from "@chakra-ui/react";
 
 const AnalysisTable: FunctionComponent = () => {
   return (
     <div>
       <h1 style={{ margin: "10px", fontWeight: "bold", fontSize: "25px" }}>Comportamento IA</h1>
-      <Table variant="simple">
+      <Table variant="simple" borderColor="gray.300" borderWidth="1px">
         <Thead>
           <Tr>
-            <Th>Análises</Th>
-            <Th>Modificações</Th>
-            <Th>Eficácia IA</Th>
+            <Th bg="gray.100" borderColor="gray.300" borderWidth="1px">Análises</Th>
+            <Th bg="gray.100" borderColor="gray.300" borderWidth="1px">Modificações</Th>
+            <Th bg="gray.100" borderColor="gray.300" borderWidth="1px">Eficácia IA</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -57,6 +56,19 @@ const AnalysisTable: FunctionComponent = () => {
           </Tr>
         </Tbody>
       </Table>
+      <Box mt="4" borderTop="1px" borderColor="gray.300">
+        <Flex justify="space-between" align="center" p="2">
+          <Text color="gray.500">Mostrando 1 de 2</Text>
+          <Flex>
+            <Box as="button" mx="1" p="2" borderRadius="md" border="1px" borderColor="gray.300">
+              &lt;
+            </Box>
+            <Box as="button" mx="1" p="2" borderRadius="md" border="1px" borderColor="gray.300">
+              &gt;
+            </Box>
+          </Flex>
+        </Flex>
+      </Box>
     </div>  
   );
 };
