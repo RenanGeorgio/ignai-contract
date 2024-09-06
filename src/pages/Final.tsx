@@ -7,9 +7,10 @@ export type FinalType = {
   expanded: boolean;
 };
 
-const Final: FunctionComponent<FinalType> = ({ className = "", expanded }) => {
+const Final: FunctionComponent<FinalType> = ({ expanded }: FinalType) => {
+  console.log(expanded);
   return (
-    <div className={[styles.final, className].join(" ")}>
+    <div className={styles.final}>
       <FrameComponent2 />
       <div className={styles.finalInner}>
         <div className={styles.image14Parent}>
@@ -33,6 +34,6 @@ const Final: FunctionComponent<FinalType> = ({ className = "", expanded }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Final;

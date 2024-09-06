@@ -1,16 +1,16 @@
 import { FunctionComponent } from "react";
-import styles from "@styles/Buscador.module.css";
-import Navbar from "@components/automation/Navbar";
 import { Box } from "@chakra-ui/react";
 import BuscadorTable from "@components/table/BuscadorTable";
 import FormularioBuscaDetalhada from "@components/form/FormBuscador";
+
+import styles from "@styles/Buscador.module.css";
 
 export type BuscadorType = {
   className?: string;
   expanded: boolean;
 };
 
-const Buscador: FunctionComponent<BuscadorType> = ({ className = "", expanded }) => {
+const Buscador: FunctionComponent<BuscadorType> = ({ expanded }: BuscadorType) => {
   const data = [
     {
       queirozGalvo: "Queiroz Galvão",
@@ -50,7 +50,7 @@ const Buscador: FunctionComponent<BuscadorType> = ({ className = "", expanded })
   ];
 
   return (
-    <div className={[styles.buscador, className].join(" ")}>
+    <div className={styles.buscador}>
       <Box
         ml={expanded ? "220px" : "50px"}
         transition="margin 0.3s ease"
@@ -75,6 +75,6 @@ const Buscador: FunctionComponent<BuscadorType> = ({ className = "", expanded })
       </Box>
     </div>
   );
-};
+}
 
 export default Buscador;

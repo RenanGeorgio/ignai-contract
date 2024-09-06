@@ -8,7 +8,7 @@ interface HomeProps {
   expanded: boolean;
 }
 
-const Home: React.FC<HomeProps> = ({ expanded }) => {
+const Home: React.FC<HomeProps> = ({ expanded }: HomeProps) => {
   return (
     <Box display="flex" height="100vh">
       <Box

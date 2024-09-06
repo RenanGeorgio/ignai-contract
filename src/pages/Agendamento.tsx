@@ -17,9 +17,9 @@ type ListEventsFunction = () => Event[];
 export type AgendamentoType = {
   className?: string;
   expanded: boolean;
-  events: Event[];
-  showInfo: ShowInfoFunction;
-  listEvents: ListEventsFunction;
+  events?: Event[];
+  showInfo?: ShowInfoFunction;
+  listEvents?: ListEventsFunction;
 };
 
 const Agendamento: FunctionComponent<AgendamentoType> = ({

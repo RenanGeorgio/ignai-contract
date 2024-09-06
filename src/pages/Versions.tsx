@@ -10,7 +10,7 @@ export type VersionsType = {
   expanded: boolean;
 };
 
-const Versions: FunctionComponent<VersionsType> = ({ className = "", expanded }) => {
+const Versions: FunctionComponent<VersionsType> = ({ expanded }: VersionsType) => {
   const data = [
     {
       queirozGalvo: "Queiroz Galvão",
@@ -50,7 +50,7 @@ const Versions: FunctionComponent<VersionsType> = ({ className = "", expanded })
   ];
 
   return (
-    <div className={[styles.versions, className].join(" ")}>
+    <div className={styles.versions}>
       <Box
         ml={expanded ? "200px" : "20px"} 
         transition="margin 0.3s ease"
@@ -77,6 +77,6 @@ const Versions: FunctionComponent<VersionsType> = ({ className = "", expanded })
       </Box>
     </div>
   );
-};
+}
 
 export default Versions;

@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { Box } from "@chakra-ui/react";
 
 import AnalysisTable from "@components/table/AnalysisTable";
@@ -11,9 +11,9 @@ export type AutomaoDeEMailType = {
   expanded: boolean;
 };
 
-const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ className = "", expanded }) => {
+const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: AutomaoDeEMailType) => {
   return (
-    <div className={[styles.automaoDeEMail, className].join(" ")}>
+    <div className={styles.automaoDeEMail}>
       <Box
         flex="1"
         ml={expanded ? "20px" : "10px"} 
