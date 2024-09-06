@@ -57,6 +57,17 @@ const FormularioBuscaDetalhada: FunctionComponent = () => {
           <Checkbox>Enquadramento do Processo</Checkbox><br />
           <Checkbox>CNPJ/CPF</Checkbox>
         </Box>
+        <Box>
+          <Checkbox>Objeto da contratação</Checkbox><br />
+          <Checkbox>Valor do Contrato</Checkbox><br />
+          <Checkbox>Saldo bruto do contrato</Checkbox><br />
+          <Checkbox>Saldo inativo</Checkbox>
+        </Box>
+        <Box>
+          <Checkbox>Situação</Checkbox><br />
+          <Checkbox>Número dos aditivos</Checkbox><br />
+          <Checkbox>Fundamento Legal</Checkbox>
+        </Box>
       </Flex>
 
       <Flex justifyContent="center" mt={5}>
