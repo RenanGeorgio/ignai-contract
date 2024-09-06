@@ -1,32 +1,58 @@
 import React from "react";
-import { Table, Tbody, Tr, Td, TableContainer, Checkbox, Box } from "@chakra-ui/react";
+import { Table, Tbody, Tr, Td, TableContainer, Checkbox, Box, Button, Select, Flex } from "@chakra-ui/react";
 
 const Selection = () => {
   return (
-    <Box boxShadow="0px 4px 6px rgba(0, 0, 0, 0.1)" p={4} borderRadius="md">
-      <div>
-        <div>
-          <div>Seleção de órgãos</div>
-          <div>
-            <button>SELECIONAR TODOS</button>
-          </div>
-          <div>
-            <button>REMOVER TODOS</button>
-          </div>
-        </div>
+    <Box>
+      <Flex mb={4} justify="flex-end" gap={2}>
+        <Select placeholder="De: 01/07/2024" width="200px">
+          <option value="janeiro">05/07/2024</option>
+          <option value="fevereiro">10/07/2024</option>
+        </Select>
+        <Select placeholder="Para: 06/09/2024" width="200px">
+          <option value="2024">15/09/2024</option>
+          <option value="2023">30/09/2024</option>
+        </Select>
+      </Flex>
+      <Box boxShadow="0px 4px 6px rgba(0, 0, 0, 0.1)" p={4} borderRadius="md">
+        <Box fontWeight="bold" fontSize="lg" m={2}>Seleção de órgãos</Box>
+        <Flex align="flex-start" mb={4}>
+          <Flex >
+          <Button
+            size="sm"
+            border="1px"
+            borderColor="gray.300"
+            variant="outline"
+            p={2}
+            m={1}
+          >
+            SELECIONAR TODOS
+          </Button>
+          <Button
+            size="sm"
+            border="1px"
+            borderColor="gray.300"
+            variant="outline"
+            p={2}
+            m={1}
+          >
+            REMOVER TODOS
+          </Button>
+          </Flex>
+        </Flex>
 
         <TableContainer>
           <Table variant="simple">
             <Tbody>
               <Tr>
-                <Td>TRIBUNAIS SUPERIORES</Td>
-                <Td><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TRIBUNAIS SUPERIORES</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
               </Tr>
               <Tr>
-                <Td>STF</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>STJ</Td>
-                <Td><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">STF</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">STJ</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
               </Tr>
             </Tbody>
           </Table>
@@ -36,20 +62,20 @@ const Selection = () => {
           <Table variant="simple">
             <Tbody>
               <Tr>
-                <Td>JUSTIÇA FEDERAL</Td>
-                <Td><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">JUSTIÇA FEDERAL</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
               </Tr>
               <Tr>
-                <Td>TRF3</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TRF4</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TRF1</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TRF2</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TRF5</Td>
-                <Td><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TRF3</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TRF4</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TRF1</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TRF2</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TRF5</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
               </Tr>
             </Tbody>
           </Table>
@@ -59,55 +85,55 @@ const Selection = () => {
           <Table variant="simple">
             <Tbody>
               <Tr>
-                <Td>JUSTIÇA ESTADUAL</Td>
-                <Td><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">JUSTIÇA ESTADUAL</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
               </Tr>
               <Tr>
-                <Td>TJ - RJ</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - PR</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - SC</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - SP</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - MG</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - MS</Td>
-                <Td><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - RJ</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - PR</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - SC</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - SP</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - MG</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - MS</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
               </Tr>
               <Tr>
-                <Td>TJ - BA</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - CE</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - RS</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - ES</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - PB</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - PA</Td>
-                <Td><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - BA</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - CE</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - RS</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - ES</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - PB</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - PA</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
               </Tr>
               <Tr>
-                <Td>TJ - PE</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - GO</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - AM</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - TO</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - SE</Td>
-                <Td><Checkbox defaultChecked /></Td>
-                <Td>TJ - RO</Td>
-                <Td><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - PE</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - GO</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - AM</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - TO</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - SE</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
+                <Td p={2} lineHeight="1.2">TJ - RO</Td>
+                <Td p={2} lineHeight="1.2"><Checkbox defaultChecked /></Td>
               </Tr>
             </Tbody>
           </Table>
         </TableContainer>
-      </div>
+      </Box>
     </Box>
   );
 };
