@@ -2,7 +2,8 @@
   width: 100%;
   box-sizing: border-box;
   margin-left: 10%;
-  margin-top: 0;
+  margin-top: -17%;
+  margin-bottom: 55px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -11,8 +12,8 @@
 .containerCalendario {
   position: relative;
   top: 2%;
-  left: 48%;
-  width: 70%;
+  left: 60%;
+  width: 80%;
   height: 100%;
   box-shadow: 24;
   padding: 1ch 1ch 3ch 3ch;
@@ -24,7 +25,7 @@
 }
 
 .mainAgendamento {
-  width: 65%;
+  width: 70%;
   align-items: flex-start;
   display: flex;
   justify-content: flex-start;
