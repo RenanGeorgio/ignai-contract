@@ -81,11 +81,11 @@ const CustomSideBar: React.FC<SidebarProps> = ({ expanded, setExpanded }) => {
             </div>
           </Link>
 
-          <Link className="link" to="/agendamento">
+          <Link className="link" to="/buscador">
             <div className="menu-item">
               <LayoutNavIcon />
               <span className={expanded ? "show-text" : "hide-text"}>
-                <p className="textOpen">ChatBot</p>
+                <p className="textOpen">Buscador</p>
               </span>
             </div>
           </Link>
@@ -95,11 +95,11 @@ const CustomSideBar: React.FC<SidebarProps> = ({ expanded, setExpanded }) => {
       <div className="section1">
         <div className="sectionContainer">
           <p className={expanded ? "show-text" : "hide-text"}>Ajuda</p>
-          <Link className="link" to="/buscador">
+          <Link className="link" to="/agendamento">
             <div className="menu-item">
               <SettingIcon />
               <span className={expanded ? "show-text" : "hide-text"}>
-                <p className="textOpen">Configurações</p>
+                <p className="textOpen">Agendamento</p>
               </span>
             </div>
           </Link>

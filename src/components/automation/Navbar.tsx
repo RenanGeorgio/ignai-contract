@@ -14,8 +14,6 @@ const Navbar: FunctionComponent<NavbarType> = ({ className = "" }) => {
         align="center"
         justify="space-between"
         color="black"
-        borderBottom="1px"
-        borderColor="gray.700"
       >
         <Box flex="1" mr={4}>
           <Input
