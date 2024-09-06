@@ -47,8 +47,29 @@ const Versions: FunctionComponent<VersionsType> = ({ expanded }: VersionsType) =
       numero: "2039482035",
       status: "Aprovado",
     },
+    {
+      queirozGalvo: "Têxtil Brasil",
+      email: "Textil.Brasil@gmail.com",
+      telefone: "27 99882-7820",
+      numero: "2039482036",
+      status: "Aprovado",
+    },
+    {
+      queirozGalvo: "AeroTech",
+      email: "AeroTech@gmail.com",
+      telefone: "27 99882-7821",
+      numero: "2039482037",
+      status: "Aprovado",
+    },
+    {
+      queirozGalvo: "Supermercado Móveis",
+      email: "Supermercado.Moveis@gmail.com",
+      telefone: "27 99882-7822",
+      numero: "2039482038",
+      status: "Aprovado",
+    },
   ];
-
+  
   return (
     <div className={styles.versions}>
       <Box
@@ -58,7 +79,9 @@ const Versions: FunctionComponent<VersionsType> = ({ expanded }: VersionsType) =
       >
         <section className={styles.versionsInner}>
           <div className={styles.navbarParent}>
-            <Navbar  />    
+            <div className={styles.navbarVersions}>
+              <Navbar  />    
+            </div>
             <div className={styles.mainContentParent}>
               <div className={styles.mainContent}>
                 <div className={styles.contentContainer}>

@@ -30,6 +30,10 @@
   flex-direction: column;
 }
 
+.navbarVersions {
+  width: 59%;
+}
+
 .dataTableParent,
 .mainContentParent,
 .navbarParent {
