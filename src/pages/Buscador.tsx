@@ -60,12 +60,12 @@ const Buscador: FunctionComponent<BuscadorType> = ({ expanded }: BuscadorType) =
         <section className={styles.buscadorInner}>
           <div className={styles.navbarParent}>
             <h1 className={styles.titleBuscador}>Buscador</h1>
-            <div className={styles.containerTableBusc}>
+            <div className={styles.containerTableBusc} style={{ marginRight: expanded ? "10%" : "0%", width: expanded ? "40%" : "50%"}}>
               <BuscadorTable data={data} />
             </div>
             <div className={styles.mainContentBuscador}>
               <div className={styles.mainBuscador}>
-                <div className={styles.buscadorContainer}>
+                <div className={styles.buscadorContainer}  style={{ marginTop: expanded ? "-78%" : "-61%" }}>
                   <FormularioBuscaDetalhada />
                 </div>
               </div>
