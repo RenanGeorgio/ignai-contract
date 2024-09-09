@@ -43,7 +43,7 @@ const Agendamento: FunctionComponent<AgendamentoType> = ({
             <Navbar />
           </div>
           <div className={styles.navbarAgendamento}>
-            <div className={styles.containerCalendario}>
+            <div className={styles.containerCalendario} style={{ marginRight: expanded ? "5%" : "0%"}}>
               <CalendarComponent
                 events={events}
                 showInfo={showInfo}
