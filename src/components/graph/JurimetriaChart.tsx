@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Chart, BarElement, LineElement, CategoryScale, LinearScale, PointElement, Title, Tooltip, Legend } from 'chart.js';
-
-Chart.register(BarElement, LineElement, CategoryScale, LinearScale, PointElement, Title, Tooltip, Legend);
+import Chart from 'chart.js/auto';
 
 const JurimetriaChart: React.FC = () => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
