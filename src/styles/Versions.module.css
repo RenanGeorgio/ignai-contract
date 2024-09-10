@@ -51,6 +51,7 @@
   width: 100%;
   margin-left: -20px;
   margin-bottom: 20px;
+  overflow-x: auto;
 }
 
 .mainContentParent,
@@ -59,10 +60,13 @@
 }
 
 .mainContentParent {
-  margin-right: -8px;
+  display: flex;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: flex-start;
   gap: 21px;
+  width: 100%; 
+  transition: margin 0.3s ease; 
 }
 
 .navbarParent {
