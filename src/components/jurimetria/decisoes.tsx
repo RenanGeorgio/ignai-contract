@@ -31,7 +31,7 @@ const tableData = [
 
 const DecisoesFinais = () => {
   return (
-    <VStack spacing={4} align="stretch" >
+    <VStack spacing={4} align="stretch" style={{ height: 300, overflowY: 'auto'}}>
       <Box>
         <Text fontSize="xl" fontWeight="bold">
           Decisões Finais
