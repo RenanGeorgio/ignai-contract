@@ -75,7 +75,7 @@ const JurimetriaChart: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", margin: "10px" }}>
+    <div style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", padding: 10 }}>
       <h1 style={{ margin: "20px 0 10px 10px", fontWeight: "bold", fontSize: "25px" }}>
         Jurimetria de busca
       </h1>
