@@ -73,9 +73,10 @@ const Versions: FunctionComponent<VersionsType> = ({ expanded }: VersionsType) =
   return (
     <div className={styles.versions}>
       <Box
-        ml={expanded ? "200px" : "20px"} 
+        ml={expanded ? "190px" : "20px"} 
         transition="margin 0.3s ease"
-        width="100%"
+        width="calc(100% - 80px)" 
+        overflowX="auto"
       >
         <section className={styles.versionsInner}>
           <div className={styles.navbarParent}>

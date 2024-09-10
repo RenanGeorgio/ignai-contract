@@ -27,9 +27,7 @@ const Agendamento: FunctionComponent<AgendamentoType> = ({
   expanded,
   // events,
   showInfo,
-
 }: AgendamentoType) => {
-
   const events = [
     {
       id: 1,
@@ -57,7 +55,7 @@ const Agendamento: FunctionComponent<AgendamentoType> = ({
   return (
     <div className={[styles.agendamento, className].join(' ')}>
       <Box
-        ml={expanded ? '185px' : '50px'}
+        ml={expanded ? '178px' : '50px'}
         transition="margin 0.3s ease"
         width="100%"
         overflowX="auto"
@@ -66,21 +64,16 @@ const Agendamento: FunctionComponent<AgendamentoType> = ({
           <div className={styles.agendamentoNavContainer}>
             <Navbar />
           </div>
-          <div className={styles.navbarAgendamento}>
+          <div className={styles.containerAgendamento}>
+            <div className={styles.containerForm}>
+              {/* <FormularioAgendamento /> */}
+              <FormularioAgendamento />
+            </div>
             <div
               className={styles.containerCalendario}
               style={{ marginRight: expanded ? '5%' : '0%' }}
             >
-              <CalendarComponent
-                events={events}
-              />
-            </div>
-            <div className={styles.mainContentAgendamento}>
-              <div className={styles.mainAgendamento}>
-                <div className={styles.agendamentoContainer}>
-                  <FormularioAgendamento />
-                </div>
-              </div>
+              <CalendarComponent events={events} />
             </div>
           </div>
         </section>
