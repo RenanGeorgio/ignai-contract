@@ -14,7 +14,7 @@ export type DataTableRowType = {
 const DataTableRow: FunctionComponent<DataTableRowType> = ({ data }) => {
   return (
     <Box>
-      <Table variant="simple" size="md" border="1px solid" borderColor="gray.300">
+      <Table variant="simple" size="md" border="1px solid" borderColor="gray.300" width="90%">
         <Thead>
           <Tr>
             <Th borderColor="gray.300">Cliente - Conta</Th>

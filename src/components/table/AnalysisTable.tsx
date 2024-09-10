@@ -5,7 +5,7 @@ const AnalysisTable: FunctionComponent = () => {
   return (
     <div>
       <h1 style={{ margin: "10px", fontWeight: "bold", fontSize: "25px" }}>Comportamento IA</h1>
-      <Table variant="simple" borderColor="gray.300" borderWidth="1px" width="90%" align="center">
+      <Table variant="simple" borderColor="gray.300" borderWidth="1px" width="80%" align="center">
         <Thead>
           <Tr>
             <Th bg="gray.100" borderColor="gray.300" borderWidth="1px">Análises</Th>
