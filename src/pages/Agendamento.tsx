@@ -57,7 +57,7 @@ const Agendamento: FunctionComponent<AgendamentoType> = ({
   return (
     <div className={[styles.agendamento, className].join(' ')}>
       <Box
-        ml={expanded ? '220px' : '50px'}
+        ml={expanded ? '185px' : '50px'}
         transition="margin 0.3s ease"
         width="100%"
         overflowX="auto"
