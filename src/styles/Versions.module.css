@@ -2,7 +2,7 @@
   font-size: 25px;
   font-weight: bold;
   margin: 15px;
-  margin-top: -20px;
+  margin-top: -30px;
   color: gray;
 }
 
@@ -33,6 +33,7 @@
 
 .navbarVersions {
   width: 52%;
+  margin-top: 10px;
 }
 
 .dataTableParent,
@@ -50,6 +51,7 @@
   width: 30%;
   margin-left: -20px;
   margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 .mainContentParent,

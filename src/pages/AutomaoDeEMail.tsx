@@ -15,8 +15,7 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: Aut
   return (
     <div className={styles.automaoDeEMail}>
       <Box
-        flex="1"
-        ml={expanded ? "20px" : "10px"} 
+        flex="1" 
         mr="10px"
         overflowY="auto"
         transition="margin 0.3s ease"
@@ -24,7 +23,7 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: Aut
         <section
           className={styles.contentWrapper}
           style={{
-            marginLeft: expanded ? "250px" : "80px",
+            marginLeft: expanded ? "230px" : "60px",
             width: expanded ? "calc(100% - 250px)" : "calc(100% - 80px)",
           }}
         >
