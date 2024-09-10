@@ -1,10 +1,10 @@
-import { FunctionComponent } from "react";
-import { Box } from "@chakra-ui/react";
-import FormularioAgendamento from "@components/form/FormAgendamento";
-import Navbar from "@components/automation/Navbar";
-import CalendarComponent from "@components/calendar/CalendarComponent";
+import { FunctionComponent } from 'react';
+import { Box } from '@chakra-ui/react';
+import FormularioAgendamento from '@components/form/FormAgendamento';
+import Navbar from '@components/automation/Navbar';
+import CalendarComponent from '@components/calendar/CalendarComponent';
 
-import styles from "@styles/Agendamento.module.css";
+import styles from '@styles/Agendamento.module.css';
 
 type Event = {
   id: string;
@@ -20,20 +20,44 @@ export type AgendamentoType = {
   expanded: boolean;
   events?: Event[];
   showInfo?: ShowInfoFunction;
-  listEvents?: ListEventsFunction;
 };
 
 const Agendamento: FunctionComponent<AgendamentoType> = ({
-  className = "",
+  className = '',
   expanded,
-  events,
+  // events,
   showInfo,
-  listEvents
+
 }: AgendamentoType) => {
+
+  const events = [
+    {
+      id: 1,
+      color: '#fd3153',
+      from: '2024-09-09T18:00:00+00:00',
+      to: '2024-09-09T22:00:00+00:00',
+      title: 'Reunião de equipe',
+    },
+    {
+      id: 2,
+      color: '#1ccb9e',
+      from: '2024-09-11T14:00:00+00:00',
+      to: '2024-09-12T17:00:00+00:00',
+      title: 'Reunião com cliente',
+    },
+    {
+      id: 3,
+      color: '#3694DF',
+      from: '2024-09-15T13:00:00+00:00',
+      to: '2024-09-15:00:00+00:00',
+      title: 'Reunião com fornecedor',
+    },
+  ];
+
   return (
-    <div className={[styles.agendamento, className].join(" ")}>
+    <div className={[styles.agendamento, className].join(' ')}>
       <Box
-        ml={expanded ? "220px" : "50px"}
+        ml={expanded ? '220px' : '50px'}
         transition="margin 0.3s ease"
         width="100%"
         overflowX="auto"
@@ -43,11 +67,12 @@ const Agendamento: FunctionComponent<AgendamentoType> = ({
             <Navbar />
           </div>
           <div className={styles.navbarAgendamento}>
-            <div className={styles.containerCalendario} style={{ marginRight: expanded ? "5%" : "0%"}}>
+            <div
+              className={styles.containerCalendario}
+              style={{ marginRight: expanded ? '5%' : '0%' }}
+            >
               <CalendarComponent
                 events={events}
-                showInfo={showInfo}
-                listEvents={listEvents}
               />
             </div>
             <div className={styles.mainContentAgendamento}>
