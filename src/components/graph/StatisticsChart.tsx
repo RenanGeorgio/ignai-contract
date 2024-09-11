@@ -31,9 +31,11 @@ const StatisticsChart: FunctionComponent = () => {
   };
 
   return (
-    <div>
+    <div style={{ height: "100%" }}>
       <h1 style={{ margin: "20px", fontWeight: "bold", fontSize: "25px"}}>Estatísticas de Análises de contrato</h1>
-      <Bar data={chartData} options={chartOptions} />
+      <div style={{ marginTop: "25px" }}>
+        <Bar data={chartData} options={chartOptions} height="100%" />
+      </div>
     </div>
   );
 };
