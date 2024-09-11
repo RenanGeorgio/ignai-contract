@@ -1,5 +1,5 @@
 .containerView {
-  max-height: 550px;
+  max-height: 380px;
   overflow-y: auto;
   overflow-x: hidden;
 }

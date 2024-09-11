@@ -15,6 +15,7 @@
   box-sizing: border-box;
   gap: 25px;
   margin-left: 2%;
+  margin-bottom: 25px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;

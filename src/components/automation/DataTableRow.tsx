@@ -25,7 +25,7 @@ const DataTableRow: FunctionComponent<DataTableRowType> = ({ data }) => {
           </Tr>
         </Thead>
       </Table>
-      <Box className="containerView" maxHeight="450px" overflowY="auto">
+      <Box className="containerView" maxHeight="380px" overflowY="auto">
         <Table variant="simple">
           <Tbody>
             {data.map((row, index) => (
