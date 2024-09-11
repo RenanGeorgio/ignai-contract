@@ -1,9 +1,10 @@
 import { Box, Button, Checkbox, Flex, Input, Select, Text } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
+import "@styles/viewsForm.css";
 
 const FormAgendamento: FunctionComponent = () => {
   return (
-    <Box p={5} border="1px solid" borderColor="gray.300" borderRadius="md">
+    <Box className="containerViewForm" p={5} border="1px solid" borderColor="gray.300" borderRadius="md" height="100%" overflowY="auto">
       <Flex mb={4}>
         <Box width="30%">
           <Text mb={2}>Unidade Administrativa</Text>

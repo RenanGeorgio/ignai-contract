@@ -47,6 +47,27 @@ const Buscador: FunctionComponent<BuscadorType> = ({ expanded }: BuscadorType) =
       numero: "2039482035",
       status: "Aprovado",
     },
+    {
+      queirozGalvo: "Têxtil Brasil",
+      email: "Textil.Brasil@gmail.com",
+      telefone: "27 99882-7820",
+      numero: "2039482036",
+      status: "Aprovado",
+    },
+    {
+      queirozGalvo: "AeroTech",
+      email: "AeroTech@gmail.com",
+      telefone: "27 99882-7821",
+      numero: "2039482037",
+      status: "Aprovado",
+    },
+    {
+      queirozGalvo: "Supermercado Móveis",
+      email: "Supermercado.Moveis@gmail.com",
+      telefone: "27 99882-7822",
+      numero: "2039482038",
+      status: "Aprovado",
+    },
   ];
 
   return (
@@ -55,7 +76,8 @@ const Buscador: FunctionComponent<BuscadorType> = ({ expanded }: BuscadorType) =
         ml={expanded ? "220px" : "50px"}
         transition="margin 0.3s ease"
         width="100%"
-        overflowX="auto"
+        height="100%"
+        overflow="hidden"
       >
         <section className={styles.buscadorInner}>
           <div className={styles.navbarParent}>

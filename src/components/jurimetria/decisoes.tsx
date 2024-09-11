@@ -14,6 +14,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { ChevronUpIcon } from "@chakra-ui/icons";
+import "@styles/viewDecisions.css"
 
 const barData = [
   { label: 'Contrário', percentage: 39.7, color: 'red' },
@@ -31,7 +32,7 @@ const tableData = [
 
 const DecisoesFinais = () => {
   return (
-    <VStack spacing={4} align="stretch" style={{ height: 300, overflowY: 'auto'}}>
+    <VStack spacing={4} align="stretch" style={{ height: 300 }}>
       <Box>
         <Text fontSize="xl" fontWeight="bold">
           Decisões Finais
@@ -39,7 +40,7 @@ const DecisoesFinais = () => {
       </Box>
       <Box>
         <Flex direction="column" align="center">
-          <Flex direction="row" align="center" justify="space-between" width="100%" marginBottom="50px">
+          <Flex direction="row" align="center" justify="space-between" width="100%" marginBottom="10px">
             {barData.map((item) => (
               <Box key={item.label} flex={1} textAlign="center">
                 <Text>{item.label}</Text>
@@ -80,21 +81,25 @@ const DecisoesFinais = () => {
               <Th isNumeric>Percentual</Th>
             </Tr>
           </Thead>
-          <Tbody>
-            {tableData.map((item, index) => (
-              <Tr key={index}>
-                <Td>
-                  <Flex align="center">
-                    <Icon as={ChevronUpIcon} color="green.500" />
-                  </Flex>
-                </Td>
-                <Td>{item.name}</Td>
-                <Td isNumeric>{item.number1}</Td>
-                <Td isNumeric>{item.percentage}</Td>
-              </Tr>
-            ))}
-          </Tbody>
         </Table>
+        <Box className="containerViewDecicions" maxHeight="120px" overflowY="auto">
+          <Table variant="simple">
+            <Tbody overflowY="auto" maxHeight="100px">
+              {tableData.map((item, index) => (
+                <Tr key={index}>
+                  <Td>
+                    <Flex align="center">
+                      <Icon as={ChevronUpIcon} color="green.500" />
+                    </Flex>
+                  </Td>
+                  <Td>{item.name}</Td>
+                  <Td isNumeric>{item.number1}</Td>
+                  <Td isNumeric>{item.percentage}</Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </Box>
       </Box>
     </VStack>
   );

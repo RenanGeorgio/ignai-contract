@@ -66,7 +66,6 @@ const Agendamento: FunctionComponent<AgendamentoType> = ({
           </div>
           <div className={styles.containerAgendamento}>
             <div className={styles.containerForm}>
-              {/* <FormularioAgendamento /> */}
               <FormularioAgendamento />
             </div>
             <div

@@ -29,7 +29,7 @@ const Jurimetria: FunctionComponent<JurimetriaType> = ({
               width: '55%',
               height: '30%',
               marginLeft: 'auto',
-              marginTop: '50px',
+              marginTop: '10px',
               marginRight: '20px',
             }}
           >
@@ -40,7 +40,7 @@ const Jurimetria: FunctionComponent<JurimetriaType> = ({
             style={{
               width: '36.5%',
               marginLeft: '56px',
-              marginTop: '-15%',
+              marginTop: '-14%',
               padding: 10,
             }}
           >
