@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td, IconButton, Badge, Box, Select } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
+
 import "@styles/view.css";
 
 export type BuscadorTableType = {
@@ -30,7 +31,6 @@ const BuscadorTable: FunctionComponent<BuscadorTableType> = ({ data }) => {
           <option value="numero2">Número 2</option>
         </Select>
       </Box>
-
       <Table variant="simple" size="md" border="1px solid" borderColor="gray.300">
         <Thead>
           <Tr>
@@ -96,6 +96,6 @@ const BuscadorTable: FunctionComponent<BuscadorTableType> = ({ data }) => {
       </Box>  
     </Box>
   );
-};
+}
 
 export default BuscadorTable;
