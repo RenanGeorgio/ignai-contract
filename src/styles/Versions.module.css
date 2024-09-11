@@ -2,7 +2,7 @@
   font-size: 25px;
   font-weight: bold;
   margin: 15px;
-  margin-top: -30px;
+  margin-top: -60px;
   color: gray;
 }
 
@@ -73,7 +73,7 @@
   flex-direction: column;
   align-items: flex-end;
   width: 98%;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 40px;
 }
 

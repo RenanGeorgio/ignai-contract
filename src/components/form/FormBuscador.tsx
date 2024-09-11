@@ -4,7 +4,7 @@ import "@styles/viewsForm.css";
 
 const FormularioBuscaDetalhada: FunctionComponent = () => {
   return (
-    <Box className="containerViewForm" p={5} border="1px solid" borderColor="gray.300" borderRadius="md" height="100%" overflowY="auto">
+    <Box className="containerViewForm" p={5} border="1px solid" borderColor="gray.300" borderRadius="md" height="85%" overflowY="auto">
       <Flex mb={4}>
         <Box width="30%">
           <Text mb={2}>Unidade Administrativa</Text>
