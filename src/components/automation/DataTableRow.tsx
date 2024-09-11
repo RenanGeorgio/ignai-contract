@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td, IconButton, Badge, Box, Text } from "@chakra-ui/react";
+
 import "@styles/view.css"
 
 export type DataTableRowType = {
