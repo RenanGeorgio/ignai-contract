@@ -1,6 +1,7 @@
 .containerView {
   max-height: 550px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .containerView::-webkit-scrollbar {

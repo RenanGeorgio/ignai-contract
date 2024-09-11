@@ -1,21 +1,47 @@
-.containerViewAnalysis {
-  max-height: 345px;
-  overflow-y: auto;
+.tableContainer {
+  display: block;
+  max-height: 300px;
+  overflow: hidden;
 }
 
-.containerViewAnalysis::-webkit-scrollbar {
+.tableContainer thead, .tableContainer tbody {
+  display: block;
+}
+
+.tableContainer thead {
+  background-color: #f5f5f5;
+}
+
+.tableContainer tbody {
+  overflow-y: auto;
+  max-height: 300px; 
+}
+
+.tableContainer tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.tableContainer thead tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.tableContainer tbody::-webkit-scrollbar {
   width: 8px; 
 }
 
-.containerViewAnalysis::-webkit-scrollbar-track {
+.tableContainer tbody::-webkit-scrollbar-track {
   background-color: #f1f1f1;
 }
 
-.containerViewAnalysis::-webkit-scrollbar-thumb {
+.tableContainer tbody::-webkit-scrollbar-thumb {
   background-color: #a0a0a0; 
   border-radius: 10px;
 }
 
-.containerViewAnalysis::-webkit-scrollbar-thumb:hover {
+.tableContainer tbody::-webkit-scrollbar-thumb:hover {
   background-color: #888; 
 }
