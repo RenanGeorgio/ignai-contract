@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
-import styles from "@styles/automation/Button.module.css";
 import { Box, Text } from "@chakra-ui/react";
+
+import styles from "@styles/automation/Button.module.css";
 
 const Minuta: FunctionComponent = () => {
   return (
@@ -96,6 +97,6 @@ const Minuta: FunctionComponent = () => {
       </Box>
     </div>
   );
-};
+}
 
 export default Minuta;
