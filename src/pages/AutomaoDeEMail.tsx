@@ -23,7 +23,7 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: Aut
         <section
           className={styles.contentWrapper}
           style={{
-            marginLeft: expanded ? "230px" : "60px",
+            marginLeft: expanded ? "230px" : "55px",
             width: expanded ? "calc(100% - 250px)" : "calc(100% - 60px)",
           }}
         >

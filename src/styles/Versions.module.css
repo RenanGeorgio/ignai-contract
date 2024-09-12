@@ -125,6 +125,11 @@
 }
 
 @media screen and (max-width: 750px) {
+  .homeContainer {
+    flex-direction: column;
+    margin: 10px;
+  }
+
   .titleVersions {
     margin-top: 20px;
   }

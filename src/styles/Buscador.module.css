@@ -61,6 +61,15 @@
 }
 
 @media screen and (max-width: 750px) {
+  .buscador {
+    margin-left: -50px;
+  }
+
+  .mainContentBuscador{
+    width: 90%;
+    margin-left: 70px;
+  }
+
   .navbarParent {
     flex-direction: column;
     margin-top: 10px;
@@ -71,6 +80,7 @@
 
   .titleBuscador {
     margin-bottom: 0;
+    margin-left: 80px;
   }
   
   .containerTableBusc {
@@ -81,6 +91,8 @@
   
   .mainBuscador {
     width: 100%;
+    overflow: hidden;
+    overflow-x: hidden;
     margin-top: 20px;
     gap: 20px; 
   }
