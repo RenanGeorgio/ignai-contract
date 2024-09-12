@@ -75,7 +75,7 @@ const Versions: FunctionComponent<VersionsType> = ({ expanded }: VersionsType) =
       <Box
         ml={expanded ? "190px" : "20px"} 
         transition="margin 0.3s ease"
-        width="calc(100% - 80px)" 
+        width="100%" 
         overflowX="auto"
       >
         <section className={styles.versionsInner}>
