@@ -24,7 +24,7 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: Aut
           className={styles.contentWrapper}
           style={{
             marginLeft: expanded ? "230px" : "60px",
-            width: expanded ? "calc(100% - 250px)" : "calc(100% - 80px)",
+            width: expanded ? "calc(100% - 250px)" : "calc(100% - 60px)",
           }}
         >
           <div className={styles.header}>
@@ -42,14 +42,14 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: Aut
           </div>
           <div className={styles.statsWrapper}>
             <div className={styles.statItem}>
-              <span role="img" aria-label="clientes" className={styles.statIcon}>
+              <span role="img" aria-label="contratos" className={styles.statIcon}>
                 🧑‍💼
               </span>
               <div className={styles.statText}>
                 <div className={styles.statTitle}>Clientes</div>
                 <div className={styles.statCount}>540</div>
                 <div className={styles.statPercentage}>
-                  +0.45% <span className={styles.lastMonth}>último mês</span>
+                  +1.2% <span className={styles.lastMonth}>último mês</span>
                 </div>
               </div>
             </div>

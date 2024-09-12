@@ -3,6 +3,7 @@ import { Box } from "@chakra-ui/react";
 import Navbar from "@components/automation/Navbar";
 import DataTableRow from "@components/automation/DataTableRow";
 import Minuta from "@components/automation/Minuta";
+
 import styles from "@styles/Versions.module.css";
 
 export type VersionsType = {
@@ -75,7 +76,7 @@ const Versions: FunctionComponent<VersionsType> = ({ expanded }: VersionsType) =
       <Box
         ml={expanded ? "190px" : "20px"} 
         transition="margin 0.3s ease"
-        width="calc(100% - 80px)" 
+        width="100%" 
         overflowX="auto"
       >
         <section className={styles.versionsInner}>

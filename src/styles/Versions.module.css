@@ -49,9 +49,9 @@
   align-items: flex-start;
   gap: 1;
   width: 100%;
-  margin-left: -20px;
+  margin-left: 10px;
   margin-bottom: 20px;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 .mainContentParent,

@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td, IconButton, Badge, Box, Text } from "@chakra-ui/react";
+
 import "@styles/view.css"
 
 export type DataTableRowType = {
@@ -25,7 +26,7 @@ const DataTableRow: FunctionComponent<DataTableRowType> = ({ data }) => {
           </Tr>
         </Thead>
       </Table>
-      <Box className="containerView" maxHeight="450px" overflowY="auto">
+      <Box className="containerView" maxHeight="380px" width="100%" overflowY="auto">
         <Table variant="simple">
           <Tbody>
             {data.map((row, index) => (

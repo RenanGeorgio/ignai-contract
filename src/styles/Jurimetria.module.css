@@ -18,6 +18,7 @@
   background-color: var(--light-solid-color-extra-card-background);
   overflow: hidden;
   display: flex;
+  margin-bottom: 25px;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
