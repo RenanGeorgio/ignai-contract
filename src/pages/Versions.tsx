@@ -3,6 +3,7 @@ import { Box } from "@chakra-ui/react";
 import Navbar from "@components/automation/Navbar";
 import DataTableRow from "@components/automation/DataTableRow";
 import Minuta from "@components/automation/Minuta";
+
 import styles from "@styles/Versions.module.css";
 
 export type VersionsType = {
