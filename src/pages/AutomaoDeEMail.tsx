@@ -24,7 +24,7 @@ const AutomaoDeEMail: FunctionComponent<AutomaoDeEMailType> = ({ expanded }: Aut
           className={styles.contentWrapper}
           style={{
             marginLeft: expanded ? "230px" : "60px",
-            width: expanded ? "calc(100% - 250px)" : "calc(100% - 80px)",
+            width: expanded ? "calc(100% - 250px)" : "calc(100% - 60px)",
           }}
         >
           <div className={styles.header}>
