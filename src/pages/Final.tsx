@@ -1,8 +1,7 @@
 import { FunctionComponent } from "react";
+import { Box } from "@chakra-ui/react";
 import FrameComponent2 from "@components/automation/FrameComponent2";
 import PDFViewer from "@components/pdf";
-
-import { Box } from "@chakra-ui/react";
 
 import styles from "@styles/Final.module.css";
 
