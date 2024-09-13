@@ -68,7 +68,7 @@ const Minuta: FunctionComponent = () => {
           justifyContent="center"
           alignItems="center"
           boxShadow="lg"
-          height="140px"
+          height="150px"
         >
           Jogue aqui seu arquivo para análise rápida
         </Box>
@@ -78,7 +78,7 @@ const Minuta: FunctionComponent = () => {
           className={styles.card2}
           boxShadow="lg" 
           p="20px" 
-          height="140px"
+          height="150px"
         >
           <Text className={styles.cardTitleContainer} color="blue" marginBottom="10px">
             Histórico Análise Sem Modificações

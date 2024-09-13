@@ -138,6 +138,21 @@
 @media screen and (max-width: 800px) {
   .finalChild {
     min-width: 100%;
+  } 
+  .final {
+    flex-direction: column;
+    margin-top: 0px;
+  }
+  .containerFinal {
+    margin-left: 60px;
+  }
+  .finalInner {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .image14Parent {
+    height: 50vh;
+    margin: 20px;
   }
 }
 @media screen and (max-width: 450px) {

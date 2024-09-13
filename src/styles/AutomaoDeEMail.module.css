@@ -14,7 +14,6 @@
 }
 
 .contentWrapper {
-  /* flex: 1; */
   padding: 20px;
   transition: margin-left 0.3s ease, width 0.3s ease;
 }
@@ -145,18 +144,29 @@
 }
 
 @media screen and (max-width: 750px) {
+  .date {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
   .statsWrapper {
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 10px;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .statItem {
+    flex-basis: calc(50% - 20px); 
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .trafficChart {
+    flex-direction: column;
   }
 
+  .analysisTable,
   .statisticsChart {
     width: 100%;
-    height: 30vh;
-  }
-
-  .analysisTable {
-    width: 100%;
+    height: auto;
   }
 }
 

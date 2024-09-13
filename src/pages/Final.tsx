@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
+import { Box } from "@chakra-ui/react";
 import FrameComponent2 from "@components/automation/FrameComponent2";
 import PDFViewer from "@components/pdf";
 
-import styles from "@styles/automation/Final.module.css";
-import { Box } from "@chakra-ui/react";
+import styles from "@styles/Final.module.css";
 
 export type FinalType = {
   className?: string;
@@ -13,7 +13,7 @@ export type FinalType = {
 const Final: FunctionComponent<FinalType> = ({ expanded }: FinalType) => {
   console.log(expanded);
   return (
-    <div>
+    <div className={styles.containerFinal}>
       <Box
         flex="1"
         ml={expanded ? "200px" : "10px"} 
