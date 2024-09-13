@@ -77,6 +77,7 @@ const Buscador: FunctionComponent<BuscadorType> = ({ expanded }: BuscadorType) =
         transition="margin 0.3s ease"
         width="100%"
         height="100%"
+        overflow="hidden"
       >
         <section className={styles.buscadorInner}>
           <div className={styles.navbarParent}>

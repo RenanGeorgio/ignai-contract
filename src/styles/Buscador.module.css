@@ -48,58 +48,47 @@
 }
 
 @media screen and (max-width: 1200px) {
+  .buscadorInner {
+    margin-left: 10px;
+    overflow-y: auto;
+    height: 100vh;
+    width: 100%;
+  }
+
   .mainContentBuscador {
     flex-direction: column; 
     align-items: stretch;
     gap: 20px; 
   }
-  
-  .containerTableBusc {
-    width: 100%; 
-    margin-left: 0; 
-  }
-}
 
-@media screen and (max-width: 750px) {
-  .buscador {
-    margin-left: -50px;
-  }
-
-  .mainContentBuscador{
-    width: 90%;
-    margin-left: 70px;
-  }
-
-  .navbarParent {
-    flex-direction: column;
-    margin-top: 10px;
-    margin-left: 5px;
-    margin-right: 0;
+  .mainBuscador {
     width: 99%;
   }
-
-  .titleBuscador {
-    margin-bottom: 0;
-    margin-left: 80px;
-  }
   
   .containerTableBusc {
-    width: 100%;
-    overflow-x: auto; 
+    width: 99%; 
+    margin-left: 0;
+    margin-top: 20px; 
     margin-bottom: 25px;
   }
-  
-  .mainBuscador {
-    width: 100%;
-    overflow: hidden;
-    overflow-x: hidden;
-    margin-top: 20px;
-    gap: 20px; 
-  }
-}
 
-@media screen and (max-width: 450px) {
-  .mainBuscador {
-    gap: 15px; 
+  .buscadorInner::-webkit-scrollbar {
+    width: 6px; 
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .buscadorInner::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  .buscadorInner::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px; 
+    border: 2px solid #f1f1f1; 
+  }
+
+  .buscadorInner::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
   }
 }
