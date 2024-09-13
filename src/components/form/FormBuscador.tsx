@@ -1,5 +1,6 @@
-import { Box, Button, Flex, Input, Select, Text } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
+import { Box, Button, Flex, Input, Select, Text } from "@chakra-ui/react";
+
 import "@styles/viewsForm.css";
 
 const FormularioBuscaDetalhada: FunctionComponent = () => {
@@ -78,7 +79,6 @@ const FormularioBuscaDetalhada: FunctionComponent = () => {
           <Input className="form-field" />
         </Box>
       </Flex>
-
       <Text mb={2}>Valor do Contrato</Text>
       <Flex mb={4} align="center">
         <Box className="flex-item">
@@ -90,13 +90,12 @@ const FormularioBuscaDetalhada: FunctionComponent = () => {
           <Input className="form-field" />
         </Box>
       </Flex>
-
       <Flex justifyContent="center" mt={5}>
         <Button bg="gray.300" color="black" mr={2}>Consultar</Button>
         <Button bg="gray.300" color="black">Limpar</Button>
       </Flex>
     </Box>
   );
-};
+}
 
 export default FormularioBuscaDetalhada;
