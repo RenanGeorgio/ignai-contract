@@ -25,6 +25,7 @@ const Jurimetria: FunctionComponent<JurimetriaType> = ({
       >
         <section className={styles.content}>
           <div
+            className={styles.contentTable}
             style={{
               width: '55%',
               height: '30%',
@@ -37,6 +38,7 @@ const Jurimetria: FunctionComponent<JurimetriaType> = ({
             <Selection />
           </div>
           <div
+            className={styles.contentChart}
             style={{
               width: '36.5%',
               marginLeft: '56px',
@@ -47,6 +49,7 @@ const Jurimetria: FunctionComponent<JurimetriaType> = ({
             <JurimetriaChart />
           </div>
           <div
+            className={styles.contentDecisoes}
             style={{
               width: '35%',
               marginLeft: '5%',
