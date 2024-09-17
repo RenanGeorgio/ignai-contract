@@ -1,12 +1,12 @@
-import { FunctionComponent } from 'react';
-import { Box } from '@chakra-ui/react';
+import { FunctionComponent } from "react";
+import { Box } from "@chakra-ui/react";
 
-import Navbar from '@components/automation/Navbar';
-import JurimetriaChart from '@components/graph/JurimetriaChart';
-import Selection from '@components/jurimetria/selection';
-import DecisoesFinais from '@components/jurimetria/decisoes';
+import Navbar from "@components/automation/Navbar";
+import JurimetriaChart from "@components/graph/JurimetriaChart";
+import Selection from "@components/jurimetria/selection";
+import DecisoesFinais from "@components/jurimetria/decisoes";
 
-import styles from '@styles/Jurimetria.module.css';
+import styles from "@styles/Jurimetria.module.css";
 
 export type JurimetriaType = {
   className?: string;
@@ -64,6 +64,6 @@ const Jurimetria: FunctionComponent<JurimetriaType> = ({
       </Box>
     </div>
   );
-};
+}
 
 export default Jurimetria;
